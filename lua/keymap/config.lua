@@ -51,6 +51,8 @@ map({
   -- window resize
   { "n", "=", cmd("exe 'resize +1.5'"), opts(noremap, silent) },
   { "n", "-", cmd("exe 'resize -1.5'"), opts(noremap, silent) },
+  { "n", "+", cmd("exe 'vertical resize +1.5'"), opts(noremap, silent) },
+  { "n", "_", cmd("exe 'vertical resize -1.5'"), opts(noremap, silent) },
   -- code structure
   { "n", "{", cmd("AerialPrev"), opts(noremap, silent) },
   { "n", "}", cmd("AerialNext"), opts(noremap, silent) },
