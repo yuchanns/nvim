@@ -24,7 +24,6 @@ end
 
 function config.alpha()
   math.randomseed(os.time())
-  -- local colors = { "white", "violet", "lightyellow", "#7ba2f7" }
   local colors = { "#7ba2f7", "#9b348e", "#db627c", "#fda17d", "#86bbd8", "#33648a" }
   local function random_colors(color_lst)
     return color_lst[math.random(1, #color_lst)]
@@ -97,6 +96,90 @@ function config.nvim_bufferline()
       offsets = {},
     },
   })
+end
+
+function config.lualine()
+  require("lualine").setup({
+    options = {
+      icons_enabled = true,
+      theme = "tokyonight",
+      section_separators = { left = "", right = "" },
+      component_separators = { left = "", right = "" },
+    },
+  })
+end
+
+function config.indent_blanklinke()
+  vim.opt.list = true
+  vim.opt.listchars:append("space:⋅")
+  require("indent_blankline").setup({
+    space_char_blankline = " ",
+    show_current_context = true,
+    buftype_exclude = { "terminal", "nofile" },
+    filetype_exclude = {
+      "startify",
+      "dashboard",
+      "dotooagenda",
+      "log",
+      "fugitive",
+      "gitcommit",
+      "packer",
+      "vimwiki",
+      "markdown",
+      "json",
+      "txt",
+      "vista",
+      "help",
+      "todoist",
+      "NvimTree",
+      "peekaboo",
+      "git",
+      "TelescopePrompt",
+      "undotree",
+      "flutterToolsOutline",
+      "", -- for all buffers without a file type
+    },
+    use_treesitter = true,
+    char_list = { "|", "¦", "┆", "┊" },
+    show_first_indent_level = true,
+    show_trailing_blankline_indent = false,
+  })
+end
+
+function config.dapui()
+  local dap, dapui = require("dap"), require("dapui")
+
+  dapui.setup({
+    layouts = {
+      {
+        elements = { "scopes", "breakpoints", "stacks", "watches" },
+        size = 40,
+        position = "right",
+      },
+    },
+  })
+
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+  end
+
+  dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+  end
+
+  dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+  end
+end
+
+function config.notify()
+  local notify = require("notify")
+  notify.setup({})
+  vim.notify = notify
+end
+
+function config.colors()
+  require("lsp-colors").setup()
 end
 
 return config

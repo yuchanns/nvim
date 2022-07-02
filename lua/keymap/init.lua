@@ -21,20 +21,20 @@ map({
   {
     "n",
     "<Leader>fa",
-    cmd("lua require('telescope.builtin').live_grep()"),
+    cmd("Telescope live_grep"),
     opts(noremap, silent),
   },
   { "n", "<Leader>fp", cmd("Telescope neoclip"), opts(noremap, silent) },
   {
     "n",
     "<Leader>fs",
-    cmd("lua require('telescope.builtin').lsp_dynamic_workspace_symbols()"),
+    cmd("Telescope lsp_dynamic_workspace_symbols"),
     opts(noremap, silent),
   },
   {
     "n",
     "<Leader>fh",
-    cmd("lua require('telescope.builtin').oldfiles()"),
+    cmd("Telescope oldfiles"),
     opts(noremap, silent),
   },
 })

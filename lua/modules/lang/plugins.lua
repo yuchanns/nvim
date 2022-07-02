@@ -26,6 +26,18 @@ plugin({
     { "rhysd/vim-go-impl" },
     { "rust-lang/rust.vim" },
     { "ckipp01/stylua-nvim" },
+    {
+      "edolphin-ydf/goimpl.nvim",
+      requires = {
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-lua/popup.nvim" },
+        { "nvim-telescope/telescope.nvim" },
+        { "nvim-treesitter/nvim-treesitter" },
+      },
+    },
   },
   config = conf.nvim_lspconfig,
 })
+plugin({ "mfussenegger/nvim-dap", config = conf.dap })
+plugin({ "yuchanns/phpfmt.nvim", config = conf.phpfmt })
+plugin({ "yuchanns/shfmt.nvim", config = conf.shfmt })
