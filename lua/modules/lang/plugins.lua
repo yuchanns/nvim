@@ -27,13 +27,14 @@ plugin({
     { "rust-lang/rust.vim" },
     { "ckipp01/stylua-nvim" },
     {
-      "edolphin-ydf/goimpl.nvim",
+      "yuchanns/goimpl.nvim",
       requires = {
         { "nvim-lua/plenary.nvim" },
         { "nvim-lua/popup.nvim" },
         { "nvim-telescope/telescope.nvim" },
         { "nvim-treesitter/nvim-treesitter" },
       },
+      after = "telescope.nvim",
     },
   },
   config = conf.nvim_lspconfig,
