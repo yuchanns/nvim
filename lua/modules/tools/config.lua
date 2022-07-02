@@ -247,7 +247,7 @@ end
 function config.gitsigns()
   require("gitsigns").setup({
     current_line_blame = true,
-    linehl = true,
+    linehl = false,
     numhl = true,
 
     signs = {

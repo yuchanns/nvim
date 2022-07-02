@@ -48,4 +48,50 @@ map({
   { "n", "do", cmd("lua require('dap').step_out()"), opts(noremap, silent) },
   { "n", "db", cmd("lua require('dap').toggle_breakpoint()"), opts(noremap, silent) },
   { "n", "dr", cmd("lua require('dap').repl.open()"), opts(noremap, silent) },
+  -- window resize
+  { "n", "=", cmd("exe 'resize +1.5'"), opts(noremap, silent) },
+  { "n", "-", cmd("exe 'resize -1.5'"), opts(noremap, silent) },
+  -- code structure
+  { "n", "{", cmd("AerialPrev"), opts(noremap, silent) },
+  { "n", "}", cmd("AerialNext"), opts(noremap, silent) },
+  -- diagnostics
+  { "n", "[e", cmd("lua require('lspsaga.diagnostic').goto_prev()"), opts(noremap, silent) },
+  { "n", "]e", cmd("lua require('lspsaga.diagnostic').goto_next()"), opts(noremap, silent) },
+  {
+    "n",
+    "<Leader>e",
+    cmd("lua require('lspsaga.diagnostic').show_line_diagnostics()"),
+    opts(noremap, silent),
+  },
+  -- trouble
+  {
+    "n",
+    "<Leader>xx",
+    cmd("TroubleToggle"),
+    opts(noremap, silent),
+  },
+  {
+    "n",
+    "<Leader>xw",
+    cmd("TroubleToggle workspace_diagnostics"),
+    opts(noremap, silent),
+  },
+  {
+    "n",
+    "<Leader>xd",
+    cmd("TroubleToggle document_diagnostics"),
+    opts(noremap, silent),
+  },
+  {
+    "n",
+    "<Leader>xq",
+    cmd("TroubleToggle quickfix"),
+    opts(noremap, silent),
+  },
+  {
+    "n",
+    "<Leader>xl",
+    cmd("TroubleToggle loclist"),
+    opts(noremap, silent),
+  },
 })
