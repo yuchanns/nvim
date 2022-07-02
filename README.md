@@ -4,31 +4,31 @@
     height="30"
     width="0px"
   />
-  Fernvim
+  Cosynvim
   <img
     src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png"
     height="30"
     width="0px"
-  />“
+  />
 </h1>
 
 <p align="center">
-  <a href="https://github.com/glepnir/fernvim/stargazers">
+  <a href="https://github.com/glepnir/cosynvim/stargazers">
     <img
       alt="Stargazers"
-      src="https://img.shields.io/github/stars/glepnir/nvim?style=for-the-badge&logo=starship&color=c678dd&logoColor=d9e0ee&labelColor=282a36"
+      src="https://img.shields.io/github/stars/glepnir/cosynvim?style=for-the-badge&logo=starship&color=c678dd&logoColor=d9e0ee&labelColor=282a36"
     />
   </a>
-  <a href="https://github.com/glepnir/fernvim/issues">
+  <a href="https://github.com/glepnir/cosynvim/issues">
     <img
       alt="Issues"
-      src="https://img.shields.io/github/issues/glepnir/fernvim?style=for-the-badge&logo=gitbook&color=f0c062&logoColor=d9e0ee&labelColor=282a36"
+      src="https://img.shields.io/github/issues/glepnir/cosynvim?style=for-the-badge&logo=gitbook&color=f0c062&logoColor=d9e0ee&labelColor=282a36"
     />
   </a>
-  <a href="https://github.com/glepnir/fernvim/contributors">
+  <a href="https://github.com/glepnir/cosynvim/contributors">
     <img
       alt="Contributors"
-      src="https://img.shields.io/github/contributors/glepnir/fernvim?style=for-the-badge&logo=opensourceinitiative&color=abcf84&logoColor=d9e0ee&labelColor=282a36"
+      src="https://img.shields.io/github/contributors/glepnir/cosynvim?style=for-the-badge&logo=opensourceinitiative&color=abcf84&logoColor=d9e0ee&labelColor=282a36"
     />
   </a>
 </p>
@@ -41,53 +41,52 @@
 </p>
 
 
-## What is Fernvim
+## What is Cosynvim
 
-Many people are interested in my [personal configuration](https://github.com/glepnir/nvim). So I create Fernvim.What does Fernvim do? Fernvim want
-vimers has their own config with a high availability,high performance,modern.
+Many people are interested in my [personal configuration](https://github.com/glepnir/nvim). So I create Cosynvim. What does Cosynvim do? Cosynvim wants vimers to have their own config with high availability, high performance, and modernity.
 
 ## Structure
 
 ```
 ├── init.lua  
 ├── lua
-│   ├── core                       heart of fernvim provide api
-│   │   ├── init.lua
-│   │   ├── keymap.lua             keymap api
-│   │   ├── options.lua            vim options
-│   │   └── pack.lua               hack packer
-│   ├── keymap                     your keymap in here
-│   │   ├── config.lua
-│   │   └── init.lua
-│   └── modules                    plugins module usage example
-│       ├── completion
-│       │   ├── config.lua
-│       │   └── plugins.lua
-│       ├── lang
-│       │   ├── config.lua
-│       │   └── plugins.lua
-│       ├── tools
-│       │   ├── config.lua
-│       │   └── plugins.lua
-│       └── ui
-│           ├── config.lua
-│           ├── eviline.lua
-│           └── plugins.lua
+│   ├── core                       heart of cosynvim provide api
+│   │   ├── init.lua
+│   │   ├── keymap.lua             keymap api
+│   │   ├── options.lua            vim options
+│   │   └── pack.lua               hack packer
+│   ├── keymap                     your keymap in here
+│   │   ├── config.lua
+│   │   └── init.lua
+│   └── modules                    plugins module usage example
+│       ├── completion
+│       │   ├── config.lua
+│       │   └── plugins.lua
+│       ├── lang
+│       │   ├── config.lua
+│       │   └── plugins.lua
+│       ├── tools
+│       │   ├── config.lua
+│       │   └── plugins.lua
+│       └── ui
+│           ├── config.lua
+│           ├── eviline.lua
+│           └── plugins.lua
 ├── snippets                       snippets 
-│   ├── lua.json
-│   └── packages.json
+│   ├── lua.json
+│   └── packages.json
 └── static                         dashboard logo
     └── neovim.cat
 
 ```
 
 A nice structure right ? Looks complicated ? You can delete any folder except core and keymap modules. the rule of `modules` you can delete folders in modules.
-and create folder with your favirote name, but your must creat `plugins.lua` and
-register your plguins in this file by use fernvim api.
+and create folder with your favorite name, but your must create `plugins.lua` and
+register your plugins in this file by using cosynvim api.
 
 ## Usage
 
-click button `use template` and if you like this neovim raimbow logo need install
+click `Use this template` Button and if you like this neovim rainbow logo need install
 `lolcat`
 
 ### How to install plugins
@@ -104,14 +103,14 @@ plugin {'plugin github repo name'}
 ```
 
 what is `config` . this is keyword of [packer.nvim](https://github.com/wbthomason/packer.nvim), you need check the doc of packer  to know
-use packer. if plugin has many config you can create other file in `modules/your-folder-name/` aviod make the plugins.lua file too long.
+use packer. if plugin has many configs you can create other file in `modules/your-folder-name/config.lua` avoid making the plugins.lua file too long.
 
-Recommand lazyload plugins.check the usage in `modules` , it will improve your neovim start speed. `lazyload` not magic, it just generate 
+Recommend lazyload plugins. Check the usage in `modules` , it will improve your neovim start speed. `lazyload` is not magic, it just generate 
 your config into some `autocmds`,you can check the `packer_compiled.lua` to check it. I don't like the default path config in packer it use `plugins` folder
-So i set compiled file path to `~/.local/share/nvim/site/lua`,you can find compiled file in this path. use `:h autocmd` to know more about.
-When you edit the config. but when open neovim it not take effect. Please try `PackerCompile` to genreate a new compile file with your new change
-In my personal config i have a function that can auto compiled when i edit the lua file that in this path `~/.config/nvim`.but it will make
-some noise so I didn't use it in fernvim. when i have a new implement I will update it to fernvim core.
+So i set compiled file path to `~/.local/share/nvim/site/lua`, you can find compiled file in this path. Use `:h autocmd` to know more about.
+When you edit the config and open neovim and it does not take effect. Please try `PackerCompile` to generate a new compile file with your new change
+In my personal config i have a function that can auto compiled when i edit the lua file that in this path `~/.config/nvim`. But it will make
+some noise so I didn't use it in cosynvim. when i have a new implement I will update it to cosynvim core.
 
 ```lua
 
@@ -138,17 +137,18 @@ plugin {'nvim-telescope/telescope.nvim',
 
 ### How to config keymap
 
-In fernvim there has some apis can make it easy. all apis define in `core/keymap.lua`.
+In cosynvim there has some apis can make it easy. all apis define in `core/keymap.lua`.
 
 ```lua
 keymap.map -- function to generate keymap by vim.keymap.set
 keymap.new_opts -- generate opts into vim.keymap.set
-keymap.silent keymap.noremap keymap.expr keymap.nowait  -- function type that work with keymap.new_opts
+-- function type that work with keymap.new_opts
+keymap.silent keymap.noremap keymap.expr keymap.nowait keymap.remap
 keymap.cmd -- just return string with <Cmd> and <CR>
 keymap.cu -- work like cmd but for visual map
 ```
 use these apis to config your keymap in `keymap` folder. in this folder `keymap/init.lua` is necessary
-but if your have many vim mode remap you can config them in `keymap/other-file.lua` in fernvim is `config.lua`
+but if your have many vim mode remap you can config them in `keymap/other-file.lua` in cosynvim is `config.lua`
 just a example file. then config plugins keymap in `keymap/init.lua`.
 
 the example of api usage
@@ -175,7 +175,18 @@ map {'n','key','rhs',opts(noremap,silent)}
 ```       
 use `:h vim.keymap.set` to know more about.
 
-## Donate
+## Tips
+
+- Improve key repeat
+
+```
+mac os need restart
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+linux
+xset r rate 210 40
+```
 
 ## Donate
 [![](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/bobbyhub)

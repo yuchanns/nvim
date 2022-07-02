@@ -7,13 +7,13 @@ local opts = {}
 
 function opts:new(instance)
   instance = instance or {}
-  setmetatable(instance,self)
+  setmetatable(instance, self)
   self.__index = self
   self.options = {
     silent = false,
     nowait = false,
     expr = false,
-    noremap = false
+    noremap = false,
   }
   return instance
 end
@@ -36,6 +36,12 @@ function keymap.expr(opt)
   end
 end
 
+function keymap.remap(opt)
+  return function()
+    opt.remap = true
+  end
+end
+
 function keymap.nowait(opt)
   return function()
     opt.nowait = true
@@ -50,44 +56,44 @@ function keymap.new_opts(...)
     return o.options
   end
 
-  for _,arg in pairs(args) do
+  for _, arg in pairs(args) do
     arg(o.options)()
   end
   return o.options
 end
 
 function keymap.cmd(str)
-  return '<cmd>' .. str .. '<CR>'
+  return "<cmd>" .. str .. "<CR>"
 end
 
 -- visual
 function keymap.cu(str)
-  return '<C-u><cmd>' .. str .. '<CR>'
+  return "<C-u><cmd>" .. str .. "<CR>"
 end
 
 --@private
 local keymap_set = function(tbl)
-  vim.validate {
-    tbl = {tbl,'table'}
-  }
+  vim.validate({
+    tbl = { tbl, "table" },
+  })
   local len = #tbl
   if len < 3 then
-    vim.notify('keymap must has rhs')
+    vim.notify("keymap must has rhs")
     return
   end
 
   local options = len == 4 and tbl[4] or keymap.new_opts()
 
-  vim.keymap.set(tbl[1],tbl[2],tbl[3],options)
+  vim.keymap.set(tbl[1], tbl[2], tbl[3], options)
 end
 
 function keymap.map(tbl)
-  vim.validate {
-    tbl = { tbl,'table' }
-  }
+  vim.validate({
+    tbl = { tbl, "table" },
+  })
 
-  if type(tbl[1]) == 'table' and type(tbl[2]) == 'table' then
-    for _,v in pairs(tbl) do
+  if type(tbl[1]) == "table" and type(tbl[2]) == "table" then
+    for _, v in pairs(tbl) do
       keymap_set(v)
     end
   else

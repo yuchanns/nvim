@@ -27,3 +27,4 @@ vim.opt.belloff = "all"
 vim.opt.shell = "zsh"
 
 vim.wo.signcolumn = "yes"
+vim.opt.cmdheight = 1
