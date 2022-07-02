@@ -20,6 +20,7 @@ plugin({
   "lukas-reineke/indent-blankline.nvim",
   config = conf.indent_blanklinke,
   requires = { "nvim-treesitter/nvim-treesitter" },
+  after = "nvim-treesitter",
 })
 plugin({ "danilamihailov/beacon.nvim" })
 plugin({ "famiu/bufdelete.nvim" })
