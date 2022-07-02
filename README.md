@@ -13,28 +13,28 @@
 </h1>
 
 <p align="center">
-  <a href="https://github.com/glepnir/cosynvim/stargazers">
+  <a href="https://github.com/yuchanns/nvim/stargazers">
     <img
       alt="Stargazers"
-      src="https://img.shields.io/github/stars/glepnir/cosynvim?style=for-the-badge&logo=starship&color=c678dd&logoColor=d9e0ee&labelColor=282a36"
+      src="https://img.shields.io/github/stars/yuchanns/nvim?style=for-the-badge&logo=starship&color=c678dd&logoColor=d9e0ee&labelColor=282a36"
     />
   </a>
-  <a href="https://github.com/glepnir/cosynvim/issues">
+  <a href="https://github.com/yuchanns/nvim/issues">
     <img
       alt="Issues"
-      src="https://img.shields.io/github/issues/glepnir/cosynvim?style=for-the-badge&logo=gitbook&color=f0c062&logoColor=d9e0ee&labelColor=282a36"
+      src="https://img.shields.io/github/issues/yuchanns/nvim?style=for-the-badge&logo=gitbook&color=f0c062&logoColor=d9e0ee&labelColor=282a36"
     />
   </a>
-  <a href="https://github.com/glepnir/cosynvim/contributors">
+  <a href="https://github.com/yuchanns/nvim/contributors">
     <img
       alt="Contributors"
-      src="https://img.shields.io/github/contributors/glepnir/cosynvim?style=for-the-badge&logo=opensourceinitiative&color=abcf84&logoColor=d9e0ee&labelColor=282a36"
+      src="https://img.shields.io/github/contributors/yuchanns/nvim?style=for-the-badge&logo=opensourceinitiative&color=abcf84&logoColor=d9e0ee&labelColor=282a36"
     />
   </a>
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/41671631/176990490-aeb6111b-41ea-4767-bc03-c0aee4774a4e.png"
+  <img src="https://user-images.githubusercontent.com/25029451/177012977-be02011e-a75f-4a4b-94be-dfbce7d4ec2a.png"
   height = "40%"
   widht = "40%"
   />
