@@ -216,6 +216,10 @@ function config.nvim_lspconfig()
       end,
     })
   end
+
+  if executable("clangd") > 0 then
+    nvim_lsp["clangd"].setup({})
+  end
 end
 
 function config.dap()
