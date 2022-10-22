@@ -89,6 +89,9 @@ nmap({
     cmd("TroubleToggle loclist"),
     opts(noremap, silent),
   },
+  -- split view
+  { "<Leader>v", cmd("vsplit"), opts(noremap, silent) },
+  { "<Leader>s", cmd("split"), opts(noremap, silent) },
 })
 
 tmap({ "<Esc>", t("<C-\\><C-n>"), opts(noremap, silent) })
