@@ -32,3 +32,5 @@ plugin({
   config = conf.gitsigns,
 })
 plugin({ "folke/trouble.nvim", config = conf.trouble })
+-- leetcode
+plugin({ "ianding1/leetcode.vim", config = conf.leetcode })
