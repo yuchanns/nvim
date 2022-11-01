@@ -85,26 +85,31 @@ function config.nvim_lspconfig()
   if executable("rust-analyzer") > 0 then
     local rust_tools_opt = {
       server = {
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+              loadOutDirsFromCheck = true,
+            },
+            flags = {
+              debounce_text_changes = 150,
+            },
+            assist = {
+              importMergeBehavior = "last",
+              importPrefix = "by_self",
+            },
+            diagnostics = {
+              disabled = { "unresolved-import" },
+            },
+            procMacro = {
+              enable = true,
+            },
+            checkOnSave = {
+              command = "clippy",
+            },
+          },
+        },
         on_attach = on_attach,
-        flags = {
-          debounce_text_changes = 150,
-        },
-        assist = {
-          importMergeBehavior = "last",
-          importPrefix = "by_self",
-        },
-        diagnostics = {
-          disabled = { "unresolved-import" },
-        },
-        cargo = {
-          loadOutDirsFromCheck = true,
-        },
-        procMacro = {
-          enable = true,
-        },
-        checkOnSave = {
-          command = "clippy",
-        },
       },
     }
 
