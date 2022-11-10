@@ -89,6 +89,11 @@ nmap({
     cmd("TroubleToggle loclist"),
     opts(noremap, silent),
   },
+  {
+    "<Leader>xt",
+    cmd("TodoTelescope"),
+    opts(normap, silent),
+  },
   -- split view
   { "<Leader>v", cmd("vsplit"), opts(noremap, silent) },
   { "<Leader>s", cmd("split"), opts(noremap, silent) },

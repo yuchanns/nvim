@@ -34,3 +34,9 @@ plugin({
 plugin({ "folke/trouble.nvim", config = conf.trouble })
 -- leetcode
 plugin({ "ianding1/leetcode.vim", config = conf.leetcode })
+-- todo
+plugin({
+  "folke/todo-comments.nvim",
+  requires = "nvim-lua/plenary.nvim",
+  config = conf.todo,
+})
