@@ -185,6 +185,20 @@ function config.nvim_lspconfig()
   end
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
+  -- vue
+  --[[ if executable("vls") > 0 then
+    nvim_lsp["vuels"].setup({})
+  end ]]
+  if executable("vue-language-server") > 0 then
+    -- TODO: dynamic generate tsdk path
+    nvim_lsp["volar"].setup({
+      init_options = {
+        typescript = {
+          tsdk = "/Users/yuchanns/Library/pnpm/global/5/node_modules/typescript/lib",
+        },
+      },
+    })
+  end
   -- css
   if executable("vscode-css-language-server") > 0 then
     nvim_lsp["cssls"].setup({
