@@ -18,6 +18,7 @@ function config.vfilter()
       columns = "indent,devicons,name,mode,size,time",
       listed = false,
       blend = 30,
+      session = "share",
     },
   })
 end
