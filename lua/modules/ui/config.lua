@@ -55,6 +55,7 @@ function config.alpha()
 end
 
 function config.nvim_bufferline()
+  vim.opt.termguicolors = true
   require("bufferline").setup({
     options = {
       separator_style = "thin",
