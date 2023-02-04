@@ -180,11 +180,11 @@ function config.nvim_lspconfig()
   end
 
   -- typescript
-  if executable("typescript-language-server") > 0 then
+  --[[ if executable("typescript-language-server") > 0 then
     nvim_lsp["tsserver"].setup({})
   end
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.snippetSupport = true ]]
   -- vue
   --[[ if executable("vls") > 0 then
     nvim_lsp["vuels"].setup({})
@@ -194,8 +194,16 @@ function config.nvim_lspconfig()
     nvim_lsp["volar"].setup({
       init_options = {
         typescript = {
-          tsdk = "/Users/yuchanns/Library/pnpm/global/5/node_modules/typescript/lib",
+          tsdk = "/home/yuchanns/.local/share/pnpm/global/5/node_modules/typescript/lib",
         },
+      },
+      filetypes = {
+        "typescript",
+        "javascript",
+        "javascriptreact",
+        "typescriptreact",
+        "vue",
+        "json",
       },
     })
   end
