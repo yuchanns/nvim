@@ -27,6 +27,7 @@ package({
 })
 package({
   "lukas-reineke/indent-blankline.nvim",
+  event = "BufRead",
   config = conf.indent_blanklinke,
   dependencies = { "nvim-treesitter/nvim-treesitter" },
 })
