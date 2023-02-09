@@ -59,6 +59,7 @@ function config.nvim_bufferline()
   require("bufferline").setup({
     options = {
       separator_style = "thin",
+      indicator = { style = "underline" },
       diagnostics = "nvim_lsp",
       diagnostics_indicator = function(_, _, diagnostics_dict, _)
         local s = " "
@@ -95,6 +96,7 @@ function config.nvim_bufferline()
         end,
       },
       show_close_icon = false,
+      show_buffer_close_icons = false,
       offsets = {},
     },
   })
