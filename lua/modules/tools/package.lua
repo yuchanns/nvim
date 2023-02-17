@@ -44,3 +44,5 @@ package({
   dependencies = "nvim-lua/plenary.nvim",
   config = conf.todo,
 })
+-- hop
+package({ "phaazon/hop.nvim", branch = "v2", config = conf.hop })

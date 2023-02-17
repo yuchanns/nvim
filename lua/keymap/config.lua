@@ -7,6 +7,7 @@ local tmap = keymap.tmap
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local cmd = keymap.cmd
+local hop = require("hop")
 
 local function t(key)
   return vim.api.nvim_replace_termcodes(key, true, true, true)
@@ -97,6 +98,16 @@ nmap({
   -- split view
   { "<Leader>v", cmd("vsplit"), opts(noremap, silent) },
   { "<Leader>s", cmd("split"), opts(noremap, silent) },
+  -- hop
+  {
+    "ft",
+    function()
+      hop.hint_anywhere({
+        current_line_onply = false,
+      })
+    end,
+    { remap = true },
+  },
 })
 
 tmap({ "<Esc>", t("<C-\\><C-n>"), opts(noremap, silent) })

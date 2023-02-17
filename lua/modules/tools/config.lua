@@ -260,4 +260,8 @@ function config.todo()
   })
 end
 
+function config.hop()
+  require("hop").setup({})
+end
+
 return config

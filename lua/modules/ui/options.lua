@@ -27,3 +27,4 @@ vim.opt.belloff = "all"
 vim.opt.shell = "bash"
 
 vim.wo.signcolumn = "yes"
+vim.opt.mouse = nil
