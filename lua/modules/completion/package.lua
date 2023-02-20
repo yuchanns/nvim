@@ -7,4 +7,11 @@ package({
   commit = "014aeb8be75d927960914d442bf81ada4e24295b",
 })
 
-package({ "hrsh7th/nvim-cmp", config = conf.compe, dependencies = {{"hrsh7th/cmp-nvim-lsp"}} })
+package({
+  "hrsh7th/nvim-cmp",
+  config = conf.compe,
+  dependencies = {
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "SirVer/ultisnips" },
+  },
+})
