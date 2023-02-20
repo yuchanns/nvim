@@ -15,7 +15,7 @@ package({
   "neovim/nvim-lspconfig",
   dependencies = {
     { "RRethy/vim-illuminate" },
-    { "ray-x/lsp_signature.nvim" },
+    -- { "ray-x/lsp_signature.nvim" },
     -- { "stevearc/aerial.nvim" },
     { "crispgm/nvim-go" },
     { "simrat39/rust-tools.nvim" },

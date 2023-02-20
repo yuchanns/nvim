@@ -32,7 +32,6 @@ function config.nvim_lspconfig()
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr)
     require("illuminate").on_attach(client)
-    require("lsp_signature").on_attach(client)
     -- require("aerial").on_attach(client)
     -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...)
@@ -50,16 +49,21 @@ function config.nvim_lspconfig()
     buf_set_keymap('n', '<leader>w', '<cmd>AerialTreeToggle!<CR>', {}) ]]
     -- See `:help vim.lsp.*` for documentation on any of the below functions
   end
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   -- clangd
   if executable("clangd") > 0 then
-    nvim_lsp["clangd"].setup({})
+    nvim_lsp["clangd"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
   end
 
   -- golang
   if executable("gopls") > 0 then
     nvim_lsp["gopls"].setup({
       on_attach = on_attach,
+      capabilities = capabilities,
       flags = {
         debounce_text_changes = 150,
       },
@@ -110,6 +114,7 @@ function config.nvim_lspconfig()
           },
         },
         on_attach = on_attach,
+        capabilities = capabilities,
       },
     }
 
@@ -128,6 +133,7 @@ function config.nvim_lspconfig()
 
     nvim_lsp["sumneko_lua"].setup({
       cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+      capabilities = capabilities,
       settings = {
         Lua = {
           runtime = {
@@ -175,6 +181,7 @@ function config.nvim_lspconfig()
   if executable(phpactor_binary) > 0 then
     nvim_lsp["phpactor"].setup({
       on_attach = on_attach,
+      capabilities = capabilities,
       cmd = { phpactor_binary, "language-server", "-vvv" },
     })
   end
@@ -192,6 +199,7 @@ function config.nvim_lspconfig()
   if executable("vue-language-server") > 0 then
     -- TODO: dynamic generate tsdk path
     nvim_lsp["volar"].setup({
+      capabilities = capabilities,
       init_options = {
         typescript = {
           tsdk = "/home/yuchanns/.local/share/pnpm/global/5/node_modules/typescript/lib",
