@@ -38,7 +38,14 @@ package({
   config = conf.dapui,
   dependencies = { "mfussenegger/nvim-dap" },
 })
-package({ "rcarriga/nvim-notify", config = conf.notify })
+package({
+  "folke/noice.nvim",
+  config = conf.notify,
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
+  },
+})
 package({
   "p00f/nvim-ts-rainbow",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
