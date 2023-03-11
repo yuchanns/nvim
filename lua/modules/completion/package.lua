@@ -13,5 +13,11 @@ package({
   dependencies = {
     { "hrsh7th/cmp-nvim-lsp" },
     { "SirVer/ultisnips" },
+    { "hrsh7th/cmp-nvim-lua" },
+    { "quangnguyen30192/cmp-nvim-ultisnips" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-cmdline" },
+    { "uga-rosa/cmp-dictionary" },
   },
 })

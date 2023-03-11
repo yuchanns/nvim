@@ -256,6 +256,14 @@ function config.nvim_lspconfig()
       end,
     })
   end
+
+  -- grammarly
+  if executable("grammarly-languageserver") > 0 then
+    nvim_lsp["grammarly"].setup({
+      init_options = { clientId = "client_MJ7wALWHHFrSNnkx4VsLbP" },
+      capabilities = capabilities,
+    })
+  end
 end
 
 function config.dap()

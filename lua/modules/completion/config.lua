@@ -9,6 +9,19 @@ function config.lspsaga()
 end
 
 function config.compe()
+  -- dictionary
+  local dict = require("cmp_dictionary")
+  dict.setup({
+    exact = 2,
+    first_case_insensitive = false,
+    document = false,
+    document_command = "wn %s -over",
+    async = false,
+    max_items = -1,
+    capacity = 5,
+    debug = false,
+  })
+  dict.switcher({ spelllang = { en = vim.fn.stdpath("data") .. "/lspconfig/en.dict" } })
   local cmp = require("cmp")
   cmp.setup({
     snippet = {
@@ -26,8 +39,11 @@ function config.compe()
       -- { name = 'luasnip' }, -- For luasnip users.
       { name = "ultisnips" }, -- For ultisnips users.
       -- { name = "snippy" }, -- For snippy users.
-    }, {
+      { name = "nvim_lua" },
       { name = "buffer" },
+      { name = "path" },
+      { name = "cmdline" },
+      { name = "dictionary" },
     }),
     mapping = {
       ["<CR>"] = cmp.mapping.confirm({ select = true }),
