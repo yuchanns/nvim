@@ -21,3 +21,9 @@ package({
     { "uga-rosa/cmp-dictionary" },
   },
 })
+
+package({
+  "yuchanns/CodeGPT.nvim",
+  config = conf.codegpt,
+  commit = "d6b996c2a20cec0208457ce85afb6aa1f89524c9",
+})

@@ -53,4 +53,10 @@ function config.compe()
   })
 end
 
+function config.codegpt()
+  vim.g["codegpt_openai_api_provider"] = "Azure"
+  vim.g["codegpt_chat_completions_url"] =
+    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt35/completions?api-version=2022-12-01"
+end
+
 return config
