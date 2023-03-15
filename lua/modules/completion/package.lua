@@ -25,5 +25,5 @@ package({
 package({
   "yuchanns/CodeGPT.nvim",
   config = conf.codegpt,
-  commit = "d6b996c2a20cec0208457ce85afb6aa1f89524c9",
+  commit = "40ef8a532e40a2cd31ff8e7610c74eed66c2229a",
 })
