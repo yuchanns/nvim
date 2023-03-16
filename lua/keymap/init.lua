@@ -26,7 +26,7 @@ nmap({
   },
   {
     "<Leader>fh",
-    cmd("Telescope oldfiles"),
+    cmd("Telescope frecency"),
     opts(noremap, silent),
   },
 })

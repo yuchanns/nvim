@@ -264,4 +264,8 @@ function config.hop()
   require("hop").setup({})
 end
 
+function config.frecency()
+  require("telescope").load_extension("frecency")
+end
+
 return config

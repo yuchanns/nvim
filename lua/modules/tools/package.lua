@@ -14,6 +14,11 @@ package({
       "AckslD/nvim-neoclip.lua",
       config = conf.neoclip,
     },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      config = conf.frecency,
+      dependencies = { { "kkharji/sqlite.lua" } },
+    },
   },
 })
 package({ "windwp/nvim-autopairs", config = conf.autopairs })
