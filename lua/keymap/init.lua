@@ -26,7 +26,7 @@ nmap({
   },
   {
     "<Leader>fh",
-    cmd("Telescope frecency"),
+    cmd("Telescope frecency workspace=CWD"),
     opts(noremap, silent),
   },
 })
