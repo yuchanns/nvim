@@ -42,7 +42,7 @@ function config.compe()
       { name = "nvim_lua" },
       { name = "buffer" },
       { name = "path" },
-      { name = "cmdline" },
+      -- { name = "cmdline" },
       { name = "dictionary" },
     }),
     mapping = {
