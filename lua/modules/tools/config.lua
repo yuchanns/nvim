@@ -67,6 +67,7 @@ end
 function config.autosave()
   require("auto-save").setup({
     enabled = true,
+    execution_message = { message = "" },
   })
 end
 
