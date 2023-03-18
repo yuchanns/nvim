@@ -23,7 +23,6 @@ package({
 })
 
 package({
-  "yuchanns/CodeGPT.nvim",
+  "dpayne/CodeGPT.nvim",
   config = conf.codegpt,
-  commit = "7af6d592142133fd691d29855da9679f190a081d",
 })
