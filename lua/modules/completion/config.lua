@@ -56,7 +56,7 @@ end
 function config.codegpt()
   vim.g["codegpt_openai_api_provider"] = "azure"
   vim.g["codegpt_chat_completions_url"] =
-    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt35/completions?api-version=2022-12-01"
+    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt4/chat/completions?api-version=2023-03-15-preview"
 end
 
 return config
