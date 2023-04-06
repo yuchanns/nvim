@@ -7,10 +7,6 @@ local cmd = keymap.cmd
 
 -- usage of plugins
 nmap({
-  -- packer
-  { "<Leader>pu", cmd("PackerUpdate"), opts(noremap, silent) },
-  { "<Leader>pi", cmd("PackerInstall"), opts(noremap, silent) },
-  { "<Leader>pc", cmd("PackerCompile"), opts(noremap, silent) },
   -- vfilter
   { "<Leader>ff", cmd("lua require('vfiler').start()"), opts(noremap, silent) },
   {
