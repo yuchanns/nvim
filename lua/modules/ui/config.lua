@@ -103,7 +103,9 @@ function config.nvim_bufferline()
 end
 
 function config.lualine()
+  local CodeGPTModule = require("codegpt")
   require("lualine").setup({
+    sections = { lualine_x = { CodeGPTModule.get_status, "encoding", "fileformat", "filetype" } },
     options = {
       icons_enabled = true,
       theme = "tokyonight",
