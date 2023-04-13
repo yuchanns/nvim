@@ -77,6 +77,8 @@ function config.nvim_lspconfig()
     if executable("revive") > 0 then
       opts.auto_lint = true
       opts.linter = "revive"
+      -- rule configuration references: https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md
+      opts.linter_flags = { revive = { "-config", "~/.config/nvim/static/revive_config.toml" } }
     end
     if executable("goimports") > 0 then
       opts.auto_format = true
