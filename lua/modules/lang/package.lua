@@ -23,7 +23,7 @@ package({
     { "rust-lang/rust.vim" },
     { "ckipp01/stylua-nvim" },
     {
-      "yuchanns/goimpl.nvim",
+      "edolphin-ydf/goimpl.nvim",
       dependencies = {
         { "nvim-lua/plenary.nvim" },
         { "nvim-lua/popup.nvim" },

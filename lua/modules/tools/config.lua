@@ -28,7 +28,7 @@ function config.telescope()
   require("telescope").load_extension("neoclip")
   require("telescope").load_extension("fzy_native")
   require("telescope").load_extension("file_browser")
-  if vim.fn.executable("goimpl") > 0 then
+  if vim.fn.executable("impl") > 0 then
     require("telescope").load_extension("goimpl")
   end
 end

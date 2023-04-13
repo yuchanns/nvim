@@ -30,11 +30,11 @@ package({ "b3nj5m1n/kommentary" })
 package({ "FotiadisM/tabset.nvim", config = conf.tabset })
 package({ "wakatime/vim-wakatime" })
 package({ "mg979/vim-visual-multi" })
-package({
+--[[ package({
   "sindrets/diffview.nvim",
   config = conf.diffview,
   dependencies = { "nvim-lua/plenary.nvim" },
-})
+}) ]]
 package({
   "lewis6991/gitsigns.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
