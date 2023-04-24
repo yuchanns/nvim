@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 local keymap = require("core.keymap")
 local nmap = keymap.nmap
 local tmap = keymap.tmap
+local vmap = keymap.vmap
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local cmd = keymap.cmd
@@ -108,6 +109,13 @@ nmap({
     end,
     { remap = true },
   },
+})
+
+vmap({ -- codegp
+  { "<Leader>ep", cmd("'<,'>Chat polish"), opts(noremap, silent) },
+  { "<Leader>et", cmd("'<,'>Chat translate"), opts(noremap, silent) },
+  { "<Leader>ec", cmd("'<,'>Chat completion"), opts(noremap, silent) },
+  { "<Leader>ed", cmd("'<,'>Chat doc"), opts(noremap, silent) },
 })
 
 tmap({ "<Esc>", t("<C-\\><C-n>"), opts(noremap, silent) })
