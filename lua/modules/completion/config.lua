@@ -62,7 +62,12 @@ function config.codegpt()
     -- compatible to yetone's [openai-translator](https://github.com/yetone/openai-translator)
     ["translate"] = {
       system_message_template = "You are a translation engine that can only translate text and cannot interpret it.",
-      user_message_template = "Translate to Chinese: {{text_selection}}",
+      user_message_template = "translate this text to Chinese: {{text_selection}}",
+      callback_type = "text_popup",
+    },
+    ["polish"] = {
+      system_message_template = "Revise the following sentences to make them more clear, concise, and coherent.",
+      user_message_template = "polish this text in English: {{text_selection}}",
       callback_type = "text_popup",
     },
   }
