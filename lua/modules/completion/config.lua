@@ -70,6 +70,10 @@ function config.codegpt()
       user_message_template = "polish this text in English:\n {{text_selection}}",
       callback_type = "text_popup",
     },
+    ["expand"] = {
+      user_message_template = "I have the following {{language}} macro:```{{filetype}}\n{{text_selection}}```\nUse some example inputs to demonstrate the result of macro expansion and explain it in Chinese. Only return the result and explanation.",
+      callback_type = "text_popup",
+    },
   }
 end
 
