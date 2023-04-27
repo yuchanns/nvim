@@ -105,7 +105,9 @@ end
 function config.lualine()
   local CodeGPTModule = require("codegpt")
   require("lualine").setup({
-    sections = { lualine_x = { CodeGPTModule.get_status, "encoding", "fileformat", "filetype" } },
+    sections = {
+      lualine_x = { CodeGPTModule.get_status, "aerial", "encoding", "fileformat", "filetype" },
+    },
     options = {
       icons_enabled = true,
       theme = "tokyonight",

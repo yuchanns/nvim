@@ -32,7 +32,7 @@ function config.nvim_lspconfig()
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr)
     require("illuminate").on_attach(client)
-    -- require("aerial").on_attach(client)
+    require("aerial").on_attach(client)
     -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...)
       vim.api.nvim_buf_set_option(bufnr, ...)
@@ -370,6 +370,10 @@ function config.shfmt()
     args = { "-l", "-w", "-i 4" },
     auto_format = true,
   })
+end
+
+function config.aerial()
+  require("aerial").setup()
 end
 
 return config

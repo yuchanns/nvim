@@ -55,8 +55,9 @@ nmap({
   { "+", cmd("exe 'vertical resize +1.5'"), opts(noremap, silent) },
   { "_", cmd("exe 'vertical resize -1.5'"), opts(noremap, silent) },
   -- code structure
-  --[[ { "n", "{", cmd("AerialPrev"), opts(noremap, silent) },
-  { "n", "}", cmd("AerialNext"), opts(noremap, silent) }, ]]
+  { "<Leader>a", cmd("AerialToggle! right"), opts(noremap, silent) },
+  { "{", cmd("AerialPrev"), opts(noremap, silent) },
+  { "}", cmd("AerialNext"), opts(noremap, silent) },
   -- diagnostics
   { "[e", cmd("lua require('lspsaga.diagnostic').goto_prev()"), opts(noremap, silent) },
   { "]e", cmd("lua require('lspsaga.diagnostic').goto_next()"), opts(noremap, silent) },

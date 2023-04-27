@@ -23,11 +23,13 @@ function config.telescope()
         hidden = true,
         respect_gitignore = true,
       },
+      aerial = { show_nesting = { ["_"] = true } },
     },
   })
   require("telescope").load_extension("neoclip")
   require("telescope").load_extension("fzy_native")
   require("telescope").load_extension("file_browser")
+  require("telescope").load_extension("aerial")
   if vim.fn.executable("impl") > 0 then
     require("telescope").load_extension("goimpl")
   end
