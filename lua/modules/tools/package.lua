@@ -50,4 +50,9 @@ package({
   config = conf.todo,
 })
 -- hop
-package({ "phaazon/hop.nvim", branch = "v2", config = conf.hop })
+package({
+  "mfussenegger/nvim-treehopper",
+  dependencies = {
+    { "phaazon/hop.nvim", branch = "v2", config = conf.hop },
+  },
+})

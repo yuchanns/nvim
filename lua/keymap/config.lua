@@ -104,11 +104,18 @@ nmap({
   {
     "ft",
     function()
-      hop.hint_anywhere({
+      hop.hint_words({
         current_line_onply = false,
       })
     end,
-    { remap = true },
+    opts(noremap, silent),
+  },
+  {
+    "fs",
+    function()
+      require("tsht").nodes()
+    end,
+    opts(noremap, silent),
   },
 })
 
