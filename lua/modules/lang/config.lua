@@ -1,5 +1,22 @@
 local config = {}
 
+local function on_lsp_attach(attach_name, on_attach)
+  local group_name = "LspAttach_" .. attach_name
+  vim.api.nvim_create_augroup(group_name, {})
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = group_name,
+    callback = function(args)
+      if not (args.data and args.data.client_id) then
+        return
+      end
+
+      local bufnr = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      on_attach(client, bufnr)
+    end,
+  })
+end
+
 function config.nvim_treesitter()
   vim.api.nvim_command("set foldmethod=expr")
   vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
@@ -30,39 +47,21 @@ function config.nvim_lspconfig()
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
-  local on_attach = function(client, bufnr)
-    require("illuminate").on_attach(client)
-    require("aerial").on_attach(client)
-    -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...)
-      vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    --Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    -- Mappings.
-    -- local opts = { noremap=true, silent=true }
-    --[[ buf_set_keymap('n', '<leader>a', '<cmd>AerialToggle! left<CR>', {})
-    buf_set_keymap('n', '{', '<cmd>AerialPrev<CR>', {})
-    buf_set_keymap('n', '}', '<cmd>AerialNext<CR>', {})
-    buf_set_keymap('n', '<leader>w', '<cmd>AerialTreeToggle!<CR>', {}) ]]
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-  end
+  on_lsp_attach("omnifunc", function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  end)
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   -- clangd
   if executable("clangd") > 0 then
     nvim_lsp["clangd"].setup({
       capabilities = capabilities,
-      on_attach = on_attach,
     })
   end
 
   -- golang
   if executable("gopls") > 0 then
     nvim_lsp["gopls"].setup({
-      on_attach = on_attach,
       capabilities = capabilities,
       flags = {
         debounce_text_changes = 150,
@@ -70,6 +69,14 @@ function config.nvim_lspconfig()
       settings = {
         gopls = {
           analyses = { composites = false },
+          hints = {
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            constantValues = true,
+            functionTypeParameters = true,
+            parameterNames = true,
+            rangeVariableTypes = true,
+          },
         },
       },
     })
@@ -90,6 +97,11 @@ function config.nvim_lspconfig()
   -- rust
   if executable("rust-analyzer") > 0 then
     local rust_tools_opt = {
+      tools = {
+        inlay_hints = {
+          auto = false,
+        },
+      },
       server = {
         settings = {
           ["rust-analyzer"] = {
@@ -115,7 +127,6 @@ function config.nvim_lspconfig()
             },
           },
         },
-        on_attach = on_attach,
         capabilities = capabilities,
       },
     }
@@ -182,7 +193,6 @@ function config.nvim_lspconfig()
   local phpactor_binary = phpactor_root_path .. "/bin/phpactor"
   if executable(phpactor_binary) > 0 then
     nvim_lsp["phpactor"].setup({
-      on_attach = on_attach,
       capabilities = capabilities,
       cmd = { phpactor_binary, "language-server", "-vvv" },
     })
@@ -374,6 +384,16 @@ end
 
 function config.aerial()
   require("aerial").setup()
+end
+
+function config.inlayhints()
+  local inlayhints = require("lsp-inlayhints")
+  inlayhints.setup({})
+  on_lsp_attach("inlayhints", inlayhints.on_attach)
+end
+
+function config.illuminate()
+  on_lsp_attach("illuminate", require("illuminate").on_attach)
 end
 
 return config

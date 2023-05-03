@@ -14,7 +14,7 @@ package({ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { { "nvi
 package({
   "neovim/nvim-lspconfig",
   dependencies = {
-    { "RRethy/vim-illuminate" },
+    { "RRethy/vim-illuminate", config = conf.illuminate },
     -- { "ray-x/lsp_signature.nvim" },
     {
       "stevearc/aerial.nvim",
@@ -34,6 +34,7 @@ package({
         { "nvim-treesitter/nvim-treesitter" },
       },
     },
+    { "lvimuser/lsp-inlayhints.nvim", config = conf.inlayhints },
   },
   config = conf.nvim_lspconfig,
 })
