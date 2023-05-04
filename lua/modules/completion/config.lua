@@ -58,11 +58,9 @@ function config.codegpt()
   vim.g["codegpt_chat_completions_url"] =
     "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt4/chat/completions?api-version=2023-03-15-preview"
   -- overrides
-  vim.g["codegpt_commands_defaults"] = {
-    ["explain"] = {
-      user_message_template = "Explain the following {{language}} code: ```{{filetype}}\n{{text_selection}}``` Explain it using Chinese as if you were explaining to another developer.",
-      callback_type = "text_popup",
-    },
+  vim.g["codegpt_commands_defaults"]["explain"] = {
+    user_message_template = "Explain the following {{language}} code: ```{{filetype}}\n{{text_selection}}``` Explain it using Chinese as if you were explaining to another developer.",
+    callback_type = "text_popup",
   }
   -- custom commands
   vim.g["codegpt_commands"] = {
