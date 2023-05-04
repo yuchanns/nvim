@@ -6,7 +6,10 @@ local conf = require("modules.ui.config")
 package({ "folke/tokyonight.nvim", config = conf.tokyonight })
 package({
   "obaland/vfiler.vim",
-  dependencies = { "obaland/vfiler-column-devicons" },
+  dependencies = {
+    { "obaland/vfiler-column-devicons" },
+    { "obaland/vfiler-patch-noice.nvim" },
+  },
   config = conf.vfilter,
 })
 package({

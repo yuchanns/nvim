@@ -9,6 +9,7 @@ function config.tokyonight()
 end
 
 function config.vfilter()
+  require("vfiler/patches/noice").setup()
   require("vfiler/config").setup({
     options = {
       auto_cd = true,
