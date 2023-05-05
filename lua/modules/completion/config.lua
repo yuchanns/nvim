@@ -57,11 +57,6 @@ function config.codegpt()
   vim.g["codegpt_openai_api_provider"] = "azure"
   vim.g["codegpt_chat_completions_url"] =
     "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt4/chat/completions?api-version=2023-03-15-preview"
-  -- overrides
-  vim.g["codegpt_commands_defaults"]["explain"] = {
-    user_message_template = "Explain the following {{language}} code: ```{{filetype}}\n{{text_selection}}``` Explain it using Chinese as if you were explaining to another developer.",
-    callback_type = "text_popup",
-  }
   -- custom commands
   vim.g["codegpt_commands"] = {
     -- compatible to yetone's [openai-translator](https://github.com/yetone/openai-translator)
@@ -78,6 +73,10 @@ function config.codegpt()
     ["expand"] = {
       user_message_template = "I have the following {{language}} macro:```{{filetype}}\n{{text_selection}}```\nProvide example inputs to show the macro expansion's result as a code snippet and explain it using Chinese comments. Return only the code snippet. If it's not a macro, return an error message.",
       callback_type = "code_popup",
+    },
+    ["explaincn"] = {
+      user_message_template = "Explain the following {{language}} code: ```{{filetype}}\n{{text_selection}}``` Explain it using Chinese as if you were explaining to another developer.",
+      callback_type = "text_popup",
     },
   }
 end
