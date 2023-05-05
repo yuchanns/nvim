@@ -1,11 +1,13 @@
 local config = {}
 
 function config.tokyonight()
-  vim.g.tokyonight_transparent = false
-  vim.g.tokyonight_italic_functions = true
-  vim.g.tokyonight_sidebars = { "terminal", "packer", "qf" }
+  require("tokyonight").setup({
+    transparent = false,
+    styles = { functions = { italic = true } },
+    sidebars = { "terminal", "qf" },
+  })
 
-  vim.cmd([[colorscheme tokyonight]])
+  vim.cmd.colorscheme("tokyonight")
 end
 
 function config.vfilter()
