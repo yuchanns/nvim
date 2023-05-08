@@ -214,7 +214,10 @@ function config.nvim_lspconfig()
       capabilities = capabilities,
       init_options = {
         typescript = {
-          tsdk = "/home/yuchanns/.local/share/pnpm/global/5/node_modules/typescript/lib",
+          tsdk = string.format(
+            "%s/.local/share/pnpm/global/5/node_modules/typescript/lib",
+            os.getenv("HOME")
+          ),
         },
       },
       filetypes = {

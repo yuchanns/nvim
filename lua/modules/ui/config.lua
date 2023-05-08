@@ -27,15 +27,31 @@ function config.vfilter()
 end
 
 function config.alpha()
-  math.randomseed(os.time())
-  local colors = { "#7ba2f7", "#9b348e", "#db627c", "#fda17d", "#86bbd8", "#33648a" }
-  local function random_colors(color_lst)
-    return color_lst[math.random(1, #color_lst)]
-  end
-  vim.cmd(string.format("highlight dashboard guifg=%s guibg=bg", random_colors(colors)))
+  require("alpha.term")
   local dashboard = require("alpha.themes.dashboard")
-  dashboard.section.header.val = require("modules.ui.header")
-  dashboard.section.header.opts.hl = "dashboard"
+  if vim.fn.executable("chafa") > 0 then
+    dashboard.section.header.type = "terminal"
+    dashboard.section.header.command = string.format(
+      "chafa -s 75x75 -c full --fg-only --symbols braille --clear %s/.config/nvim/static/Avatar.jpeg",
+      os.getenv("HOME")
+    )
+    dashboard.section.header.height = 33
+    dashboard.section.header.width = 75
+    dashboard.section.header.opts = {
+      position = "center",
+      redraw = true,
+      window_config = { height = 30 },
+    }
+  else
+    math.randomseed(os.time())
+    local colors = { "#7ba2f7", "#9b348e", "#db627c", "#fda17d", "#86bbd8", "#33648a" }
+    local function random_colors(color_lst)
+      return color_lst[math.random(1, #color_lst)]
+    end
+    vim.cmd(string.format("highlight dashboard guifg=%s guibg=bg", random_colors(colors)))
+    dashboard.section.header.val = require("modules.ui.header")
+    dashboard.section.header.opts.hl = "dashboard"
+  end
 
   dashboard.section.buttons.val = {
     dashboard.button("cn", "  New File       ", ":enew<CR>", nil),
