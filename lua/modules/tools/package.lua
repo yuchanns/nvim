@@ -56,3 +56,9 @@ package({
     { "phaazon/hop.nvim", branch = "v2", config = conf.hop },
   },
 })
+-- session
+package({
+  "folke/persistence.nvim",
+  event = { "BufReadPre" },
+  config = conf.persistence,
+})

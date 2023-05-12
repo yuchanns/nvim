@@ -117,6 +117,14 @@ nmap({
     end,
     opts(noremap, silent),
   },
+  -- session
+  {
+    "<leader>s",
+    function()
+      require("persistence").load()
+    end,
+    opts(noremap, silent),
+  },
 })
 
 vmap({ -- codegp

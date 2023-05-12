@@ -11,12 +11,12 @@ function config.telescope()
       file_previewer = require("telescope.previewers").vim_buffer_cat.new,
       grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
       qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-      file_ignore_patterns = { "node_modules", "vendor" },
+      file_ignore_patterns = { "node_modules" },
       path_display = { "smart" },
     },
     extensions = {
       fzy_native = {
-        override_generic_sorter = false,
+        override_generic_sorter = true,
         override_file_sorter = true,
       },
       file_browser = {
@@ -271,6 +271,11 @@ end
 
 function config.frecency()
   require("telescope").load_extension("frecency")
+end
+
+function config.persistence()
+  local persistence = require("persistence")
+  persistence.setup({})
 end
 
 return config

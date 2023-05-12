@@ -1,20 +1,16 @@
+local Utils = require("utils.utils")
+
 local config = {}
 
-local function on_lsp_attach(attach_name, on_attach)
-  local group_name = "LspAttach_" .. attach_name
-  vim.api.nvim_create_augroup(group_name, {})
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = group_name,
-    callback = function(args)
-      if not (args.data and args.data.client_id) then
-        return
-      end
-
-      local bufnr = args.buf
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      on_attach(client, bufnr)
-    end,
-  })
+local function on_lsp_attach(attach, on_attach)
+  Utils.auto_cmd("LspAttach", attach, function(args)
+    if not (args.data and args.data.client_id) then
+      return
+    end
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    on_attach(client, bufnr)
+  end)
 end
 
 function config.nvim_treesitter()
@@ -175,16 +171,12 @@ function config.nvim_lspconfig()
   if executable("stylua") > 0 then
     local augroup = "LUAFMT"
     local stylua = require("stylua-nvim")
-    vim.api.nvim_create_augroup(augroup, {})
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      callback = function()
-        if vim.bo.filetype ~= "lua" then
-          return
-        end
-        stylua.format_file()
-      end,
-    })
+    Utils.auto_cmd("BufWritePre", "LUAFMT", function(_)
+      if vim.bo.filetype ~= "lua" then
+        return
+      end
+      stylua.format_file()
+    end)
   end
 
   -- php
@@ -250,7 +242,9 @@ function config.nvim_lspconfig()
   end
   -- eslint
   if executable("vscode-eslint-language-server") > 0 then
-    vim.cmd("autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>")
+    Utils.auto_cmd("BufWritePre", "ESLINTFMT", function(_)
+      vim.cmd([[EslintFixAll]])
+    end)
     nvim_lsp["eslint"].setup({})
   end
 
@@ -259,17 +253,12 @@ function config.nvim_lspconfig()
     nvim_lsp["hls"].setup({
       single_file_support = true,
     })
-    local augroup = "HSFMT"
-    vim.api.nvim_create_augroup(augroup, {})
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      callback = function()
-        if vim.bo.filetype ~= "haskell" and vim.bo.filetype ~= "lhaskell" then
-          return
-        end
-        vim.lsp.buf.format({ async = true })
-      end,
-    })
+    Utils.auto_cmd("BufWritePre", "HSFMT", function(_)
+      if vim.bo.filetype ~= "haskell" and vim.bo.filetype ~= "lhaskell" then
+        return
+      end
+      vim.lsp.buf.format({ async = true })
+    end)
   end
 
   -- grammarly
@@ -279,6 +268,11 @@ function config.nvim_lspconfig()
       capabilities = capabilities,
     })
   end
+
+  -- protobuf
+  --[[ if executable("bufls") > 0 then
+    nvim_lsp["bufls"].setup({})
+  end ]]
 end
 
 function config.dap()
