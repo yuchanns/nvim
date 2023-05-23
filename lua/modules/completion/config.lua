@@ -1,10 +1,27 @@
 local config = {}
 
 function config.lspsaga()
-  require("lspsaga").init_lsp_saga({
-    move_in_saga = { prev = "k", next = "j" },
-    saga_winblend = 20,
-    diagnostic_header = { " ", " ", " ", "ﴞ " },
+  require("lspsaga").setup({
+    ui = { winblend = 20, border = "rounded" },
+  })
+  -- define the sign of diagnostics
+  vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
+  vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "Warn" })
+  vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "Info" })
+  vim.fn.sign_define("DiagnosticSignHint", { text = "💡", texthl = "Hint" })
+  vim.diagnostic.config({
+    virtual_text = {
+      format = function(diagnostic)
+        if diagnostic.severity == vim.diagnostic.severity.ERROR then
+          return string.format(" %s", diagnostic.message)
+        elseif diagnostic.severity == vim.diagnostic.WARN then
+          return string.format(" %s", diagnostic.message)
+        elseif diagnostic.severity == vim.diagnostic.INFO then
+          return string.format(" %s", diagnostic.message)
+        end
+        return string.format("💡%s", diagnostic.message)
+      end,
+    },
   })
 end
 

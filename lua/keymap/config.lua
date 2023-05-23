@@ -27,7 +27,7 @@ nmap({
   { "<Leader>t", cmd("exe v:count1 . 'ToggleTerm size=10 direction=horizontal'") },
   { "<Leader>l", cmd("Lazygit"), opts(noremap) },
   -- code navigation
-  { "ga", cmd("lua require('lspsaga.codeaction').code_action()"), opts(noremap, silent) },
+  { "ga", cmd("Lspsaga code_action"), opts(noremap, silent) },
   {
     "gi",
     cmd("lua require('telescope.builtin').lsp_implementations()"),
@@ -37,11 +37,11 @@ nmap({
   { "gd", cmd("lua vim.lsp.buf.definition()"), opts(noremap, silent) },
   { "gs", cmd("lua vim.lsp.buf.document_symbol()"), opts(noremap, silent) },
   { "gR", cmd("TroubleToggle lsp_references"), opts(noremap, silent) },
-  { "gh", cmd("lua require'lspsaga.finder'.lsp_finder()"), opts(noremap, silent) },
+  { "gh", cmd("Lspsaga lsp_finder"), opts(noremap, silent) },
   { "gm", cmd("lua require'telescope'.extensions.goimpl.goimpl{}"), opts(noremap, silent) },
-  { "gn", cmd("lua require('lspsaga.rename').lsp_rename()"), opts(noremap, silent) },
+  { "gn", cmd("Lspsaga rename"), opts(noremap, silent) },
   { "gf", cmd("lua vim.lsp.buf.format { async = true }"), opts(noremap, silent) },
-  { "K", cmd("lua require('lspsaga.hover').render_hover_doc()"), opts(noremap, silent) },
+  { "K", cmd("Lspsaga hover_doc"), opts(noremap, silent) },
   -- debug
   { "dc", cmd("lua require('dap').continue()"), opts(noremap, silent) },
   { "di", cmd("lua require('dap').step_over()"), opts(noremap, silent) },
@@ -59,11 +59,11 @@ nmap({
   { "{", cmd("AerialPrev"), opts(noremap, silent) },
   { "}", cmd("AerialNext"), opts(noremap, silent) },
   -- diagnostics
-  { "[e", cmd("lua require('lspsaga.diagnostic').goto_prev()"), opts(noremap, silent) },
-  { "]e", cmd("lua require('lspsaga.diagnostic').goto_next()"), opts(noremap, silent) },
+  { "[e", cmd("Lspsaga diagnostic_jump_prev"), opts(noremap, silent) },
+  { "]e", cmd("Lspsaga diagnostic_jump_next"), opts(noremap, silent) },
   {
     "<Leader>e",
-    cmd("lua require('lspsaga.diagnostic').show_line_diagnostics()"),
+    cmd("Lspsaga show_line_diagnostics"),
     opts(noremap, silent),
   },
   -- trouble

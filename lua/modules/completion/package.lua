@@ -4,7 +4,12 @@ local conf = require("modules.completion.config")
 package({
   "glepnir/lspsaga.nvim",
   config = conf.lspsaga,
-  commit = "014aeb8be75d927960914d442bf81ada4e24295b",
+  event = "LspAttach",
+  dependencies = {
+    { "kyazdani42/nvim-web-devicons" },
+    --Please make sure you install markdown and markdown_inline parser
+    { "nvim-treesitter/nvim-treesitter" },
+  },
 })
 
 package({
