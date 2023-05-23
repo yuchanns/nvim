@@ -2,7 +2,11 @@ local config = {}
 
 function config.lspsaga()
   require("lspsaga").setup({
-    ui = { winblend = 20, border = "rounded" },
+    ui = {
+      winblend = 20,
+      border = "rounded",
+      kind = { ["Folder"] = { "  ", "Title" } },
+    },
   })
   -- define the sign of diagnostics
   vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })

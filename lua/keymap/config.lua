@@ -55,9 +55,7 @@ nmap({
   { "+", cmd("exe 'vertical resize +1.5'"), opts(noremap, silent) },
   { "_", cmd("exe 'vertical resize -1.5'"), opts(noremap, silent) },
   -- code structure
-  { "<Leader>a", cmd("AerialToggle! right"), opts(noremap, silent) },
-  { "{", cmd("AerialPrev"), opts(noremap, silent) },
-  { "}", cmd("AerialNext"), opts(noremap, silent) },
+  { "<Leader>a", cmd("Lspsaga outline"), opts(noremap, silent) },
   -- diagnostics
   { "[e", cmd("Lspsaga diagnostic_jump_prev"), opts(noremap, silent) },
   { "]e", cmd("Lspsaga diagnostic_jump_next"), opts(noremap, silent) },

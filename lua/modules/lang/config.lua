@@ -379,10 +379,6 @@ function config.shfmt()
   })
 end
 
-function config.aerial()
-  require("aerial").setup()
-end
-
 function config.inlayhints()
   local inlayhints = require("lsp-inlayhints")
   inlayhints.setup({})
