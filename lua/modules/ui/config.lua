@@ -4,7 +4,7 @@ function config.tokyonight()
   require("tokyonight").setup({
     transparent = false,
     styles = { functions = { italic = true } },
-    sidebars = { "terminal", "qf" },
+    sidebars = { "terminal", "qf", "help" },
   })
 
   vim.cmd.colorscheme("tokyonight")

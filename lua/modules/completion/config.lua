@@ -7,6 +7,22 @@ function config.lspsaga()
       border = "rounded",
       kind = { ["Folder"] = { "  ", "Title" } },
     },
+    outline = {
+      win_position = "right",
+      win_with = "",
+      win_width = 30,
+      preview_width = 0.4,
+      show_detail = true,
+      auto_preview = true,
+      auto_refresh = true,
+      auto_close = true,
+      auto_resize = true,
+      custom_sort = nil,
+      keys = {
+        expand_or_jump = "o",
+        quit = "q",
+      },
+    },
   })
   -- define the sign of diagnostics
   vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
