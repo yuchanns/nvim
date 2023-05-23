@@ -387,6 +387,8 @@ function config.inlayhints()
   local inlayhints = require("lsp-inlayhints")
   inlayhints.setup({})
   on_lsp_attach("inlayhints", inlayhints.on_attach)
+  -- ensure set the correct highlights
+  vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#565f89", bg = "#292e42" })
 end
 
 function config.illuminate()
