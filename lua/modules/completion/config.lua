@@ -13,6 +13,7 @@ function config.lspsaga()
   vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "Warn" })
   vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "Info" })
   vim.fn.sign_define("DiagnosticSignHint", { text = "💡", texthl = "Hint" })
+  vim.api.nvim_set_hl(0, "SagaBeacon", { link = "FinderPreview" })
   vim.diagnostic.config({
     virtual_text = {
       format = function(diagnostic)
