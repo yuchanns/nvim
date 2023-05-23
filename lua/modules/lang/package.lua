@@ -34,7 +34,7 @@ package({
         { "nvim-treesitter/nvim-treesitter" },
       },
     },
-    { "lvimuser/lsp-inlayhints.nvim", config = conf.inlayhints },
+    { "lvimuser/lsp-inlayhints.nvim", config = conf.inlayhints, branch = "anticonceal" },
   },
   config = conf.nvim_lspconfig,
 })
