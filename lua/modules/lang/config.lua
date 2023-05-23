@@ -39,25 +39,25 @@ end
 function config.nvim_lspconfig()
   local executable = vim.fn.executable
 
-  local nvim_lsp = require("lspconfig")
+  local lspconfig = require("lspconfig")
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
-  on_lsp_attach("omnifunc", function(client, bufnr)
+  on_lsp_attach("omnifunc", function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   end)
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   -- clangd
   if executable("clangd") > 0 then
-    nvim_lsp["clangd"].setup({
+    lspconfig["clangd"].setup({
       capabilities = capabilities,
     })
   end
 
   -- golang
   if executable("gopls") > 0 then
-    nvim_lsp["gopls"].setup({
+    lspconfig["gopls"].setup({
       capabilities = capabilities,
       flags = {
         debounce_text_changes = 150,
@@ -132,28 +132,19 @@ function config.nvim_lspconfig()
   end
 
   -- lua
-  -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-  local sumneko_root_path = vim.fn.stdpath("data") .. "/lspconfig/sumneko_lua/lua-language-server"
-  local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
-  if executable(sumneko_binary) > 0 then
-    local runtime_path = vim.split(package.path, ";")
-    table.insert(runtime_path, "lua/?.lua")
-    table.insert(runtime_path, "lua/?/init.lua")
-
-    nvim_lsp["sumneko_lua"].setup({
-      cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+  if executable("lua-language-server") then
+    lspconfig["lua_ls"].setup({
       capabilities = capabilities,
       settings = {
         Lua = {
           runtime = {
             -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
             version = "LuaJIT",
-            -- Setup your lua path
-            path = runtime_path,
           },
           diagnostics = {
             -- Get the language server to recognize the `vim` global
-            globals = { "vim" },
+            globals = { "hs", "vim", "it", "describe", "before_each", "after_each" },
+            disable = { "lowercase-global" },
           },
           workspace = {
             -- Make the server aware of Neovim runtime files
@@ -169,7 +160,6 @@ function config.nvim_lspconfig()
   end
 
   if executable("stylua") > 0 then
-    local augroup = "LUAFMT"
     local stylua = require("stylua-nvim")
     Utils.auto_cmd("BufWritePre", "LUAFMT", function(_)
       if vim.bo.filetype ~= "lua" then
@@ -184,7 +174,7 @@ function config.nvim_lspconfig()
   local phpactor_root_path = vim.fn.stdpath("data") .. "/lspconfig/phpactor"
   local phpactor_binary = phpactor_root_path .. "/bin/phpactor"
   if executable(phpactor_binary) > 0 then
-    nvim_lsp["phpactor"].setup({
+    lspconfig["phpactor"].setup({
       capabilities = capabilities,
       cmd = { phpactor_binary, "language-server", "-vvv" },
     })
@@ -202,7 +192,7 @@ function config.nvim_lspconfig()
   end ]]
   if executable("vue-language-server") > 0 then
     -- TODO: dynamic generate tsdk path
-    nvim_lsp["volar"].setup({
+    lspconfig["volar"].setup({
       capabilities = capabilities,
       init_options = {
         typescript = {
@@ -224,19 +214,19 @@ function config.nvim_lspconfig()
   end
   -- css
   if executable("vscode-css-language-server") > 0 then
-    nvim_lsp["cssls"].setup({
+    lspconfig["cssls"].setup({
       capabilities = capabilities,
     })
   end
   -- html
   if executable("vscode-html-language-server") > 0 then
-    nvim_lsp["html"].setup({
+    lspconfig["html"].setup({
       capabilities = capabilities,
     })
   end
   -- json
   if executable("vscode-json-language-server") > 0 then
-    nvim_lsp["jsonls"].setup({
+    lspconfig["jsonls"].setup({
       capabilities = capabilities,
     })
   end
@@ -245,12 +235,12 @@ function config.nvim_lspconfig()
     Utils.auto_cmd("BufWritePre", "ESLINTFMT", function(_)
       vim.cmd([[EslintFixAll]])
     end)
-    nvim_lsp["eslint"].setup({})
+    lspconfig["eslint"].setup({})
   end
 
   -- haskell
   if executable("haskell-language-server-wrapper") > 0 then
-    nvim_lsp["hls"].setup({
+    lspconfig["hls"].setup({
       single_file_support = true,
     })
     Utils.auto_cmd("BufWritePre", "HSFMT", function(_)
@@ -263,7 +253,7 @@ function config.nvim_lspconfig()
 
   -- grammarly
   if executable("grammarly-languageserver") > 0 then
-    nvim_lsp["grammarly"].setup({
+    lspconfig["grammarly"].setup({
       init_options = { clientId = "client_MJ7wALWHHFrSNnkx4VsLbP" },
       capabilities = capabilities,
     })
@@ -389,6 +379,13 @@ end
 
 function config.illuminate()
   on_lsp_attach("illuminate", require("illuminate").on_attach)
+end
+
+function config.mason()
+  require("mason").setup()
+  require("mason-lspconfig").setup({
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls" },
+  })
 end
 
 return config

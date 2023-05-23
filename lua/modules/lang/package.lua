@@ -36,3 +36,11 @@ package({
 package({ "mfussenegger/nvim-dap", config = conf.dap })
 package({ "yuchanns/phpfmt.nvim", config = conf.phpfmt })
 package({ "yuchanns/shfmt.nvim", config = conf.shfmt })
+package({
+  "williamboman/mason-lspconfig.nvim",
+  dependencies = {
+    { "williamboman/mason.nvim" },
+    { "neovim/nvim-lspconfig" },
+  },
+  config = conf.mason,
+})

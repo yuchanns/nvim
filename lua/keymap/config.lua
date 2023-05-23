@@ -93,7 +93,7 @@ nmap({
   {
     "<Leader>xt",
     cmd("TodoTelescope"),
-    opts(normap, silent),
+    opts(noremap, silent),
   },
   -- split view
   { "<Leader>v", cmd("vsplit"), opts(noremap, silent) },
