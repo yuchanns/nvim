@@ -43,7 +43,7 @@ function config.nvim_lspconfig()
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
-  on_lsp_attach("omnifunc", function(_, bufnr)
+  on_lsp_attach("omnifunc", function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   end)
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -251,22 +251,32 @@ function config.nvim_lspconfig()
     end)
   end
 
-  -- grammarly
+  --[[ -- grammarly
   if executable("grammarly-languageserver") > 0 then
     lspconfig["grammarly"].setup({
       init_options = { clientId = "client_MJ7wALWHHFrSNnkx4VsLbP" },
       capabilities = capabilities,
     })
-  end
-
+  end ]]
   -- protobuf
   --[[ if executable("bufls") > 0 then
     nvim_lsp["bufls"].setup({})
   end ]]
-
   -- python
   if executable("pylsp") > 0 then
-    lspconfig["pylsp"].setup({})
+    lspconfig["pylsp"].setup({ capabilities = capabilities })
+    -- Basically I onply us pylsp for formatting
+    -- so let's disable the completion
+    -- https://github.com/hrsh7th/nvim-cmp/issues/822
+    on_lsp_attach("pylsp", function(client, bufnr)
+      if client.name == "pylsp" then
+        client.server_capabilities.completionProvider = false
+      end
+    end)
+  end
+  if executable("pyright") > 0 then
+    -- pyright support pdm
+    lspconfig["pyright"].setup({ capabilities = capabilities })
   end
 end
 
@@ -389,7 +399,7 @@ end
 function config.mason()
   require("mason").setup()
   require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "pylsp" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "pylsp", "pyright" },
   })
 end
 
