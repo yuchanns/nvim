@@ -154,6 +154,10 @@ function config.nvim_lspconfig()
           telemetry = {
             enable = false,
           },
+          hint = {
+            enable = true,
+            setType = true,
+          },
         },
       },
     })
