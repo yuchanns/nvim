@@ -263,6 +263,11 @@ function config.nvim_lspconfig()
   --[[ if executable("bufls") > 0 then
     nvim_lsp["bufls"].setup({})
   end ]]
+
+  -- python
+  if executable("pylsp") > 0 then
+    lspconfig["pylsp"].setup({})
+  end
 end
 
 function config.dap()
@@ -384,7 +389,7 @@ end
 function config.mason()
   require("mason").setup()
   require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "pylsp" },
   })
 end
 
