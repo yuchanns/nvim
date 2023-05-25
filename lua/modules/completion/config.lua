@@ -8,7 +8,7 @@ function config.lspsaga()
       kind = { ["Folder"] = { "  ", "Title" } },
     },
     outline = {
-      win_position = "right",
+      win_position = "left",
       win_with = "",
       win_width = 30,
       preview_width = 0.4,
