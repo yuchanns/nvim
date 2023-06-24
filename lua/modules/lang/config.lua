@@ -1,5 +1,4 @@
 local Utils = require("utils.utils")
-local util = require("lspconfig.util")
 
 local config = {}
 
@@ -287,7 +286,7 @@ function config.nvim_lspconfig()
   -- typst
   if executable("typst-lsp") > 0 then
     lspconfig["typst_lsp"].setup({
-      root_dir = util.root_pattern(".git", "*.typ"),
+      -- root_dir = require("lspconfig").util.root_pattern(".git", "*.typ"),
     })
   end
 end

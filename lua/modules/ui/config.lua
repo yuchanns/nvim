@@ -32,7 +32,7 @@ function config.alpha()
   if vim.fn.executable("chafa") > 0 then
     dashboard.section.header.type = "terminal"
     dashboard.section.header.command = string.format(
-      "chafa -s 75x75 -c full --fg-only --symbols braille --clear %s/.config/nvim/static/Avatar.jpeg",
+      "chafa -s 75x75 -f symbols -c full --fg-only --symbols braille --clear %s/.config/nvim/static/Avatar.jpeg",
       os.getenv("HOME")
     )
     dashboard.section.header.height = 33
