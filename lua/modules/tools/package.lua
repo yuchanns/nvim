@@ -49,12 +49,10 @@ package({
   dependencies = "nvim-lua/plenary.nvim",
   config = conf.todo,
 })
--- hop
 package({
-  "mfussenegger/nvim-treehopper",
-  dependencies = {
-    { "phaazon/hop.nvim", branch = "v2", config = conf.hop },
-  },
+  "folke/flash.nvim",
+  event = "VeryLazy",
+  config = conf.flash,
 })
 -- session
 package({

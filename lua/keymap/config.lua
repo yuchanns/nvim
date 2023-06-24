@@ -8,7 +8,7 @@ local vmap = keymap.vmap
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local cmd = keymap.cmd
-local hop = require("hop")
+local flash = require("flash")
 
 local function t(key)
   return vim.api.nvim_replace_termcodes(key, true, true, true)
@@ -17,17 +17,45 @@ end
 -- usage of plugins
 nmap({
   -- bufferline
-  { "bb", cmd("BufferLinePick"), opts(noremap, silent) },
-  { "bc", cmd("BufferLinePickClose"), opts(noremap, silent) },
-  { "bd", cmd("BufferLineSortByDirectory"), opts(noremap, silent) },
-  { "be", cmd("BufferLineSortByExtension"), opts(noremap, silent) },
-  { "b[", cmd("BufferLineCyclePrev"), opts(noremap, silent) },
-  { "b]", cmd("BufferLineCycleNext"), opts(noremap, silent) },
+  {
+    "bb",
+    cmd("BufferLinePick"),
+    opts(noremap, silent),
+  },
+  {
+    "bc",
+    cmd("BufferLinePickClose"),
+    opts(noremap, silent),
+  },
+  {
+    "bd",
+    cmd("BufferLineSortByDirectory"),
+    opts(noremap, silent),
+  },
+  {
+    "be",
+    cmd("BufferLineSortByExtension"),
+    opts(noremap, silent),
+  },
+  {
+    "b[",
+    cmd("BufferLineCyclePrev"),
+    opts(noremap, silent),
+  },
+  {
+    "b]",
+    cmd("BufferLineCycleNext"),
+    opts(noremap, silent),
+  },
   -- toggleterm
   { "<Leader>t", cmd("exe v:count1 . 'ToggleTerm size=10 direction=horizontal'") },
   { "<Leader>l", cmd("Lazygit"), opts(noremap) },
   -- code navigation
-  { "ga", cmd("Lspsaga code_action"), opts(noremap, silent) },
+  {
+    "ga",
+    cmd("Lspsaga code_action"),
+    opts(noremap, silent),
+  },
   {
     "gi",
     cmd("lua require('telescope.builtin').lsp_implementations()"),
@@ -98,20 +126,10 @@ nmap({
   -- split view
   { "<Leader>v", cmd("vsplit"), opts(noremap, silent) },
   { "<Leader>s", cmd("split"), opts(noremap, silent) },
-  -- hop
   {
-    "ft",
+    "s",
     function()
-      hop.hint_words({
-        current_line_onply = false,
-      })
-    end,
-    opts(noremap, silent),
-  },
-  {
-    "fs",
-    function()
-      require("tsht").nodes()
+      flash.jump()
     end,
     opts(noremap, silent),
   },
