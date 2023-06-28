@@ -69,6 +69,21 @@ function config.alpha()
       nil
     ),
   }
+  -- auto session on alpha loaded
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "AlphaReady",
+    callback = function()
+      local handle
+      handle, _ = vim.uv.spawn(
+        "sleep",
+        { args = { "1s" }, stdio = nil },
+        vim.schedule_wrap(function(_)
+          handle:close()
+          require("persistence").load()
+        end)
+      )
+    end,
+  })
 
   require("alpha").setup(dashboard.opts)
 end
