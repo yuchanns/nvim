@@ -28,6 +28,11 @@ nmap({
     opts(noremap, silent),
   },
   {
+    "bo",
+    cmd("BufferLineCloseOthers"),
+    opts(noremap, silent),
+  },
+  {
     "bd",
     cmd("BufferLineSortByDirectory"),
     opts(noremap, silent),
