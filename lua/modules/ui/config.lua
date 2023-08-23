@@ -95,6 +95,7 @@ function config.nvim_tree()
     nopts.buffer = bufnr
     nmap({
       { "l", cmd("lua require('nvim-tree.api').node.open.tab()"), nopts },
+      { "h", cmd("lua require('nvim-tree.api').node.navigate.parent_close()"), nopts },
       { "N", cmd("lua require('nvim-tree.api').fs.create()"), nopts },
       { "v", cmd("lua require('nvim-tree.api').node.open.vertical()"), nopts },
       { "s", cmd("lua require('nvim-tree.api').node.open.horizontal()"), nopts },
