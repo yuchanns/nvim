@@ -60,3 +60,10 @@ package({
   event = { "BufReadPre" },
   config = conf.persistence,
 })
+
+package({
+  "caenrique/swap-buffers.nvim",
+  config = function()
+    require("swap-buffers").setup()
+  end,
+})

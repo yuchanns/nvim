@@ -138,6 +138,11 @@ nmap({
     end,
     opts(noremap, silent),
   },
+  -- buffer swap
+  { "<C-h>", cmd("lua require('swap-buffers').swap_buffers('h')"), opts(noremap, silent) },
+  { "<C-j>", cmd("lua require('swap-buffers').swap_buffers('j')"), opts(noremap, silent) },
+  { "<C-k>", cmd("lua require('swap-buffers').swap_buffers('k')"), opts(noremap, silent) },
+  { "<C-l>", cmd("lua require('swap-buffers').swap_buffers('l')"), opts(noremap, silent) },
 })
 
 vmap({ -- codegp
