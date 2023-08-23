@@ -1,5 +1,11 @@
 local config = {}
 
+local keymap = require("core.keymap")
+local nmap = keymap.nmap
+local silent, noremap, nowait = keymap.silent, keymap.noremap, keymap.nowait
+local opts = keymap.new_opts
+local cmd = keymap.cmd
+
 function config.tokyonight()
   require("tokyonight").setup({
     transparent = false,
@@ -8,6 +14,61 @@ function config.tokyonight()
   })
 
   vim.cmd.colorscheme("tokyonight")
+end
+
+function config.catppuccin()
+  require("catppuccin").setup({
+    flavour = "macchiato",
+    term_colors = true,
+    dim_inactive = {
+      enabled = true, -- dims the background color of inactive window
+      shade = "dark",
+      percentage = 0.15, -- percentage of the shade to apply to the inactive window
+    },
+    integrations = {
+      noice = true,
+      lsp_saga = true,
+      cmp = true,
+      dap = {
+        enabled = true,
+        enable_ui = true, -- enable nvim-dap-ui
+      },
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+        },
+        underlines = {
+          errors = { "underline" },
+          hints = { "underline" },
+          warnings = { "underline" },
+          information = { "underline" },
+        },
+        inlay_hints = {
+          background = true,
+        },
+      },
+      telescope = {
+        enabled = true,
+        -- style = "nvchad"
+      },
+      lsp_trouble = true,
+      illuminate = true,
+      treesitter = true,
+      aerial = true,
+      alpha = true,
+      beacon = true,
+      indent_blankline = {
+        enabled = true,
+        colored_indent_levels = true,
+      },
+      mason = true,
+    },
+  })
+  vim.cmd.colorscheme("catppuccin")
 end
 
 function config.vfilter()
@@ -22,6 +83,42 @@ function config.vfilter()
       listed = false,
       blend = 30,
       session = "share",
+    },
+  })
+end
+
+function config.nvim_tree()
+  local api = require("nvim-tree.api")
+  local function on_attach(bufnr)
+    api.config.mappings.default_on_attach(bufnr)
+    local nopts = opts(noremap, silent, nowait)
+    nopts.buffer = bufnr
+    nmap({
+      { "l", cmd("lua require('nvim-tree.api').node.open.tab()"), nopts },
+      { "N", cmd("lua require('nvim-tree.api').fs.create()"), nopts },
+      { "v", cmd("lua require('nvim-tree.api').node.open.vertical()"), nopts },
+      { "s", cmd("lua require('nvim-tree.api').node.open.horizontal()"), nopts },
+      { ".", cmd("lua require('nvim-tree.api').tree.toggle_gitignore_filter()"), nopts },
+    })
+  end
+  require("nvim-tree").setup({
+    disable_netrw = true,
+    hijack_cursor = true,
+    on_attach = on_attach,
+    view = {
+      float = {
+        enable = true,
+      },
+    },
+    diagnostics = {
+      enable = true,
+    },
+    actions = {
+      open_file = {
+        window_picker = {
+          chars = "1234567890",
+        },
+      },
     },
   })
 end
@@ -144,7 +241,8 @@ function config.lualine()
     },
     options = {
       icons_enabled = true,
-      theme = "tokyonight",
+      -- theme = "tokyonight",
+      theme = "catppuccin",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
     },

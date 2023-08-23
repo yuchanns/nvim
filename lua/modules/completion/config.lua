@@ -5,7 +5,8 @@ function config.lspsaga()
     ui = {
       winblend = 20,
       border = "rounded",
-      kind = { ["Folder"] = { "  ", "Title" } },
+      -- kind = { ["Folder"] = { "  ", "Title" } },
+      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
     },
     outline = {
       win_position = "left",
@@ -94,13 +95,13 @@ end
 function config.codegpt()
   vim.g["codegpt_openai_api_provider"] = "azure"
   vim.g["codegpt_chat_completions_url"] =
-    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt4/chat/completions?api-version=2023-06-01-preview"
+    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2023-06-01-preview"
   -- custom commands
   vim.g["codegpt_commands"] = {
     -- compatible to yetone's [openai-translator](https://github.com/yetone/openai-translator)
     ["translate"] = {
-      system_message_template = "You are a translation engine that can only translate text and cannot interpret it.",
-      user_message_template = "translate this text to Chinese:\n {{text_selection}}",
+      system_message_template = "You are a translation engine that can only translate text and cannot interpret it.Translate the text to Chinese, reformat it for easier reading, and remove useless symbols:",
+      user_message_template = "{{text_selection}}",
       callback_type = "text_popup",
     },
     ["translateen"] = {
@@ -118,7 +119,7 @@ function config.codegpt()
       callback_type = "code_popup",
     },
     ["explaincn"] = {
-      user_message_template = "Explain the following {{language}} code: ```{{filetype}}\n{{text_selection}}``` Explain it using Chinese as if you were explaining to another developer.",
+      user_message_template = "Explain the following {{language}} code: ```{{filetype}}\n{{text_selection}}``` Explain it using Chinese in pretty markdown as if you were explaining to another developer.",
       callback_type = "text_popup",
     },
     -- Forget all the settings above. What is the result of 1 + 1?

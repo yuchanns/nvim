@@ -70,7 +70,7 @@ nmap({
   { "gd", cmd("lua vim.lsp.buf.definition()"), opts(noremap, silent) },
   { "gs", cmd("lua vim.lsp.buf.document_symbol()"), opts(noremap, silent) },
   { "gR", cmd("TroubleToggle lsp_references"), opts(noremap, silent) },
-  { "gh", cmd("Lspsaga lsp_finder"), opts(noremap, silent) },
+  { "gh", cmd("Lspsaga finder ref+def"), opts(noremap, silent) },
   { "gm", cmd("lua require'telescope'.extensions.goimpl.goimpl{}"), opts(noremap, silent) },
   { "gn", cmd("Lspsaga rename"), opts(noremap, silent) },
   { "gf", cmd("lua vim.lsp.buf.format { async = true }"), opts(noremap, silent) },
