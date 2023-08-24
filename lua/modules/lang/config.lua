@@ -22,6 +22,9 @@ function config.nvim_treesitter()
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
+      disable = function(lang, bufnr)
+        return lang == "javascript" and vim.api.nvim_buf_line_count(bufnr) > 1000
+      end,
     },
     textobjects = {
       select = {
