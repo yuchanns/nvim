@@ -1,12 +1,13 @@
 local config = {}
 
 function config.lspsaga()
+  local kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind()
+  kind["Folder"] = { "  ", "Title" }
   require("lspsaga").setup({
     ui = {
       winblend = 20,
       border = "rounded",
-      -- kind = { ["Folder"] = { "  ", "Title" } },
-      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+      kind = kind,
     },
     outline = {
       win_position = "left",
