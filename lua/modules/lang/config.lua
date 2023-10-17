@@ -88,7 +88,7 @@ function config.nvim_lspconfig()
       opts.linter_flags = { revive = { "-config", "~/.config/nvim/static/revive_config.toml" } }
     end
     if executable("goimports") > 0 then
-      opts.auto_format = true
+      opts.auto_format = false
       opts.formatter = "goimports"
     end
     require("go").setup(opts)

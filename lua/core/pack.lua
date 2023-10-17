@@ -1,4 +1,4 @@
-local uv, api, fn = vim.uv, vim.api, vim.fn
+local uv, api, fn = vim.loop, vim.api, vim.fn
 
 local pack = {}
 pack.__index = pack

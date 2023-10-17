@@ -1,4 +1,5 @@
 local config = {}
+local uv = vim.loop
 
 local keymap = require("core.keymap")
 local nmap = keymap.nmap
@@ -172,7 +173,7 @@ function config.alpha()
     pattern = "AlphaReady",
     callback = function()
       local handle
-      handle, _ = vim.uv.spawn(
+      handle, _ = uv.spawn(
         "sleep",
         { args = { "1s" }, stdio = nil },
         vim.schedule_wrap(function(_)

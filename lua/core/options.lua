@@ -1,4 +1,4 @@
-local opt = vim.opt
+local opt, uv = vim.opt, vim.loop
 local cache_dir = vim.env.HOME .. "/.cache/nvim/"
 
 opt.termguicolors = true
@@ -69,7 +69,7 @@ opt.spelloptions = "camel"
 
 opt.textwidth = 100
 opt.colorcolumn = "100"
-if vim.uv.os_uname().sysname == "Darwin" then
+if uv.os_uname().sysname == "Darwin" then
   vim.g.clipboard = {
     name = "macOS-clipboard",
     copy = {
