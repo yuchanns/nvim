@@ -67,3 +67,17 @@ package({
     require("swap-buffers").setup()
   end,
 })
+
+-- test
+package({
+  "yuchanns/neotest",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-neotest/neotest-go",
+    "rouge8/neotest-rust",
+  },
+  branch = "hack-output",
+  config = conf.neotest,
+})

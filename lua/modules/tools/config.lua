@@ -118,7 +118,8 @@ function config.diffview()
     enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'
     git_cmd = { "git" }, -- The git executable followed by default args.
     use_icons = true, -- Requires nvim-web-devicons
-    icons = { -- Only applies when use_icons is true.
+    icons = {
+      -- Only applies when use_icons is true.
       folder_closed = "",
       folder_open = "",
     },
@@ -128,17 +129,20 @@ function config.diffview()
     },
     file_panel = {
       listing_style = "tree", -- One of 'list' or 'tree'
-      tree_options = { -- Only applies when listing_style is 'tree'
+      tree_options = {
+        -- Only applies when listing_style is 'tree'
         flatten_dirs = true, -- Flatten dirs that only contain one single dir
         folder_statuses = "only_folded", -- One of 'never', 'only_folded' or 'always'.
       },
-      win_config = { -- See ':h diffview-config-win_config'
+      win_config = {
+        -- See ':h diffview-config-win_config'
         position = "left",
         width = 35,
       },
     },
     file_history_panel = {
-      win_config = { -- See ':h diffview-config-win_config'
+      win_config = {
+        -- See ':h diffview-config-win_config'
         position = "bottom",
         height = 16,
       },
@@ -146,7 +150,8 @@ function config.diffview()
     commit_log_panel = {
       win_config = {}, -- See ':h diffview-config-win_config'
     },
-    default_args = { -- Default args prepended to the arg-list for the listed commands
+    default_args = {
+      -- Default args prepended to the arg-list for the listed commands
       DiffviewOpen = {},
       DiffviewFileHistory = {},
     },
@@ -274,6 +279,28 @@ end
 function config.persistence()
   local persistence = require("persistence")
   persistence.setup({})
+end
+
+function config.neotest()
+  local neotest_ns = vim.api.nvim_create_namespace("neotest")
+  vim.diagnostic.config({
+    virtual_text = {
+      format = function(diagnostic)
+        local message =
+          diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+        return message
+      end,
+    },
+  }, neotest_ns)
+
+  require("neotest").setup({
+    adapters = {
+      require("neotest-go"),
+      require("neotest-rust"),
+    },
+    status = { virtual_text = true },
+    output = { enabled = true, open_on_run = true, enter = true },
+  })
 end
 
 return config

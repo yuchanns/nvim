@@ -254,7 +254,61 @@ end
 function config.indent_blanklinke()
   vim.opt.list = true
   vim.opt.listchars:append("space:⋅")
-  require("indent_blankline").setup({
+  local highlight = {
+    "CursorColumn",
+    "Whitespace",
+  }
+  require("ibl").setup({
+    indent = {
+      highlight = highlight,
+      char = { "|", "¦", "┆", "┊" },
+      tab_char = "",
+    },
+    whitespace = {
+      highlight = highlight,
+      remove_blankline_trail = true,
+    },
+    scope = {
+      enabled = true,
+      char = "|",
+      highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      },
+    },
+    exclude = {
+      filetypes = {
+        "startify",
+        "dashboard",
+        "dotooagenda",
+        "log",
+        "fugitive",
+        "gitcommit",
+        "packer",
+        "vimwiki",
+        "markdown",
+        "json",
+        "txt",
+        "vista",
+        "help",
+        "todoist",
+        "NvimTree",
+        "peekaboo",
+        "git",
+        "TelescopePrompt",
+        "undotree",
+        "flutterToolsOutline",
+        "", -- for all buffers without a file type
+      },
+      buftypes = { "terminal", "nofile" },
+    },
+  })
+  --[[ require("indent_blankline").setup({
     space_char_blankline = " ",
     show_current_context = true,
     buftype_exclude = { "terminal", "nofile" },
@@ -285,7 +339,7 @@ function config.indent_blanklinke()
     char_list = { "|", "¦", "┆", "┊" },
     show_first_indent_level = true,
     show_trailing_blankline_indent = false,
-  })
+  }) ]]
 end
 
 function config.dapui()
