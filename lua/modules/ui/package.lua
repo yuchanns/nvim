@@ -48,7 +48,10 @@ package({
   event = "BufRead",
   config = conf.indent_blanklinke,
   main = "ibl",
-  dependencies = { "nvim-treesitter/nvim-treesitter" },
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter",
+    { "hiphish/rainbow-delimiters.nvim", config = conf.rainbow_delimiters },
+  },
 })
 package({ "danilamihailov/beacon.nvim" })
 package({ "famiu/bufdelete.nvim" })
@@ -64,10 +67,6 @@ package({
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
   },
-})
-package({
-  "p00f/nvim-ts-rainbow",
-  dependencies = { "nvim-treesitter/nvim-treesitter" },
 })
 package({ "folke/lsp-colors.nvim", config = conf.colors })
 package({ "nvim-lua/lsp-status.nvim" })

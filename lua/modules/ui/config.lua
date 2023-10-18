@@ -251,17 +251,59 @@ function config.lualine()
   })
 end
 
+local rainbow_highlight = {
+  "RainbowRed",
+  "RainbowYellow",
+  "RainbowBlue",
+  "RainbowOrange",
+  "RainbowGreen",
+  "RainbowViolet",
+  "RainbowCyan",
+}
+
+function config.rainbow_delimiters()
+  local rainbow_delimiters = require("rainbow-delimiters")
+
+  vim.g.rainbow_delimiters = {
+    strategy = {
+      [""] = rainbow_delimiters.strategy["global"],
+      vim = rainbow_delimiters.strategy["local"],
+    },
+    query = {
+      [""] = "rainbow-delimiters",
+      lua = "rainbow-blocks",
+    },
+    highlight = rainbow_highlight,
+  }
+end
+
 function config.indent_blanklinke()
   vim.opt.list = true
   vim.opt.listchars:append("space:⋅")
   local highlight = {
-    "CursorColumn",
-    "Whitespace",
+    "IndentRainbowRed",
+    "IndentRainbowYellow",
+    "IndentRainbowBlue",
+    "IndentRainbowCyan",
   }
+  local hooks = require("ibl.hooks")
+  hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+    vim.api.nvim_set_hl(0, "IndentRainbowRed", { bg = "#373043" })
+    vim.api.nvim_set_hl(0, "IndentRainbowYellow", { bg = "#373744" })
+    vim.api.nvim_set_hl(0, "IndentRainbowBlue", { bg = "#2e384a" })
+    vim.api.nvim_set_hl(0, "IndentRainbowCyan", { bg = "#2e3848" })
+  end)
   require("ibl").setup({
     indent = {
-      highlight = highlight,
-      char = { "|", "¦", "┆", "┊" },
+      highlight = rainbow_highlight,
+      char = "",
       tab_char = "",
     },
     whitespace = {
@@ -270,16 +312,9 @@ function config.indent_blanklinke()
     },
     scope = {
       enabled = true,
-      char = "|",
-      highlight = {
-        "RainbowRed",
-        "RainbowYellow",
-        "RainbowBlue",
-        "RainbowOrange",
-        "RainbowGreen",
-        "RainbowViolet",
-        "RainbowCyan",
-      },
+      highlight = rainbow_highlight,
+      show_start = false,
+      show_end = false,
     },
     exclude = {
       filetypes = {
@@ -308,38 +343,7 @@ function config.indent_blanklinke()
       buftypes = { "terminal", "nofile" },
     },
   })
-  --[[ require("indent_blankline").setup({
-    space_char_blankline = " ",
-    show_current_context = true,
-    buftype_exclude = { "terminal", "nofile" },
-    filetype_exclude = {
-      "startify",
-      "dashboard",
-      "dotooagenda",
-      "log",
-      "fugitive",
-      "gitcommit",
-      "packer",
-      "vimwiki",
-      "markdown",
-      "json",
-      "txt",
-      "vista",
-      "help",
-      "todoist",
-      "NvimTree",
-      "peekaboo",
-      "git",
-      "TelescopePrompt",
-      "undotree",
-      "flutterToolsOutline",
-      "", -- for all buffers without a file type
-    },
-    use_treesitter = true,
-    char_list = { "|", "¦", "┆", "┊" },
-    show_first_indent_level = true,
-    show_trailing_blankline_indent = false,
-  }) ]]
+  hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 end
 
 function config.dapui()
