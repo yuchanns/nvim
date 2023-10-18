@@ -10,8 +10,6 @@ function config.lspsaga()
       kind = kind,
     },
     outline = {
-      win_position = "left",
-      win_with = "",
       win_width = 30,
       preview_width = 0.4,
       show_detail = true,
