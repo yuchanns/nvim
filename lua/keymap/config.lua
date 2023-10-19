@@ -82,6 +82,8 @@ nmap({
   { "do", cmd("lua require('dap').step_out()"), opts(noremap, silent) },
   { "db", cmd("lua require('dap').toggle_breakpoint()"), opts(noremap, silent) },
   { "dr", cmd("lua require('dap').repl.open()"), opts(noremap, silent) },
+  -- unit tests
+  { "du", cmd("lua require('neotest').run.run()"), opts(noremap, silent) },
   -- window resize
   { "=", cmd("exe 'resize +1.5'"), opts(noremap, silent) },
   { "-", cmd("exe 'resize -1.5'"), opts(noremap, silent) },
@@ -143,8 +145,6 @@ nmap({
   { "<C-j>", cmd("lua require('swap-buffers').swap_buffers('j')"), opts(noremap, silent) },
   { "<C-k>", cmd("lua require('swap-buffers').swap_buffers('k')"), opts(noremap, silent) },
   { "<C-l>", cmd("lua require('swap-buffers').swap_buffers('l')"), opts(noremap, silent) },
-  -- unit tests
-  { "<Leader>u", cmd("lua require('neotest').run.run()"), opts(noremap, silent) },
 })
 
 vmap({ -- codegp
