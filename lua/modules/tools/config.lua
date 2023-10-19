@@ -324,7 +324,7 @@ function config.neotest()
     local handle
     handle, _ = uv.spawn(
       "sleep",
-      { args = { "3s" }, stdio = nil },
+      { args = { "0.5s" }, stdio = nil },
       vim.schedule_wrap(function(_)
         handle:close()
         neotest.attach_or_output.open()

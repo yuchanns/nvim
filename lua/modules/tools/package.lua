@@ -70,7 +70,7 @@ package({
 
 -- test
 package({
-  "yuchanns/neotest",
+  "nvim-neotest/neotest",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -78,6 +78,5 @@ package({
     "nvim-neotest/neotest-go",
     "rouge8/neotest-rust",
   },
-  branch = "hack-output",
   config = conf.neotest,
 })
