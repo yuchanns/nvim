@@ -1,4 +1,5 @@
 local config = {}
+local uv = vim.loop
 
 function config.telescope()
   require("telescope").setup({
@@ -293,14 +294,43 @@ function config.neotest()
     },
   }, neotest_ns)
 
-  require("neotest").setup({
+  local neotest = require("neotest")
+  neotest.setup({
     adapters = {
       require("neotest-go"),
-      require("neotest-rust"),
+      require("neotest-rust")({ args = { "--no-capture" }, dap_adapter = "lldb" }),
     },
     status = { virtual_text = true },
-    output = { enabled = true, open_on_run = true, enter = true },
+    output = { enabled = true, open_on_run = false },
+    consumers = {
+      attach_or_output = function(client)
+        local M = {}
+        function M.open(opts)
+          opts = opts or {}
+          local pos = neotest.run.get_tree_from_args(opts)
+          if pos and client:is_running(pos:data().id) then
+            neotest.run.attach()
+          else
+            neotest.output.open({ enter = true })
+          end
+        end
+
+        return M
+      end,
+    },
   })
+  vim.api.nvim_create_user_command("NTestOutput", function()
+    neotest.run.run()
+    local handle
+    handle, _ = uv.spawn(
+      "sleep",
+      { args = { "3s" }, stdio = nil },
+      vim.schedule_wrap(function(_)
+        handle:close()
+        neotest.attach_or_output.open()
+      end)
+    )
+  end, {})
 end
 
 return config

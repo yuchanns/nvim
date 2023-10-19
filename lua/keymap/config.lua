@@ -83,7 +83,7 @@ nmap({
   { "db", cmd("lua require('dap').toggle_breakpoint()"), opts(noremap, silent) },
   { "dr", cmd("lua require('dap').repl.open()"), opts(noremap, silent) },
   -- unit tests
-  { "du", cmd("lua require('neotest').run.run()"), opts(noremap, silent) },
+  { "du", cmd("NTestOutput"), opts(noremap, silent) },
   -- window resize
   { "=", cmd("exe 'resize +1.5'"), opts(noremap, silent) },
   { "-", cmd("exe 'resize -1.5'"), opts(noremap, silent) },
