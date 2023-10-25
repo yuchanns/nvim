@@ -82,6 +82,7 @@ function config.compe()
       { name = "path" },
       -- { name = "cmdline" },
       { name = "dictionary" },
+      { name = "orgmode" },
     }),
     mapping = {
       ["<CR>"] = cmp.mapping.confirm({ select = true }),

@@ -80,3 +80,13 @@ package({
   },
   config = conf.neotest,
 })
+
+-- org mode
+package({
+  "nvim-orgmode/orgmode",
+  dependencies = {
+    { "nvim-treesitter/nvim-treesitter", lazy = true },
+  },
+  event = "VeryLazy",
+  config = conf.orgmode,
+})
