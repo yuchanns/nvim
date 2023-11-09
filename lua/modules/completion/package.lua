@@ -24,6 +24,7 @@ package({
     { "hrsh7th/cmp-path" },
     -- { "hrsh7th/cmp-cmdline" },
     { "uga-rosa/cmp-dictionary" },
+    { "onsails/lspkind.nvim" },
   },
 })
 
