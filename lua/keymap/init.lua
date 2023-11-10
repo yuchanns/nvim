@@ -11,7 +11,7 @@ nmap({
   { "<Leader>ff", cmd("lua require('vfiler').start()"), opts(noremap, silent) }, ]]
   {
     "<Leader>ff",
-    cmd("NvimTreeToggle"),
+    cmd("lua require('nvim-tree.api').tree.toggle({ find_file = true, focus = true })"),
     opts(noremap, silent),
   },
   {

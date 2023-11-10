@@ -24,6 +24,7 @@ package({
   lazy = false,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    { "JMarkin/nvim-tree.lua-float-preview", lazy = true },
   },
   config = conf.nvim_tree,
 })

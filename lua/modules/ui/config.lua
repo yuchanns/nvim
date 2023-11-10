@@ -90,17 +90,29 @@ end
 
 function config.nvim_tree()
   local api = require("nvim-tree.api")
+  local float_preview = require("float-preview")
+  local function close_wrap_cmd(inner_cmd)
+    return cmd("lua require('float-preview').close_wrap(" .. inner_cmd .. ")()")
+  end
+  local function api_cmd(inner_cmd)
+    return close_wrap_cmd("require('nvim-tree.api')." .. inner_cmd)
+  end
   local function on_attach(bufnr)
+    float_preview.attach_nvimtree(bufnr)
     api.config.mappings.default_on_attach(bufnr)
     local nopts = opts(noremap, silent, nowait)
     nopts.buffer = bufnr
     nmap({
-      { "l", cmd("lua require('nvim-tree.api').node.open.tab()"), nopts },
-      { "h", cmd("lua require('nvim-tree.api').node.navigate.parent_close()"), nopts },
-      { "N", cmd("lua require('nvim-tree.api').fs.create()"), nopts },
-      { "v", cmd("lua require('nvim-tree.api').node.open.vertical()"), nopts },
-      { "s", cmd("lua require('nvim-tree.api').node.open.horizontal()"), nopts },
-      { ".", cmd("lua require('nvim-tree.api').tree.toggle_gitignore_filter()"), nopts },
+      { "l", api_cmd("node.open.tab"), nopts },
+      { "h", api_cmd("node.navigate.parent_close"), nopts },
+      { "N", api_cmd("fs.create"), nopts },
+      { "v", api_cmd("node.open.vertical"), nopts },
+      { "s", api_cmd("node.open.horizontal"), nopts },
+      { ".", api_cmd("tree.toggle_gitignore_filter"), nopts },
+      { "q", api_cmd("tree.close"), nopts },
+      { "o", api_cmd("node.open.edit"), nopts },
+      { "r", api_cmd("fs.rename"), nopts },
+      { "d", api_cmd("fs.remove"), nopts },
     })
   end
   require("nvim-tree").setup({
