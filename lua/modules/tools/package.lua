@@ -19,6 +19,7 @@ package({
       config = conf.frecency,
       dependencies = { { "kkharji/sqlite.lua" } },
     },
+    { "Marskey/telescope-sg" },
   },
 })
 package({ "windwp/nvim-autopairs", config = conf.autopairs })

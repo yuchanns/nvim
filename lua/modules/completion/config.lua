@@ -137,7 +137,7 @@ function config.codegpt()
       callback_type = "text_popup",
     },
     ["doccn"] = {
-      user_message_template = "I have the following {{language}} code: ```{{filetype}}\n{{text_selection}}```\nWrite really good Chinese documentation using best practices for the given language. Attention paid to documenting parameters, return types, any exceptions or errors. {{language_instructions}} Only return the code snippet and nothing else.",
+      user_message_template = "I have the following {{language}} code: ```{{filetype}}\n{{text_selection}}```\nWrite really good Chinese documentation using best practices for the given language. Attention paid to documenting parameters, return types, any exceptions or errors. {{language_instructions}} Only return the code snippet include the origin content and documentation, and nothing else.",
       language_instructions = {
         go = [[Use the following style to document, note that you should ignore param_type context.Context:
         // FunctionName

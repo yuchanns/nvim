@@ -189,16 +189,16 @@ function config.nvim_lspconfig()
   end
 
   -- typescript
-  --[[ if executable("typescript-language-server") > 0 then
-    nvim_lsp["tsserver"].setup({})
+  if executable("typescript-language-server") > 0 then
+    lspconfig["tsserver"].setup({})
   end
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  --[[ local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true ]]
   -- vue
   --[[ if executable("vls") > 0 then
     nvim_lsp["vuels"].setup({})
   end ]]
-  if executable("vue-language-server") > 0 then
+  --[[ if executable("vue-language-server") > 0 then
     -- TODO: dynamic generate tsdk path
     lspconfig["volar"].setup({
       capabilities = capabilities,
@@ -219,7 +219,7 @@ function config.nvim_lspconfig()
         "json",
       },
     })
-  end
+  end ]]
   -- css
   if executable("vscode-css-language-server") > 0 then
     lspconfig["cssls"].setup({
@@ -267,9 +267,9 @@ function config.nvim_lspconfig()
     })
   end ]]
   -- protobuf
-  --[[ if executable("bufls") > 0 then
-    nvim_lsp["bufls"].setup({})
-  end ]]
+  if executable("bufls") > 0 then
+    lspconfig["bufls"].setup({})
+  end
   -- python
   if executable("pylsp") > 0 then
     lspconfig["pylsp"].setup({ capabilities = capabilities })
@@ -414,7 +414,16 @@ end
 function config.mason()
   require("mason").setup()
   require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "pylsp", "pyright", "typst_lsp" },
+    ensure_installed = {
+      "lua_ls",
+      "rust_analyzer",
+      "gopls",
+      "pylsp",
+      "pyright",
+      "typst_lsp",
+      "tsserver",
+      "bufls",
+    },
   })
 end
 
