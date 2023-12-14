@@ -97,6 +97,15 @@ function config.compe()
       -- { name = "cmdline" },
       { name = "dictionary" },
       { name = "orgmode" },
+      {
+        name = "spell",
+        option = {
+          keep_all_entries = false,
+          enable_in_context = function()
+            return true
+          end,
+        },
+      },
     }),
     mapping = {
       ["<CR>"] = cmp.mapping.confirm({ select = true }),
