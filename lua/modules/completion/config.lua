@@ -113,6 +113,20 @@ function config.compe()
       ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
     },
   })
+  cmp.setup.cmdline({ "/", "?" }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "buffer" },
+    },
+  })
+  cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = "path" },
+    }, {
+      { name = "cmdline" },
+    }),
+  })
 end
 
 function config.codegpt()

@@ -22,7 +22,7 @@ package({
     { "quangnguyen30192/cmp-nvim-ultisnips" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
-    -- { "hrsh7th/cmp-cmdline" },
+    { "hrsh7th/cmp-cmdline" },
     { "uga-rosa/cmp-dictionary" },
     { "onsails/lspkind.nvim" },
     { "f3fora/cmp-spell" },
