@@ -103,35 +103,17 @@ function config.nvim_lspconfig()
         },
       },
       server = {
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              allFeatures = true,
-              loadOutDirsFromCheck = true,
-            },
-            flags = {
-              debounce_text_changes = 150,
-            },
-            assist = {
-              importMergeBehavior = "last",
-              importPrefix = "by_self",
-            },
-            diagnostics = {
-              disabled = { "unresolved-import" },
-            },
-            procMacro = {
-              enable = true,
-            },
-            checkOnSave = {
-              command = "clippy",
-            },
-          },
-        },
+        settings = function(project_root)
+          local ra = require("rustaceanvim.config.server")
+          return ra.load_rust_analyzer_settings(project_root .. "/.vscode", {
+            settings_file_pattern = "rust-analyzer.json",
+          })
+        end,
         capabilities = capabilities,
       },
     }
+    vim.g.rustaceanvim = rust_tools_opt
 
-    require("rust-tools").setup(rust_tools_opt)
     vim.g.rustfmt_autosave = 1
   end
 

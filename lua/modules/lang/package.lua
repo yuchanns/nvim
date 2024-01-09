@@ -16,7 +16,7 @@ package({
   dependencies = {
     { "RRethy/vim-illuminate", config = conf.illuminate },
     { "crispgm/nvim-go" },
-    { "simrat39/rust-tools.nvim" },
+    { "mrcjkb/rustaceanvim", version = "^3", ft = { "rust" } },
     { "rhysd/vim-go-impl" },
     { "rust-lang/rust.vim" },
     { "ckipp01/stylua-nvim" },
