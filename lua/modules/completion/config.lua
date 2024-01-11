@@ -135,7 +135,7 @@ end
 function config.codegpt()
   vim.g["codegpt_openai_api_provider"] = "azure"
   vim.g["codegpt_chat_completions_url"] =
-    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2023-09-01-preview"
+    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2023-12-01-preview"
   -- custom commands
   vim.g["codegpt_commands"] = {
     -- compatible to yetone's [openai-translator](https://github.com/yetone/openai-translator)
