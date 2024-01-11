@@ -306,7 +306,7 @@ function config.neotest()
   neotest.setup({
     adapters = {
       require("neotest-go"),
-      require("neotest-rust")({ args = { "--no-capture" }, dap_adapter = "lldb" }),
+      require("neotest-rust")({ args = { "--no-capture" }, dap_adapter = "codelldb" }),
     },
     status = { virtual_text = true },
     output = { enabled = true, open_on_run = false },

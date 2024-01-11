@@ -96,6 +96,18 @@ function config.nvim_lspconfig()
 
   -- rust
   if executable("rust-analyzer") > 0 then
+    extension_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
+    local codelldb_path = extension_path .. "adapters/codelldb"
+    local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+    local this_os = vim.loop.os_uname().sysname
+    if this_os:find("Windows") then
+      codelldb_path = extension_path .. "adapter\\codelldb.exe"
+      liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+    else
+      -- The liblldb extension is .so for Linux and .dylib for MacOS
+      liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+    end
+    local cfg = require("rustaceanvim.config")
     local rust_tools_opt = {
       tools = {
         inlay_hints = {
@@ -110,6 +122,9 @@ function config.nvim_lspconfig()
           })
         end,
         capabilities = capabilities,
+      },
+      dap = {
+        adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
       },
     }
     vim.g.rustaceanvim = rust_tools_opt
