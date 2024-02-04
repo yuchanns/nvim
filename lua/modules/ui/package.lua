@@ -71,3 +71,4 @@ package({
 })
 package({ "folke/lsp-colors.nvim", config = conf.colors })
 package({ "nvim-lua/lsp-status.nvim" })
+package({ "nvim-zh/colorful-winsep.nvim", config = conf.winsep })

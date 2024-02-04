@@ -136,31 +136,42 @@ function config.nvim_lspconfig()
   if executable("lua-language-server") then
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
-      settings = {
-        Lua = {
-          runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = "LuaJIT",
-          },
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = { "hs", "vim", "it", "describe", "before_each", "after_each" },
-            disable = { "lowercase-global" },
-          },
-          workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
-          },
-          -- Do not send telemetry data containing a randomized but unique identifier
-          telemetry = {
-            enable = false,
-          },
-          hint = {
-            enable = true,
-            setType = true,
-          },
-        },
-      },
+      on_init = function(client)
+        local path = client.workspace_folders[1].name
+        if
+          not vim.loop.fs_stat(path .. "/.luarc.json")
+          and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+        then
+          client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+            Lua = {
+              runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+              },
+              diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "hs", "vim", "it", "describe", "before_each", "after_each" },
+                disable = { "lowercase-global" },
+              },
+              workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
+              -- Do not send telemetry data containing a randomized but unique identifier
+              telemetry = {
+                enable = false,
+              },
+              hint = {
+                enable = true,
+                setType = true,
+              },
+            },
+          })
+
+          client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+        end
+        return true
+      end,
     })
   end
 
@@ -264,12 +275,23 @@ function config.nvim_lspconfig()
     })
   end ]]
   -- protobuf
-  if executable("bufls") > 0 then
+  --[[ if executable("bufls") > 0 then
     lspconfig["bufls"].setup({})
-  end
+  end ]]
   -- python
   if executable("pylsp") > 0 then
-    lspconfig["pylsp"].setup({ capabilities = capabilities })
+    lspconfig["pylsp"].setup({
+      capabilities = capabilities,
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = {
+              ignore = { "E501" },
+            },
+          },
+        },
+      },
+    })
     -- Basically I onply us pylsp for formatting
     -- so let's disable the completion
     -- https://github.com/hrsh7th/nvim-cmp/issues/822
