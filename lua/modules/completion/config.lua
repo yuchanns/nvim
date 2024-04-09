@@ -1,7 +1,8 @@
 local config = {}
 
 function config.lspsaga()
-  local kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind()
+  local kind = {}
+  -- local kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind()
   kind["Folder"] = { "  ", "Title" }
   require("lspsaga").setup({
     ui = {

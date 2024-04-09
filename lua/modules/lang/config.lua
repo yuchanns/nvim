@@ -442,6 +442,7 @@ function config.mason()
       "typst_lsp",
       "tsserver",
       "bufls",
+      "jdtls",
     },
   })
 end

@@ -3,13 +3,13 @@ require("modules.ui.options")
 local package = require("core.pack").package
 local conf = require("modules.ui.config")
 
--- package({ "folke/tokyonight.nvim", config = conf.tokyonight })
-package({
+package({ "folke/tokyonight.nvim", config = conf.tokyonight })
+--[[ package({
   "catppuccin/nvim",
   name = "catppuccin",
   priority = 1000,
   config = conf.catppuccin,
-})
+}) ]]
 --[[ package({
   "obaland/vfiler.vim",
   dependencies = {
@@ -72,4 +72,4 @@ package({
 package({ "folke/lsp-colors.nvim", config = conf.colors })
 package({ "nvim-lua/lsp-status.nvim" })
 package({ "nvim-zh/colorful-winsep.nvim", config = conf.winsep })
-package({ "Wansmer/symbol-usage.nvim", config = conf.usage })
+-- package({ "Wansmer/symbol-usage.nvim", config = conf.usage })

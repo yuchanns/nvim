@@ -12,6 +12,10 @@ function config.tokyonight()
     transparent = false,
     styles = { functions = { italic = true } },
     sidebars = { "terminal", "qf", "help" },
+    on_highlights = function(h, _)
+      h.String = { fg = "#eed49f" }
+      -- h.Identifier["fg"] = "#ee99a0"
+    end,
   })
 
   vim.cmd.colorscheme("tokyonight")
@@ -255,8 +259,8 @@ function config.lualine()
     },
     options = {
       icons_enabled = true,
-      -- theme = "tokyonight",
-      theme = "catppuccin",
+      theme = "tokyonight",
+      -- theme = "catppuccin",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
     },

@@ -30,6 +30,7 @@ package({
       },
     },
     { "lvimuser/lsp-inlayhints.nvim", config = conf.inlayhints, branch = "anticonceal" },
+    { "mfussenegger/nvim-jdtls" },
   },
   config = conf.nvim_lspconfig,
 })
