@@ -51,16 +51,14 @@ function config.compe()
   -- dictionary
   local dict = require("cmp_dictionary")
   dict.setup({
-    exact = 2,
+    exact_length = 2,
     first_case_insensitive = false,
     document = false,
     document_command = "wn %s -over",
     async = false,
-    max_items = -1,
-    capacity = 5,
+    max_number_items = -1,
     debug = false,
   })
-  dict.switcher({ spelllang = { en = vim.fn.stdpath("data") .. "/lspconfig/en.dict" } })
   local cmp = require("cmp")
   local lspkind = require("lspkind")
   cmp.setup({

@@ -342,9 +342,6 @@ function config.neotest()
 end
 
 function config.orgmode()
-  -- Load treesitter grammar for org
-  require("orgmode").setup_ts_grammar()
-
   -- Setup orgmode
   require("orgmode").setup({
     org_agenda_files = "~/orgfiles/**/*",

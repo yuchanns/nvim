@@ -59,7 +59,7 @@ package({ "famiu/bufdelete.nvim" })
 package({
   "rcarriga/nvim-dap-ui",
   config = conf.dapui,
-  dependencies = { "mfussenegger/nvim-dap" },
+  dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 })
 package({
   "folke/noice.nvim",
