@@ -54,7 +54,7 @@ nmap({
   },
   -- toggleterm
   { "<Leader>t", cmd("exe v:count1 . 'ToggleTerm size=10 direction=horizontal'") },
-  { "<Leader>l", cmd("Lazygit"), opts(noremap) },
+  { "<Leader>l", cmd("LazyGit"), opts(noremap) },
   -- code navigation
   {
     "ga",

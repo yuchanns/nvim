@@ -30,6 +30,6 @@ package({
 })
 
 package({
-  "yuchanns/CodeGPT.nvim",
+  "dpayne/CodeGPT.nvim",
   config = conf.codegpt,
 })

@@ -86,11 +86,6 @@ end
 
 function config.toggleterm()
   require("toggleterm").setup({ shell = "/bin/bash" })
-  if vim.fn.executable("lazygit") > 0 then
-    vim.cmd(
-      [[command! Lazygit lua require("toggleterm.terminal").Terminal:new({cmd="lazygit", hidden=true, direction="float"}):toggle()]]
-    )
-  end
 end
 
 function config.tabset()
@@ -347,6 +342,10 @@ function config.orgmode()
     org_agenda_files = "~/orgfiles/**/*",
     org_default_notes_file = "~/orgfiles/refile.org",
   })
+end
+
+function config.lazygit()
+  require("telescope").load_extension("lazygit")
 end
 
 return config
