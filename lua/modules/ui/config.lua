@@ -7,6 +7,19 @@ local silent, noremap, nowait = keymap.silent, keymap.noremap, keymap.nowait
 local opts = keymap.new_opts
 local cmd = keymap.cmd
 
+function config.fluoromachine()
+  require("fluoromachine").setup({
+    glow = true,
+    theme = "retrowave",
+  })
+  vim.cmd.colorscheme("fluoromachine")
+end
+
+function config.synthwave84()
+  require("synthwave84").setup({})
+  vim.cmd.colorscheme("synthwave84")
+end
+
 function config.tokyonight()
   require("tokyonight").setup({
     transparent = false,
@@ -259,6 +272,8 @@ function config.lualine()
     },
     options = {
       icons_enabled = true,
+      -- theme = "fluoromachine",
+      -- theme = "synthwave84",
       theme = "tokyonight",
       -- theme = "catppuccin",
       section_separators = { left = "", right = "" },
