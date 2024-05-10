@@ -51,13 +51,13 @@ function config.compe()
   -- dictionary
   local dict = require("cmp_dictionary")
   dict.setup({
-    exact_length = 2,
+    --[[ exact_length = 2,
     first_case_insensitive = false,
     document = false,
     document_command = "wn %s -over",
     async = false,
     max_number_items = -1,
-    debug = false,
+    debug = false, ]]
   })
   local cmp = require("cmp")
   local lspkind = require("lspkind")

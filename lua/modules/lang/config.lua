@@ -108,7 +108,7 @@ function config.nvim_lspconfig()
       liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
     end
     local cfg = require("rustaceanvim.config")
-    local rust_tools_opt = {
+    vim.g.rustaceanvim = {
       tools = {
         inlay_hints = {
           auto = false,
@@ -127,7 +127,6 @@ function config.nvim_lspconfig()
         adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
       },
     }
-    vim.g.rustaceanvim = rust_tools_opt
 
     vim.g.rustfmt_autosave = 1
   end

@@ -26,6 +26,7 @@ package({
     { "uga-rosa/cmp-dictionary" },
     { "onsails/lspkind.nvim" },
     { "f3fora/cmp-spell" },
+    { "ekalinin/Dockerfile.vim" },
   },
 })
 
