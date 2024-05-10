@@ -145,6 +145,8 @@ nmap({
   { "<C-j>", cmd("lua require('swap-buffers').swap_buffers('j')"), opts(noremap, silent) },
   { "<C-k>", cmd("lua require('swap-buffers').swap_buffers('k')"), opts(noremap, silent) },
   { "<C-l>", cmd("lua require('swap-buffers').swap_buffers('l')"), opts(noremap, silent) },
+  -- copy code reference
+  { "<Leader>c", cmd([[lua require("ccr").copy_rel_path_and_line()]]), opts(noremap, silent) },
 })
 
 vmap({ -- codegp

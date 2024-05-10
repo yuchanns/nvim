@@ -109,3 +109,8 @@ package({
   },
   config = conf.lazygit,
 })
+
+-- copy code reference
+package({
+  "yuchanns/ccr.nvim",
+})
