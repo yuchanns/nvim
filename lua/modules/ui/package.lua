@@ -3,6 +3,7 @@ require("modules.ui.options")
 local package = require("core.pack").package
 local conf = require("modules.ui.config")
 
+-- package({ "akinsho/horizon.nvim", config = conf.horizon })
 -- package({ "maxmx03/fluoromachine.nvim", config = conf.fluoromachine })
 -- package({ "lunarvim/synthwave84.nvim", config = conf.synthwave84 })
 package({ "folke/tokyonight.nvim", config = conf.tokyonight })

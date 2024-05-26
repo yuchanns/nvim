@@ -81,7 +81,12 @@ function config.autosave()
 end
 
 function config.neoscroll()
-  require("neoscroll").setup()
+  require("neoscroll").setup({
+    mappings = {
+      "<C-u>",
+      "<C-d>",
+    },
+  })
 end
 
 function config.toggleterm()

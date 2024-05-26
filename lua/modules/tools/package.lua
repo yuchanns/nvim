@@ -24,7 +24,11 @@ package({
 })
 package({ "windwp/nvim-autopairs", config = conf.autopairs })
 package({ "Pocco81/auto-save.nvim", config = conf.autosave, branch = "dev" })
-package({ "karb94/neoscroll.nvim", config = conf.neoscroll })
+package({
+  "karb94/neoscroll.nvim",
+  event = { "BufReadPost", "BufNewFile" },
+  config = conf.neoscroll,
+})
 package({ "akinsho/nvim-toggleterm.lua", config = conf.toggleterm })
 package({ "tpope/vim-surround" })
 package({ "b3nj5m1n/kommentary" })

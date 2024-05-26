@@ -7,6 +7,11 @@ local silent, noremap, nowait = keymap.silent, keymap.noremap, keymap.nowait
 local opts = keymap.new_opts
 local cmd = keymap.cmd
 
+function config.horizon()
+  require("horizon").setup({})
+  vim.cmd.colorscheme("horizon")
+end
+
 function config.fluoromachine()
   require("fluoromachine").setup({
     glow = true,
@@ -272,9 +277,12 @@ function config.lualine()
     },
     options = {
       icons_enabled = true,
+      theme = "auto",
       -- theme = "fluoromachine",
       -- theme = "synthwave84",
-      theme = "tokyonight",
+      -- theme = "bluloco",
+      -- theme = "tokyonight",
+      -- theme = "horizon",
       -- theme = "catppuccin",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
