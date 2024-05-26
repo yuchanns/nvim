@@ -29,7 +29,6 @@ package({
         { "nvim-treesitter/nvim-treesitter" },
       },
     },
-    { "lvimuser/lsp-inlayhints.nvim", config = conf.inlayhints, branch = "anticonceal" },
     { "mfussenegger/nvim-jdtls" },
   },
   config = conf.nvim_lspconfig,
@@ -44,4 +43,13 @@ package({
     { "neovim/nvim-lspconfig" },
   },
   config = conf.mason,
+})
+
+package({
+  "MysticalDevil/inlay-hints.nvim",
+  event = "LspAttach",
+  dependencies = { "neovim/nvim-lspconfig" },
+  config = function()
+    require("inlay-hints").setup()
+  end,
 })

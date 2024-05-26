@@ -96,7 +96,7 @@ function config.nvim_lspconfig()
 
   -- rust
   if executable("rust-analyzer") > 0 then
-    extension_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
+    local extension_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
     local codelldb_path = extension_path .. "adapters/codelldb"
     local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
     local this_os = vim.loop.os_uname().sysname
@@ -415,14 +415,6 @@ function config.shfmt()
     args = { "-l", "-w", "-i 4" },
     auto_format = true,
   })
-end
-
-function config.inlayhints()
-  local inlayhints = require("lsp-inlayhints")
-  inlayhints.setup({})
-  on_lsp_attach("inlayhints", inlayhints.on_attach)
-  -- ensure set the correct highlights
-  vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#565f89", bg = "#292e42" })
 end
 
 function config.illuminate()
