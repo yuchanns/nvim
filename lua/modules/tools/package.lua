@@ -114,6 +114,16 @@ package({
   config = conf.lazygit,
 })
 
+-- lazydocker
+package({
+  "crnvl96/lazydocker.nvim",
+  event = "VeryLazy",
+  opts = {},
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+  },
+})
+
 -- copy code reference
 package({
   "yuchanns/ccr.nvim",
@@ -149,3 +159,10 @@ package({
     open_for_directories = false,
   },
 })
+
+--[[ package({
+  "TabbyML/vim-tabby",
+  config = function()
+    vim.g.tabby_keybinding_accept = "<Tab>"
+  end,
+}) ]]
