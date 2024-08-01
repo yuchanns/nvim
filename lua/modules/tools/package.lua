@@ -166,3 +166,8 @@ package({
     vim.g.tabby_keybinding_accept = "<Tab>"
   end,
 }) ]]
+
+-- copilot
+package({
+  "github/copilot.vim",
+})
