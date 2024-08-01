@@ -27,13 +27,22 @@ end
 
 function config.tokyonight()
   require("tokyonight").setup({
+    style = "moon",
     transparent = false,
-    styles = { functions = { italic = true } },
+    terminal_colors = true,
+    styles = {
+      functions = { italic = true },
+      sidebars = "dark",
+      floats = "dark",
+    },
     sidebars = { "terminal", "qf", "help" },
     on_highlights = function(h, _)
       h.String = { fg = "#eed49f" }
       -- h.Identifier["fg"] = "#ee99a0"
     end,
+    hide_inactive_statusline = false,
+    dim_inactive = false,
+    lualine_bold = false,
   })
 
   vim.cmd.colorscheme("tokyonight")
