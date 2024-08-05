@@ -25,6 +25,16 @@ function config.synthwave84()
   vim.cmd.colorscheme("synthwave84")
 end
 
+function config.onedark()
+  require("onedark").setup({
+    style = "deep",
+    highlights = {
+      ["@string"] = { fg = "#eed49f" },
+    },
+  })
+  require("onedark").load()
+end
+
 function config.tokyonight()
   require("tokyonight").setup({
     style = "moon",
