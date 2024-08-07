@@ -3,11 +3,12 @@ require("modules.ui.options")
 local package = require("core.pack").package
 local conf = require("modules.ui.config")
 
-package({ "navarasu/onedark.nvim", config = conf.onedark })
+-- package({ "tiagovla/tokyodark.nvim", config = conf.tokyodark })
+-- package({ "navarasu/onedark.nvim", config = conf.onedark })
 -- package({ "akinsho/horizon.nvim", config = conf.horizon })
 -- package({ "maxmx03/fluoromachine.nvim", config = conf.fluoromachine })
 -- package({ "lunarvim/synthwave84.nvim", config = conf.synthwave84 })
--- package({ "folke/tokyonight.nvim", config = conf.tokyonight })
+package({ "folke/tokyonight.nvim", config = conf.tokyonight })
 --[[ package({
   "catppuccin/nvim",
   name = "catppuccin",

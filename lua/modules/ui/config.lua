@@ -25,6 +25,11 @@ function config.synthwave84()
   vim.cmd.colorscheme("synthwave84")
 end
 
+function config.tokyodark()
+  require("tokyodark").setup({})
+  vim.cmd.colorscheme("tokyodark")
+end
+
 function config.onedark()
   require("onedark").setup({
     style = "deep",
@@ -48,6 +53,8 @@ function config.tokyonight()
     sidebars = { "terminal", "qf", "help" },
     on_highlights = function(h, _)
       h.String = { fg = "#eed49f" }
+      h["@keyword"] = { fg = "#ff757f" }
+      h["@keyword.function"] = { fg = "#ff757f" }
       -- h.Identifier["fg"] = "#ee99a0"
     end,
     hide_inactive_statusline = false,
