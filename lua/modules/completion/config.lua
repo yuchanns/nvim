@@ -132,16 +132,9 @@ function config.compe()
 end
 
 function config.codegpt()
-  local model = "phi3:3.8b-mini-instruct-4k-fp16"
   vim.g["codegpt_api_provider"] = "azure"
   vim.g["codegpt_chat_completions_url"] =
-    "https://yuchanns-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2024-03-01-preview"
-  local overrides = vim.g["codegpt_commands_defaults"]
-  for k in pairs(overrides) do
-    overrides[k]["model"] = model
-  end
-  vim.g["codegpt_commands_defaults"] = overrides
-  -- vim.g["codegpt_chat_completions_url"] = "http://localhost:11434/v1/chat/completions"
+    "https://yuchanns-eastus.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-03-01-preview"
   -- custom commands
   vim.g["codegpt_commands"] = {
     -- compatible to yetone's [openai-translator](https://github.com/yetone/openai-translator)
