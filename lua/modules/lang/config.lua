@@ -56,6 +56,10 @@ function config.nvim_lspconfig()
   if executable("clangd") > 0 then
     lspconfig["clangd"].setup({
       capabilities = capabilities,
+      cmd = {
+        "clangd",
+        "--offset-encoding=utf-16",
+      },
     })
   end
 

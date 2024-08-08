@@ -134,7 +134,7 @@ end
 function config.codegpt()
   vim.g["codegpt_api_provider"] = "azure"
   vim.g["codegpt_chat_completions_url"] =
-    "https://yuchanns-eastus.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-03-01-preview"
+    "https://yuchanns-eastus.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-05-01-preview"
   -- custom commands
   vim.g["codegpt_commands"] = {
     -- compatible to yetone's [openai-translator](https://github.com/yetone/openai-translator)
@@ -142,32 +142,26 @@ function config.codegpt()
       system_message_template = "You are a translation engine that can only translate text and cannot interpret it.Translate the text to Chinese, reformat it for easier reading, and remove useless symbols:",
       user_message_template = "{{text_selection}}",
       callback_type = "text_popup",
-      model = model,
     },
     ["translateen"] = {
       system_message_template = "You are a translation engine that can only translate text and cannot interpret it.",
       user_message_template = "translate this text to English:\n {{text_selection}}",
       callback_type = "text_popup",
-      model = model,
     },
     ["polish"] = {
       system_message_template = "Revise the following sentences to make them more clear, concise, and coherent.",
       user_message_template = "polish this text in English:\n {{text_selection}}",
       callback_type = "text_popup",
-      model = model,
     },
     ["expand"] = {
       user_message_template = "I have the following {{language}} macro:```{{filetype}}\n{{text_selection}}```\nProvide example inputs to show the macro expansion's result as a code snippet and explain it using Chinese comments. Return only the code snippet. If it's not a macro, return an error message.",
       callback_type = "code_popup",
-      model = model,
     },
     ["explaincn"] = {
       user_message_template = "Explain the following {{language}} code: ```{{filetype}}\n{{text_selection}}``` Explain it using Chinese in pretty markdown as if you were explaining to another developer.",
       callback_type = "text_popup",
-      model = model,
     },
     ["doccn"] = {
-      model = model,
       user_message_template = "I have the following {{language}} code: ```{{filetype}}\n{{text_selection}}```\nWrite really good Chinese documentation using best practices for the given language. Attention paid to documenting parameters, return types, any exceptions or errors. {{language_instructions}} Only return the code snippet include the origin content and documentation, and nothing else.",
       language_instructions = {
         go = [[Use the following style to document, note that you should ignore param_type context.Context:
