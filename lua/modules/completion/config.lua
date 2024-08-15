@@ -134,9 +134,10 @@ end
 function config.avante()
   require("avante").setup({
     provider = "azure",
-    openai = {
-      endpoint = "https://yuchanns-eastus.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-05-01-preview",
-      model = "gpt-4o-mini",
+    azure = {
+      endpoint = "https://yuchanns-eastus.openai.azure.com",
+      deployment = "gpt-4o-mini",
+      api_version = "2024-05-01-preview",
       temperature = 0,
       max_tokens = 4096,
     },
