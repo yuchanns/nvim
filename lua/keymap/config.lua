@@ -70,7 +70,7 @@ nmap({
   { "gr", cmd("lua vim.lsp.buf.references()"), opts(noremap, silent) },
   { "gd", cmd("lua vim.lsp.buf.definition()"), opts(noremap, silent) },
   { "gs", cmd("lua vim.lsp.buf.document_symbol()"), opts(noremap, silent) },
-  { "gR", cmd("TroubleToggle lsp_references"), opts(noremap, silent) },
+  { "gR", cmd("Trouble lsp_references toggle"), opts(noremap, silent) },
   { "gh", cmd("Lspsaga finder ref+def"), opts(noremap, silent) },
   { "gm", cmd("lua require'telescope'.extensions.goimpl.goimpl{}"), opts(noremap, silent) },
   { "gn", cmd("Lspsaga rename"), opts(noremap, silent) },
@@ -103,32 +103,17 @@ nmap({
   -- trouble
   {
     "<Leader>xx",
-    cmd("TroubleToggle"),
-    opts(noremap, silent),
-  },
-  {
-    "<Leader>xw",
-    cmd("TroubleToggle workspace_diagnostics"),
-    opts(noremap, silent),
-  },
-  {
-    "<Leader>xd",
-    cmd("TroubleToggle document_diagnostics"),
+    cmd("Trouble diagnostics toggle"),
     opts(noremap, silent),
   },
   {
     "<Leader>xq",
-    cmd("TroubleToggle quickfix"),
-    opts(noremap, silent),
-  },
-  {
-    "<Leader>xl",
-    cmd("TroubleToggle loclist"),
+    cmd("Trouble quickfix toggle"),
     opts(noremap, silent),
   },
   {
     "<Leader>xt",
-    cmd("TodoTelescope"),
+    cmd("Rouble todo toggle"),
     opts(noremap, silent),
   },
   -- split view
