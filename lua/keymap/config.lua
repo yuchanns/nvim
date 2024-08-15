@@ -113,7 +113,7 @@ nmap({
   },
   {
     "<Leader>xt",
-    cmd("Rouble todo toggle"),
+    cmd("Trouble todo toggle"),
     opts(noremap, silent),
   },
   -- split view
