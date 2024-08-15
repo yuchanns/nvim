@@ -34,3 +34,19 @@ package({
   "dpayne/CodeGPT.nvim",
   config = conf.codegpt,
 })
+
+package({
+  "yetone/avante.nvim",
+  config = conf.avante,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    {
+      "grapp-dev/nui-components.nvim",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+      },
+    },
+    "nvim-lua/plenary.nvim",
+    "MeanderingProgrammer/render-markdown.nvim",
+  },
+})

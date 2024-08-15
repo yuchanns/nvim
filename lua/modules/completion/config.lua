@@ -131,6 +131,18 @@ function config.compe()
   })
 end
 
+function config.avante()
+  require("avante").setup({
+    provider = "azure",
+    openai = {
+      endpoint = "https://yuchanns-eastus.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-05-01-preview",
+      model = "gpt-4o-mini",
+      temperature = 0,
+      max_tokens = 4096,
+    },
+  })
+end
+
 function config.codegpt()
   vim.g["codegpt_api_provider"] = "azure"
   vim.g["codegpt_chat_completions_url"] =
