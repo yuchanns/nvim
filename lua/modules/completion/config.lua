@@ -132,6 +132,13 @@ function config.compe()
 end
 
 function config.avante()
+  local this_os = vim.loop.os_uname().sysname
+  local library_path = vim.fn.stdpath("data")
+    .. "/lazy/avante.nvim/build/?"
+    .. (this_os == "Linux" and ".so" or ".dylib")
+  if not string.find(package.cpath, library_path, 1, true) then
+    package.cpath = package.cpath .. ";" .. library_path
+  end
   require("avante").setup({
     provider = "azure",
     azure = {

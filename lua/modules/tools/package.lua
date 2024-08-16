@@ -57,7 +57,6 @@ package({
 package({
   "folke/flash.nvim",
   event = "VeryLazy",
-  config = conf.flash,
 })
 -- session
 package({
@@ -93,7 +92,10 @@ package({
     { "nvim-treesitter/nvim-treesitter", lazy = true },
   },
   event = "VeryLazy",
-  config = conf.orgmode,
+  opts = {
+    org_agenda_files = "~/orgfiles/**/*",
+    org_default_notes_file = "~/orgfiles/refile.org",
+  },
 })
 
 -- lazygit
