@@ -148,6 +148,17 @@ function config.avante()
       temperature = 0,
       max_tokens = 4096,
     },
+    mappings = {
+      show_sidebar = "ca",
+      diff = {
+        ours = "co",
+        theirs = "ct",
+        none = "c0",
+        both = "cb",
+        next = "]x",
+        prev = "[x",
+      },
+    },
   })
 end
 
