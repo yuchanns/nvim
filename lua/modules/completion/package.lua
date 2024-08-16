@@ -38,7 +38,8 @@ package({
 package({
   "yetone/avante.nvim",
   build = "make",
-  config = conf.avante,
+  event = "VeryLazy",
+  opts = conf.avante(),
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     {
