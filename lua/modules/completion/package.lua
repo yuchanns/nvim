@@ -40,7 +40,6 @@ package({
   build = "make",
   event = "VeryLazy",
   opts = conf.avante(),
-  branch = "dev",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     {
