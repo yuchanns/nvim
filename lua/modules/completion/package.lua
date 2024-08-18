@@ -51,7 +51,10 @@ package({
     "nvim-lua/plenary.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
-      opts = { file_types = { "markdown", "Avante" }, ft = { "markdown", "Avante" } },
+      opts = {
+        file_types = { "markdown", "Avante" },
+        ft = { "markdown", "Avante" },
+      },
     },
   },
 })

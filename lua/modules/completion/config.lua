@@ -142,7 +142,9 @@ function config.avante()
       max_tokens = 4096,
     },
     mappings = {
-      show_sidebar = "ca",
+      ask = "ca",
+      edit = "ce",
+      refresh = "cr",
       diff = {
         ours = "co",
         theirs = "ct",
@@ -150,6 +152,10 @@ function config.avante()
         both = "cb",
         next = "]x",
         prev = "[x",
+      },
+      jump = {
+        next = "]]",
+        prev = "[[",
       },
     },
   }
