@@ -147,6 +147,23 @@ function config.nvim_lspconfig()
   -- lua
   if executable("lua-language-server") then
     lspconfig["lua_ls"].setup({
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+            special = { reload = "require" },
+          },
+          workspace = {
+            library = {
+              vim.fn.expand("$VIMRUNTIME/lua"),
+              vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+              vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
+              vim.fn.expand("$HOME/Coding/github/nvim_plugins"), -- parent/avante.nvim
+              vim.fn.expand("${3rd}/luv/library"),
+            },
+          },
+        },
+      },
       capabilities = capabilities,
       on_init = function(client)
         local path = client.workspace_folders[1].name
