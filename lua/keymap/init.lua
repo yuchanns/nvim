@@ -7,13 +7,6 @@ local cmd = keymap.cmd
 
 -- usage of plugins
 nmap({
-  --[[ -- vfilter
-  { "<Leader>ff", cmd("lua require('vfiler').start()"), opts(noremap, silent) }, ]]
-  --[[ {
-    "<Leader>ff",
-    cmd("lua require('nvim-tree.api').tree.toggle({ find_file = true, focus = true })"),
-    opts(noremap, silent),
-  }, ]]
   {
     "<Leader>fa",
     cmd("Telescope live_grep"),

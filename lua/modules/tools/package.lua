@@ -17,7 +17,6 @@ package({
     {
       "nvim-telescope/telescope-frecency.nvim",
       config = conf.frecency,
-      dependencies = { { "kkharji/sqlite.lua" } },
     },
     { "Marskey/telescope-sg" },
   },
