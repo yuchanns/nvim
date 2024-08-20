@@ -36,24 +36,30 @@ package({
 })
 
 package({
-  "yetone/avante.nvim",
+  "yuchanns/avante_bedrock.nvim",
   build = "make",
-  event = "VeryLazy",
-  opts = conf.avante(),
+  config = function()
+    require("avante_bedrock").setup()
+    require("avante").setup(conf.avante())
+  end,
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
-    {
-      "grapp-dev/nui-components.nvim",
-      dependencies = {
-        "MunifTanjim/nui.nvim",
+    "yetone/avante.nvim",
+    build = "make",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      {
+        "grapp-dev/nui-components.nvim",
+        dependencies = {
+          "MunifTanjim/nui.nvim",
+        },
       },
-    },
-    "nvim-lua/plenary.nvim",
-    {
-      "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        file_types = { "markdown", "Avante" },
-        ft = { "markdown", "Avante" },
+      "nvim-lua/plenary.nvim",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+          ft = { "markdown", "Avante" },
+        },
       },
     },
   },

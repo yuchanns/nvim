@@ -134,6 +134,9 @@ end
 function config.avante()
   return {
     provider = "azure",
+    vendors = {
+      bedrock = require("avante_bedrock").vendor(),
+    },
     azure = {
       endpoint = "https://yuchanns-eastus.openai.azure.com",
       deployment = "gpt-4o-mini",
