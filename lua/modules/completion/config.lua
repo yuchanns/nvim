@@ -133,7 +133,7 @@ end
 
 function config.avante()
   return {
-    provider = "azure",
+    provider = "copilot",
     vendors = {
       bedrock = require("avante_bedrock").vendor(),
     },
