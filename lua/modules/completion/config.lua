@@ -1,30 +1,6 @@
 local config = {}
 
 function config.lspsaga()
-  local kind = {}
-  -- local kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind()
-  kind["Folder"] = { "  ", "Title" }
-  require("lspsaga").setup({
-    ui = {
-      winblend = 20,
-      border = "rounded",
-      kind = kind,
-    },
-    outline = {
-      win_width = 30,
-      preview_width = 0.4,
-      show_detail = true,
-      auto_preview = true,
-      auto_refresh = true,
-      auto_close = true,
-      auto_resize = true,
-      custom_sort = nil,
-      keys = {
-        expand_or_jump = "o",
-        quit = "q",
-      },
-    },
-  })
   -- define the sign of diagnostics
   vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
   vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "Warn" })
@@ -45,6 +21,29 @@ function config.lspsaga()
       end,
     },
   })
+  local kind = {}
+  kind["Folder"] = { "  ", "Title" }
+  return {
+    ui = {
+      winblend = 20,
+      border = "rounded",
+      kind = kind,
+    },
+    outline = {
+      win_width = 30,
+      preview_width = 0.4,
+      show_detail = true,
+      auto_preview = true,
+      auto_refresh = true,
+      auto_close = true,
+      auto_resize = true,
+      custom_sort = nil,
+      keys = {
+        expand_or_jump = "o",
+        quit = "q",
+      },
+    },
+  }
 end
 
 function config.compe()

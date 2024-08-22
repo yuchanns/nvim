@@ -3,7 +3,7 @@ local conf = require("modules.completion.config")
 
 package({
   "glepnir/lspsaga.nvim",
-  config = conf.lspsaga,
+  opts = conf.lspsaga,
   event = "LspAttach",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
@@ -38,6 +38,7 @@ package({
 package({
   "yetone/avante.nvim",
   build = "make",
+  event = "VeryLazy",
   opts = conf.avante(),
   dependencies = {
     "nvim-tree/nvim-web-devicons",
