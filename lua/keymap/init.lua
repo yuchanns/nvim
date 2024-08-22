@@ -19,11 +19,6 @@ nmap({
     opts(noremap, silent),
   },
   {
-    "<Leader>fh",
-    cmd("Telescope frecency workspace=CWD"),
-    opts(noremap, silent),
-  },
-  {
     "<Leader>fg",
     cmd("Telescope ast_grep"),
     opts(noremap, silent),

@@ -277,10 +277,6 @@ function config.todo()
   })
 end
 
-function config.frecency()
-  require("telescope").load_extension("frecency")
-end
-
 function config.persistence()
   local persistence = require("persistence")
   persistence.setup({})
