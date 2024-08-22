@@ -31,11 +31,6 @@ package({
 })
 
 package({
-  "dpayne/CodeGPT.nvim",
-  config = conf.codegpt,
-})
-
-package({
   "yetone/avante.nvim",
   build = "make",
   event = "VeryLazy",
