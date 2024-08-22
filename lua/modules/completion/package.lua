@@ -47,19 +47,16 @@ package({
     build = "make",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      {
-        "grapp-dev/nui-components.nvim",
-        dependencies = {
-          "MunifTanjim/nui.nvim",
-        },
-      },
+      "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below is optional, make sure to setup it properly if you have lazy=true
       {
         "MeanderingProgrammer/render-markdown.nvim",
         opts = {
           file_types = { "markdown", "Avante" },
-          ft = { "markdown", "Avante" },
         },
+        ft = { "markdown", "Avante" },
       },
     },
   },
