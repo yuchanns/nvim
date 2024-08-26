@@ -133,12 +133,10 @@ end
 function config.avante()
   return {
     provider = "copilot",
-    --[[ vendors = {
-      bedrock = require("avante_bedrock").vendor(),
-    }, ]]
     azure = {
       endpoint = "https://yuchanns-eastus.openai.azure.com",
       deployment = "gpt-4o-mini",
+      model = "gpt-4o-mini",
       api_version = "2024-05-01-preview",
       temperature = 0,
       max_tokens = 4096,
