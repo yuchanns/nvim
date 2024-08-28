@@ -12,9 +12,9 @@ function config.lspsaga()
       format = function(diagnostic)
         if diagnostic.severity == vim.diagnostic.severity.ERROR then
           return string.format(" %s", diagnostic.message)
-        elseif diagnostic.severity == vim.diagnostic.WARN then
+        elseif diagnostic.severity == vim.diagnostic.severity.WARN then
           return string.format(" %s", diagnostic.message)
-        elseif diagnostic.severity == vim.diagnostic.INFO then
+        elseif diagnostic.severity == vim.diagnostic.severity.INFO then
           return string.format(" %s", diagnostic.message)
         end
         return string.format("💡%s", diagnostic.message)
@@ -132,7 +132,7 @@ end
 
 function config.avante()
   return {
-    provider = "copilot",
+    provider = "azure",
     azure = {
       endpoint = "https://yuchanns-eastus.openai.azure.com",
       deployment = "gpt-4o-mini",
