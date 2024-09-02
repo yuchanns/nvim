@@ -146,59 +146,50 @@ function config.nvim_lspconfig()
 
   -- lua
   if executable("lua-language-server") then
-    lspconfig["lua_ls"].setup({
-      settings = {
-        Lua = {
-          runtime = {
-            version = "LuaJIT",
-            special = { reload = "require" },
-          },
-          workspace = {
-            library = {
-              vim.fn.expand("$VIMRUNTIME/lua"),
-              vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-              vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-              vim.fn.expand("$HOME/Coding/github/nvim_plugins"), -- parent/avante.nvim
-              vim.fn.expand("${3rd}/luv/library"),
-            },
+    local settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = "LuaJIT",
+          special = { reload = "require" },
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = { "hs", "vim", "it", "describe", "before_each", "after_each" },
+          disable = { "lowercase-global" },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = {
+            vim.fn.expand("$VIMRUNTIME/lua"),
+            vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+            vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
+            vim.fn.expand("${3rd}/luv/library"),
           },
         },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+        hint = {
+          enable = true,
+          setType = true,
+        },
       },
-      capabilities = capabilities,
+    }
+    lspconfig["lua_ls"].setup({
+      settings = settings,
+      -- capabilities = capabilities,
       on_init = function(client)
-        local path = client.workspace_folders[1].name
-        if
-          not vim.loop.fs_stat(path .. "/.luarc.json")
-          and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
-        then
-          client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-            Lua = {
-              runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",
-              },
-              diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { "hs", "vim", "it", "describe", "before_each", "after_each" },
-                disable = { "lowercase-global" },
-              },
-              workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-              },
-              -- Do not send telemetry data containing a randomized but unique identifier
-              telemetry = {
-                enable = false,
-              },
-              hint = {
-                enable = true,
-                setType = true,
-              },
-            },
-          })
-
-          client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+        if client.workspace_folders then
+          local path = client.workspace_folders[1].name
+          if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
+            return true
+          end
         end
+        client.config.settings = vim.tbl_deep_extend("force", client.config.settings, settings)
+
+        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
         return true
       end,
     })
