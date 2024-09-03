@@ -177,20 +177,21 @@ function config.nvim_lspconfig()
         },
       },
     }
+    -- luars.json https://luals.github.io/wiki/configuration/#luarcjson-file
     lspconfig["lua_ls"].setup({
-      settings = settings,
-      -- capabilities = capabilities,
+      settings = { Lua = {} },
+      capabilities = capabilities,
       on_init = function(client)
         if client.workspace_folders then
           local path = client.workspace_folders[1].name
           if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
-            return true
+            return
           end
         end
-        client.config.settings = vim.tbl_deep_extend("force", client.config.settings, settings)
+        client.config.settings.Lua =
+          vim.tbl_deep_extend("force", client.config.settings.Lua, settings.Lua)
 
         client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-        return true
       end,
     })
   end
