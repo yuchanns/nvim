@@ -132,7 +132,7 @@ end
 
 function config.avante()
   return {
-    provider = "azure",
+    provider = "copilot",
     azure = {
       endpoint = "https://yuchanns-eastus.openai.azure.com",
       deployment = "gpt-4o-mini",
