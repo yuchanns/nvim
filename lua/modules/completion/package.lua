@@ -32,7 +32,7 @@ package({
 
 package({
   "yetone/avante.nvim",
-  build = ":AvanteBuild",
+  build = "make BUILD_FROM_SOURCE=true",
   event = "VeryLazy",
   lazy = false,
   opts = conf.avante(),
