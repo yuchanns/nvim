@@ -453,7 +453,7 @@ function config.mason()
       "pylsp",
       "pyright",
       "typst_lsp",
-      "tsserver",
+      "ts_ls",
       "bufls",
       "jdtls",
     },
