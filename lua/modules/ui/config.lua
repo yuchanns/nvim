@@ -56,7 +56,9 @@ function config.tokyonight()
       h["@keyword"] = { fg = "#ff757f" }
       h["@keyword.function"] = { fg = "#ff757f" }
       h["@variable.member"] = { fg = "#c8d3f5" }
-      h["@property"] = { fg = "#41a6b5" }
+      -- h["@property"] = { fg = "#41a6b5" }
+      -- h["@property"] = { fg = "#ffc777" }
+      -- h.String = { fg = "#eed49f" }
       -- h.Identifier["fg"] = "#ee99a0"
     end,
     hide_inactive_statusline = false,
