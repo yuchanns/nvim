@@ -219,7 +219,7 @@ function config.nvim_lspconfig()
 
   -- typescript
   if executable("typescript-language-server") > 0 then
-    lspconfig["tsserver"].setup({})
+    lspconfig["ts_ls"].setup({})
   end
   --[[ local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true ]]
