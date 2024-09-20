@@ -168,3 +168,11 @@ package({
 package({
   "github/copilot.vim",
 })
+
+-- colorizer
+package({
+  "norcalli/nvim-colorizer.lua",
+  config = function()
+    require("colorizer").setup()
+  end,
+})
