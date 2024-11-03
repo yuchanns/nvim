@@ -2,7 +2,7 @@
   "Dockerfile.vim": { "branch": "master", "commit": "2a31e6bcea5977209c05c728c4253d82fd873c82" },
   "alpha-nvim": { "branch": "main", "commit": "bf3c8bb8c02ed3d9644cc5bbc48e2bdc39349cd7" },
   "auto-save.nvim": { "branch": "dev", "commit": "9aceacfd184c34a2d878492a67bbd6b909b9480c" },
-  "avante.nvim": { "branch": "main", "commit": "e3df3b479f6469f3c0a82cd4939dbc198825079b" },
+  "avante.nvim": { "branch": "main", "commit": "58e0165098c8a4d4c832fd31e3d613a5c4b28a35" },
   "bufdelete.nvim": { "branch": "master", "commit": "f6bcea78afb3060b198125256f897040538bcb81" },
   "ccr.nvim": { "branch": "main", "commit": "2c7144556d85c8335bfa55c53318dd04e143cde5" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
