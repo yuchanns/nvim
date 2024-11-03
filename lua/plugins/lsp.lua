@@ -3,6 +3,7 @@ local nmap = keymap.nmap
 local cmd = keymap.cmd
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
+local autocmd = require("utils.autocmd")
 
 -- lspsaga
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
@@ -258,4 +259,10 @@ return {
       "rust-lang/rust.vim",
     },
   },
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      autocmd.on_lsp_attach("illuminate", require("illuminate").on_attach)
+    end
+  }
 }

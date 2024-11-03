@@ -200,5 +200,6 @@ return {
       }
       require("alpha").setup(dashboard.opts)
     end,
-  }
+  },
+  { "danilamihailov/beacon.nvim" },
 }
