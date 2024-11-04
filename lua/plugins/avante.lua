@@ -10,7 +10,7 @@ return {
   build = build,
   event = "VeryLazy",
   opts = {
-    provider = "azure",
+    provider = "copilot",
     azure = {
       endpoint = "https://yuchanns-eastus.openai.azure.com",
       deployment = "gpt-4o-mini",
@@ -25,6 +25,7 @@ return {
 
   },
   dependencies = {
+    "github/copilot.vim",
     "nvim-tree/nvim-web-devicons",
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
