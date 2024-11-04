@@ -22,7 +22,23 @@ return {
     behaviour = {
       support_paste_from_clipboard = true,
     },
-
+    mappings = {
+      ask = "ca",
+      edit = "ce",
+      refresh = "cr",
+      diff = {
+        ours = "co",
+        theirs = "ct",
+        none = "c0",
+        both = "cb",
+        next = "]x",
+        prev = "[x",
+      },
+      jump = {
+        next = "]]",
+        prev = "[[",
+      },
+    },
   },
   dependencies = {
     "github/copilot.vim",
