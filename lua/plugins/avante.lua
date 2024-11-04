@@ -1,6 +1,6 @@
 local system = require("utils.system")
 
-local build = "make"
+local build = "make BUILD_FROM_SOURCE=true"
 if system.is_windows() then
   build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
 end
