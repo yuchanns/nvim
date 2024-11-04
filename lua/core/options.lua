@@ -68,7 +68,7 @@ opt.foldlevelstart = 99
 opt.foldmethod = "marker"
 
 opt.number = true
-opt.signcolumn = "yes"
+opt.signcolumn = "yes:1"
 opt.spelloptions = "camel"
 
 opt.textwidth = 100
@@ -105,7 +105,6 @@ opt.expandtab = true
 
 opt.number = true
 opt.termguicolors = true
-opt.signcolumn = "number"
 
 opt.updatetime = 400
 opt.hidden = true
@@ -122,9 +121,8 @@ if fn.has("win32") ~= 1 then
   opt.shell = "bash"
 end
 
-vim.wo.signcolumn = "yes"
+vim.wo.signcolumn = "yes:1"
 cmd("set mouse=")
-cmd("set signcolumn=number")
 cmd("let &fcs='eob: '") -- hide tilde sign on blank lines
 
 if fn.has("win32") == 1 then
