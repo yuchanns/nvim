@@ -32,7 +32,12 @@ function M.setup()
     opts.auto_lint = true
     opts.linter = "revive"
     -- rule configuration references: https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md
-    local config = vim.fn.stdpath("config") .. "/static/revive_config.toml"
+    local config
+    if system.is_windows() then
+      config = "~/AppData/Local/nvim/static/revive_config.toml"
+    else
+      config = "~/.config/nvim/static/revive_config.toml"
+    end
     opts.linter_flags = { revive = { "-config", config } }
   end
   if system.is_executable("goimports") then
