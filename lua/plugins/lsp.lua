@@ -1,4 +1,4 @@
-local keymap = require("core.keymap")
+local keymap = require("utils.keymap")
 local nmap = keymap.nmap
 local cmd = keymap.cmd
 local silent, noremap = keymap.silent, keymap.noremap
@@ -262,7 +262,7 @@ return {
   {
     "RRethy/vim-illuminate",
     config = function()
-      autocmd.on_lsp_attach("illuminate", require("illuminate").on_attach)
+      autocmd.on_lsp_attach(require("illuminate").on_attach)
     end
   }
 }

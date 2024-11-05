@@ -1,4 +1,4 @@
-local keymap = require("core.keymap")
+local keymap = require("utils.keymap")
 local nmap = keymap.nmap
 local cmd = keymap.cmd
 local silent, noremap = keymap.silent, keymap.noremap
@@ -10,6 +10,27 @@ local autocmd = require("utils.autocmd")
 autocmd.user_pattern("LazyDone", function()
   require("telescope").load_extension("fzy_native")
   require("telescope").load_extension("file_browser")
+end)
+
+autocmd.user_pattern("AlphaReady", function()
+  local handle
+  local on_exit = vim.schedule_wrap(function(_)
+    handle:close()
+    require("persistence").load()
+  end)
+  if system.is_windows() then
+    handle, _ = uv.spawn(
+      "powershell",
+      { args = { "-Command", "Start-Sleep -Seconds 1s" }, stdio = nil },
+      on_exit
+    )
+  else
+    handle, _ = uv.spawn(
+      "sleep",
+      { args = { "1s" }, stdio = nil },
+      on_exit
+    )
+  end
 end)
 
 nmap({
@@ -47,31 +68,6 @@ nmap({
   { "-",         cmd("exe 'resize -1.5'"),                             opts(noremap, silent) },
   { "+",         cmd("exe 'vertical resize +1.5'"),                    opts(noremap, silent) },
   { "_",         cmd("exe 'vertical resize -1.5'"),                    opts(noremap, silent) },
-})
-
--- auto session on alpha loaded
-vim.api.nvim_create_autocmd("User", {
-  pattern = "AlphaReady",
-  callback = function()
-    local handle
-    local on_exit = vim.schedule_wrap(function(_)
-      handle:close()
-      require("persistence").load()
-    end)
-    if system.is_windows() then
-      handle, _ = uv.spawn(
-        "powershell",
-        { args = { "-Command", "Start-Sleep -Seconds 1s" }, stdio = nil },
-        on_exit
-      )
-    else
-      handle, _ = uv.spawn(
-        "sleep",
-        { args = { "1s" }, stdio = nil },
-        on_exit
-      )
-    end
-  end
 })
 
 return {

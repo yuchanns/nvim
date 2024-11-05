@@ -3,7 +3,7 @@ local autocmd = require("utils.autocmd")
 autocmd.user_pattern("LazyDone", function()
   local opt, uv, fn, g, cmd = vim.opt, vim.loop, vim.fn, vim.g, vim.cmd
   local cache_dir = vim.env.HOME .. "/.cache/nvim"
-  local keymap = require("core.keymap")
+  local keymap = require("utils.keymap")
   local nmap = keymap.nmap
   local silent, noremap = keymap.silent, keymap.noremap
   local opts = keymap.new_opts
