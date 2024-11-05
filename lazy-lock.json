@@ -2,7 +2,7 @@
   "Dockerfile.vim": { "branch": "master", "commit": "2a31e6bcea5977209c05c728c4253d82fd873c82" },
   "alpha-nvim": { "branch": "main", "commit": "bf3c8bb8c02ed3d9644cc5bbc48e2bdc39349cd7" },
   "auto-save.nvim": { "branch": "dev", "commit": "9aceacfd184c34a2d878492a67bbd6b909b9480c" },
-  "avante.nvim": { "branch": "main", "commit": "0aa2659580e5756555577fad3e75eedc34620f25" },
+  "avante.nvim": { "branch": "main", "commit": "9fbe0256f277a940fa61dce127129c1e8a3916a0" },
   "beacon.nvim": { "branch": "master", "commit": "098ff96c33874339d5e61656f3050dbd587d6bd5" },
   "bufdelete.nvim": { "branch": "master", "commit": "f6bcea78afb3060b198125256f897040538bcb81" },
   "ccr.nvim": { "branch": "main", "commit": "2c7144556d85c8335bfa55c53318dd04e143cde5" },
@@ -62,5 +62,5 @@
   "ultisnips": { "branch": "master", "commit": "49dc8cb2086db19d385791c8e1635723b0fd95c7" },
   "vim-go-impl": { "branch": "master", "commit": "74988dc3958f68355b9d4a3ffaa97a74d0006248" },
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
-  "yazi.nvim": { "branch": "master", "commit": "6481092909199db36b18d79972e2f8922593a719" }
+  "yazi.nvim": { "branch": "main", "commit": "bdc1e5a46a00a2388460145991d1d7e12a92afdc" }
 }

@@ -11,6 +11,7 @@ local rainbow_highlight = {
 return {
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     opts = {
       sections = {
         lualine_x = { "encoding", "fileformat", "filetype" },
@@ -87,7 +88,7 @@ return {
             "TelescopePrompt",
             "undotree",
             "flutterToolsOutline",
-            "",   -- for all buffers without a file type
+            "", -- for all buffers without a file type
           },
           buftypes = { "terminal", "nofile" },
         },
