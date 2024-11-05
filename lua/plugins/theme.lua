@@ -1,3 +1,9 @@
+local autocmd = require("utils.autocmd")
+
+autocmd.user_pattern("LazyDone", function()
+  vim.cmd [[colorscheme tokyonight]]
+end)
+
 return {
   {
     "folke/tokyonight.nvim",

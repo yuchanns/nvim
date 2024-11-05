@@ -1,5 +1,12 @@
 local M = {}
 
+function M.user_pattern(pattern, callback)
+  vim.api.nvim_create_autocmd("User", {
+    pattern = pattern,
+    callback = callback,
+  })
+end
+
 function M.autocmd(event, cmd, callback)
   local group = vim.api.nvim_create_augroup(event .. "_" .. cmd, { clear = true })
   vim.api.nvim_create_autocmd(event, {

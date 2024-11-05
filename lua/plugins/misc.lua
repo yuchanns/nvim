@@ -5,6 +5,12 @@ local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local uv = vim.loop
 local system = require("utils.system")
+local autocmd = require("utils.autocmd")
+
+autocmd.user_pattern("LazyDone", function()
+  require("telescope").load_extension("fzy_native")
+  require("telescope").load_extension("file_browser")
+end)
 
 nmap({
   {
