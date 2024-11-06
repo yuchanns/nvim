@@ -4,6 +4,18 @@ local cmd = keymap.cmd
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local autocmd = require("utils.autocmd")
+local Util = require("lazy.core.util")
+
+autocmd.lsp_attach(function(client, bufnr)
+  require("illuminate").on_attach(client, bufnr)
+end)
+
+autocmd.user_pattern("LazyDone", function()
+  -- auto load language-server
+  Util.lsmod("lsp", function(modname, _)
+    require(modname).setup()
+  end)
+end)
 
 -- lspsaga
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
@@ -105,15 +117,7 @@ return {
     },
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
-      {
-        "neovim/nvim-lspconfig",
-        config = function()
-          require("lsp.luals").setup()
-          require("lsp.tsls").setup()
-          require("lsp.gopls").setup()
-          require("lsp.rustls").setup()
-        end
-      },
+      { "neovim/nvim-lspconfig", },
     },
   },
   {
@@ -261,8 +265,5 @@ return {
   },
   {
     "RRethy/vim-illuminate",
-    config = function()
-      autocmd.on_lsp_attach(require("illuminate").on_attach)
-    end
   }
 }

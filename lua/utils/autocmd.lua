@@ -7,7 +7,8 @@ function M.user_pattern(pattern, callback)
   })
 end
 
-function M.on_lsp_attach(on_attach)
+--- @param on_attach function(client: vim.lsp.Client|nil, bufnr: integer)
+function M.lsp_attach(on_attach)
   vim.api.nvim_create_autocmd("LspAttach", {
     pattern = "*",
     callback = function(args)
