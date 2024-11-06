@@ -8,6 +8,8 @@ local system = require("utils.system")
 local autocmd = require("utils.autocmd")
 
 autocmd.user_pattern("LazyDone", function()
+  require("utils.opt")
+
   require("telescope").load_extension("fzy_native")
   require("telescope").load_extension("file_browser")
 end)
