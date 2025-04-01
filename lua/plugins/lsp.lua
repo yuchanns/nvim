@@ -16,12 +16,16 @@ autocmd.user_cmd("LspRestartHint", function()
 end, {})
 
 -- lspsaga
-vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "Warn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "Info" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "💡", texthl = "Hint" })
 vim.api.nvim_set_hl(0, "SagaBeacon", { link = "FinderPreview" })
 vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "💡",
+    },
+  },
   virtual_text = {
     format = function(diagnostic)
       if diagnostic.severity == vim.diagnostic.severity.ERROR then
