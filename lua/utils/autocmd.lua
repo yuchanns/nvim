@@ -29,12 +29,4 @@ function M.user_cmd(cmd, callback, opts)
   vim.api.nvim_create_user_command(cmd, function() pcall(callback) end, opts)
 end
 
-function M.auto_filetype(ext, filetype)
-  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = "*." .. ext,
-    callback = function() vim.bo.filetype = filetype end,
-    group = vim.api.nvim_create_augroup(ext .. "_filetypedetect", { clear = true }),
-  })
-end
-
 return M

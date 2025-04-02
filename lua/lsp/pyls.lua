@@ -15,9 +15,10 @@ lspconfig["pylsp"].setup({
   settings = {
     pylsp = {
       plugins = {
-        pycodestyle = {
-          ignore = { "E501" },
+        ruff = {
+          enabled = true,
         },
+        pycodestyle = false,
       },
     },
   },
