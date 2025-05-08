@@ -17,6 +17,7 @@ lspconfig["pylsp"].setup({
       plugins = {
         ruff = {
           enabled = true,
+          formatEnabled = true,
         },
         pycodestyle = false,
       },
