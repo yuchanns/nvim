@@ -9,15 +9,6 @@ local loader = require("utils.loader")
 autocmd.lsp_attach(function(client, bufnr) require("illuminate").on_attach(client, bufnr) end)
 
 autocmd.user_pattern("VeryLazy", loader.callback_load_mods({ "lsp", "lsp.setup" }))
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = "*",
-  callback = function()
-    -- for some reason the LSP server attach multiple times so we need to stop all of them and start
-    -- again
-    vim.defer_fn(function() vim.cmd("LspStop") end, 1000)
-    vim.defer_fn(function() vim.cmd("LspStart") end, 2000)
-  end,
-})
 autocmd.user_cmd("LspRestartHint", function()
   vim.cmd("LspRestart")
   vim.notify("LSP Restarted", vim.log.levels.INFO, { title = "LSP" })
@@ -90,7 +81,11 @@ return {
     },
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
-      { "neovim/nvim-lspconfig", dependencies = { "ckipp01/stylua-nvim" } },
+      {
+        "neovim/nvim-lspconfig",
+        dependencies = { "ckipp01/stylua-nvim" },
+        commit = "fb733ac734249ccf293e5c8018981d4d8f59fa8f",
+      },
     },
   },
   {
@@ -155,7 +150,7 @@ return {
     "MysticalDevil/inlay-hints.nvim",
     event = "LspAttach",
     opts = {},
-    dependencies = { "neovim/nvim-lspconfig" },
+    dependencies = { "neovim/nvim-lspconfig", commit = "fb733ac734249ccf293e5c8018981d4d8f59fa8f" },
   },
   {
     "mrcjkb/rustaceanvim",
