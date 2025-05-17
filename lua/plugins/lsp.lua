@@ -65,6 +65,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     build = ":MasonUpdate",
     opts = {
+      automatic_enable = false,
       ensure_installed = {
         "lua_ls",
         "rust_analyzer",
@@ -84,7 +85,6 @@ return {
       {
         "neovim/nvim-lspconfig",
         dependencies = { "ckipp01/stylua-nvim" },
-        commit = "fb733ac734249ccf293e5c8018981d4d8f59fa8f",
       },
     },
   },
@@ -150,7 +150,7 @@ return {
     "MysticalDevil/inlay-hints.nvim",
     event = "LspAttach",
     opts = {},
-    dependencies = { "neovim/nvim-lspconfig", commit = "fb733ac734249ccf293e5c8018981d4d8f59fa8f" },
+    dependencies = { "neovim/nvim-lspconfig" },
   },
   {
     "mrcjkb/rustaceanvim",
