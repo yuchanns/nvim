@@ -10,30 +10,39 @@ return {
   opts = {
     provider = "copilot",
     auto_suggestions_provider = "azure",
-    copilot = {
-      model = "claude-3.5-sonnet",
-      temperature = 1,
-      max_tokens = 20000,
+    providers = {
+      copilot = {
+        model = "claude-sonnet-4",
+        -- model = "claude-3.5-sonnet",
+        extra_request_body = {
+          temperature = 1,
+          max_tokens = 20000,
+        },
+      },
+      bedrock = {
+        -- "Invocation of model ID with on-demand throughput isn’t supported.
+        --    Retry your request with the ID or ARN of an inference profile that contains this model."
+        -- https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html
+        -- https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/inference-profiles
+        model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        extra_request_body = {
+          temperature = 1,
+          max_tokens = 20000,
+        },
+      },
+      azure = {
+        endpoint = "https://malacca.yuchanns.xyz/azure-openai/yuchanns-eastus",
+        deployment = "gpt-4o-mini",
+        model = "gpt-4o-mini",
+        api_version = "2025-01-01-preview",
+        extra_request_body = {
+          temperature = 0,
+          max_tokens = 8192,
+        },
+      },
     },
     web_search_engine = {
       provider = "kagi",
-    },
-    bedrock = {
-      -- "Invocation of model ID with on-demand throughput isn’t supported.
-      --    Retry your request with the ID or ARN of an inference profile that contains this model."
-      -- https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html
-      -- https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/inference-profiles
-      model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
-      temperature = 1,
-      max_tokens = 20000,
-    },
-    azure = {
-      endpoint = "https://malacca.yuchanns.xyz/azure-openai/yuchanns-eastus",
-      deployment = "gpt-4o-mini",
-      model = "gpt-4o-mini",
-      api_version = "2025-01-01-preview",
-      temperature = 0,
-      max_tokens = 8192,
     },
     behaviour = {
       support_paste_from_clipboard = true,

@@ -1,13 +1,16 @@
 local autocmd = require("utils.autocmd")
+local system = require("utils.system")
 
 autocmd.user_pattern("LazyDone", function() vim.cmd([[colorscheme tokyonight]]) end)
+
+local transparent = system.is_mac()
 
 return {
   {
     "folke/tokyonight.nvim",
     opts = {
       style = "moon",
-      transparent = false,
+      transparent = transparent,
       terminal_colors = true,
       styles = {
         functions = { italic = true },
