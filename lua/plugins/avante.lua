@@ -8,22 +8,17 @@ return {
   build = build,
   event = "VeryLazy",
   opts = {
-    provider = "copilot",
+    provider = "azure",
     auto_suggestions_provider = "azure",
     providers = {
       copilot = {
         model = "claude-sonnet-4",
-        -- model = "claude-3.5-sonnet",
         extra_request_body = {
           temperature = 1,
           max_tokens = 20000,
         },
       },
       bedrock = {
-        -- "Invocation of model ID with on-demand throughput isn’t supported.
-        --    Retry your request with the ID or ARN of an inference profile that contains this model."
-        -- https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html
-        -- https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/inference-profiles
         model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
         extra_request_body = {
           temperature = 1,
@@ -31,9 +26,9 @@ return {
         },
       },
       azure = {
-        endpoint = "https://malacca.yuchanns.xyz/azure-openai/yuchanns-eastus",
-        deployment = "gpt-4o-mini",
-        model = "gpt-4o-mini",
+        endpoint = "https://malacca.yuchanns.xyz/azure-ai/me-m8dtmjmc-swedencentral",
+        deployment = "gpt-4.1",
+        model = "gpt-4.1",
         api_version = "2025-01-01-preview",
         extra_request_body = {
           temperature = 0,
@@ -41,9 +36,9 @@ return {
         },
       },
     },
-    web_search_engine = {
-      provider = "kagi",
-    },
+    -- web_search_engine = {
+    --   provider = "kagi",
+    -- },
     behaviour = {
       support_paste_from_clipboard = true,
       auto_suggestions = false,
