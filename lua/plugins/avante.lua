@@ -8,15 +8,17 @@ return {
   build = build,
   event = "VeryLazy",
   opts = {
-    provider = "azure",
+    provider = "copilot",
     auto_suggestions_provider = "azure",
     providers = {
       copilot = {
-        model = "claude-sonnet-4",
+        -- model = "claude-sonnet-4",
+        model = "gpt-4.1",
         extra_request_body = {
           temperature = 1,
           max_tokens = 20000,
         },
+        disable_tools = { "web_search" },
       },
       bedrock = {
         model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
@@ -36,9 +38,45 @@ return {
         },
       },
     },
-    -- web_search_engine = {
-    --   provider = "kagi",
-    -- },
+    custom_tools = {
+      {
+        name = "search",
+        description = "Search the web for information.",
+        param = {
+          type = "table",
+          fields = {
+            {
+              name = "q",
+              description = "The search query.",
+              type = "string",
+            }
+          },
+        },
+        returns = {},
+        func = function(param, on_log, on_complete)
+          local q = param.q
+          if not q or q == "" then
+            on_log("Search query cannot be empty.")
+            return
+          end
+          local curl = require("plenary.curl")
+          local api_key = os.getenv("KAGI_ACCESS_TOKEN")
+          local curl_opts = {
+            headers = {
+              ["Authorization"] = "Bearer " .. api_key,
+            },
+          }
+
+          local res = curl.get("https://kagiapi.yuchanns.xyz/api/search?q=" .. vim.uri.encode(q), curl_opts)
+          if res.status ~= 200 then
+            on_log("Search failed: " .. res.body)
+            return
+          end
+          local results = vim.json.decode(res.body)
+          return results
+        end
+      },
+    },
     behaviour = {
       support_paste_from_clipboard = true,
       auto_suggestions = false,
@@ -69,11 +107,11 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "echasnovski/mini.pick", -- for file_selector provider mini.pick
+    "echasnovski/mini.pick",         -- for file_selector provider mini.pick
     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    "ibhagwan/fzf-lua", -- for file_selector provider fzf
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+    "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
     -- {
     --   -- support for image pasting
     --   "HakonHarnes/img-clip.nvim",
