@@ -8,6 +8,7 @@ return {
   build = build,
   event = "VeryLazy",
   opts = {
+    disabled_tools = { "web_search" },
     provider = "copilot",
     auto_suggestions_provider = "azure",
     providers = {
@@ -18,7 +19,6 @@ return {
           temperature = 1,
           max_tokens = 20000,
         },
-        disable_tools = { "web_search" },
       },
       bedrock = {
         model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
@@ -40,21 +40,28 @@ return {
     },
     custom_tools = {
       {
-        name = "search",
-        description = "Search the web for information.",
+        name = "search_engine",
+        description = "Search the web",
         param = {
           type = "table",
           fields = {
             {
               name = "q",
-              description = "The search query.",
+              description = "Query to search",
               type = "string",
-            }
+            },
+          },
+          usage = {
+            q = "Query to search",
           },
         },
-        returns = {},
-        func = function(param, on_log, on_complete)
-          local q = param.q
+        returns = {
+          { name = "title", description = "Title of the search result", type = "string" },
+          { name = "url", description = "URL of the search result", type = "string" },
+          { name = "snippet", description = "Snippet of the search result", type = "string" },
+        },
+        func = function(params, on_log, on_complete)
+          local q = params.q
           if not q or q == "" then
             on_log("Search query cannot be empty.")
             return
@@ -67,14 +74,14 @@ return {
             },
           }
 
-          local res = curl.get("https://kagiapi.yuchanns.xyz/api/search?q=" .. vim.uri.encode(q), curl_opts)
+          local res = curl.get("https://kagiapi.yuchanns.xyz/api/search?q=" .. vim.uri_encode(q), curl_opts)
           if res.status ~= 200 then
             on_log("Search failed: " .. res.body)
             return
           end
           local results = vim.json.decode(res.body)
           return results
-        end
+        end,
       },
     },
     behaviour = {
@@ -107,11 +114,11 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+    "echasnovski/mini.pick", -- for file_selector provider mini.pick
     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-    "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-    "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-    "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     -- {
     --   -- support for image pasting
     --   "HakonHarnes/img-clip.nvim",
