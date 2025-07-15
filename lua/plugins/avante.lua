@@ -70,11 +70,11 @@ return {
           local api_key = os.getenv("KAGI_ACCESS_TOKEN")
           local curl_opts = {
             headers = {
-              ["Authorization"] = "Bearer " .. api_key,
+              ["Authorization"] = "Bot " .. api_key,
             },
           }
 
-          local res = curl.get("https://kagiapi.yuchanns.xyz/api/search?q=" .. vim.uri_encode(q), curl_opts)
+          local res = curl.get("https://kagiapi.yuchanns.xyz/api/v0/search?q=" .. vim.uri_encode(q), curl_opts)
           if res.status ~= 200 then
             on_log("Search failed: " .. res.body)
             return
