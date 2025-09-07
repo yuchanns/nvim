@@ -64,6 +64,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
+    event = "VeryLazy",
     opts = {
       defaults = {
         layout_config = {
@@ -71,9 +72,9 @@ return {
           vertical = { mirror = false },
         },
         sorting_strategy = "ascending",
-        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+        -- file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        -- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         file_ignore_patterns = { "node_modules" },
         path_display = { "smart" },
       },
@@ -89,14 +90,15 @@ return {
       },
     },
     dependencies = {
-      { "nvim-lua/popup.nvim" },
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope-fzy-native.nvim" },
-      { "nvim-telescope/telescope-file-browser.nvim" },
+      { "nvim-lua/popup.nvim", lazy = true },
+      { "nvim-lua/plenary.nvim", lazy = true },
+      { "nvim-telescope/telescope-fzy-native.nvim", lazy = true },
+      { "nvim-telescope/telescope-file-browser.nvim", lazy = true },
     },
   },
   {
     "Pocco81/auto-save.nvim",
+    event = { "BufReadPost" },
     opts = {
       enabled = true,
       execution_message = {
@@ -108,7 +110,7 @@ return {
     },
     branch = "dev",
   },
-  { "windwp/nvim-autopairs", opts = {} },
+  { "windwp/nvim-autopairs", opts = {}, event = "InsertEnter" },
   {
     "karb94/neoscroll.nvim",
     opts = {
@@ -129,9 +131,10 @@ return {
     opts = {},
     event = "BufReadPre",
   },
-  { "folke/trouble.nvim", opts = {} },
+  { "folke/trouble.nvim", opts = {}, event = "VeryLazy" },
   {
     "folke/todo-comments.nvim",
+    event = "BufReadPost",
     opts = {
       search = {
         command = "rg",
@@ -147,10 +150,11 @@ return {
       },
     },
   },
-  { "yuchanns/ccr.nvim" },
+  { "yuchanns/ccr.nvim", event = "VeryLazy" },
   {
     "goolord/alpha-nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VimEnter",
     config = function()
       require("alpha.term")
       local dashboard = require("alpha.themes.dashboard")
@@ -163,7 +167,7 @@ return {
         dashboard.section.header.width = 75
         dashboard.section.header.opts = {
           position = "center",
-          redraw = true,
+          redraw = false,
           window_config = { height = 30 },
         }
       end
@@ -177,8 +181,8 @@ return {
       require("alpha").setup(dashboard.opts)
     end,
   },
-  { "sphamba/smear-cursor.nvim", opts = {} },
-  { "wakatime/vim-wakatime" },
+  { "sphamba/smear-cursor.nvim", opts = {}, event = { "CursorMoved" } },
+  { "wakatime/vim-wakatime", event = "VeryLazy" },
   {
     "rachartier/tiny-glimmer.nvim",
     event = "TextYankPost",

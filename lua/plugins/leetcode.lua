@@ -1,5 +1,6 @@
 return {
   "yuchanns/leetcode.nvim",
+  event = "VeryLazy",
   build = ":TSUpdate html",
   branch = "top-150",
   dependencies = {

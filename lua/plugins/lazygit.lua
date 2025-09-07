@@ -30,6 +30,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       current_line_blame = true,
       linehl = false,
@@ -45,6 +46,7 @@ return {
   },
   {
     "sindrets/diffview.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", event = "VeryLazy" },
+    event = "VerrLazy",
   },
 }

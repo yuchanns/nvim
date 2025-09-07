@@ -59,11 +59,12 @@ nmap({
 })
 
 return {
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = "BufRead" },
-  { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter" } },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = "BufReadPost" },
+  { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter" }, event = "BufReadPost" },
   {
     "williamboman/mason-lspconfig.nvim",
     build = ":MasonUpdate",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       automatic_enable = false,
       ensure_installed = {
@@ -115,7 +116,7 @@ return {
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       --Please make sure you install markdown and markdown_inline parser
-      { "nvim-treesitter/nvim-treesitter" },
+      { "nvim-treesitter/nvim-treesitter", event = "BufReadPost" },
     },
   },
   {
@@ -140,11 +141,13 @@ return {
   {
     "edolphin-ydf/goimpl.nvim",
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-lua/popup.nvim" },
-      { "nvim-telescope/telescope.nvim" },
-      { "nvim-treesitter/nvim-treesitter" },
+      { "nvim-lua/plenary.nvim", event = "VeryLazy" },
+      { "nvim-lua/popup.nvim", event = "VeryLazy" },
+      { "nvim-telescope/telescope.nvim", event = "VeryLazy" },
+      { "nvim-treesitter/nvim-treesitter", event = "BufReadPost" },
     },
+    event = "VeryLazy",
+    ft = { "go" },
   },
   {
     "MysticalDevil/inlay-hints.nvim",

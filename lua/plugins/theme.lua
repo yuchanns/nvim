@@ -36,5 +36,5 @@ return {
     priority = 1000,
   },
   { "nvim-lua/lsp-status.nvim" },
-  { "folke/lsp-colors.nvim", opt = {} },
+  { "folke/lsp-colors.nvim", opt = {}, event = "VeryLazy" },
 }

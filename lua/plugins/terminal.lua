@@ -21,6 +21,7 @@ if system.is_windows() then shell = "powershell" end
 
 return {
   "akinsho/toggleterm.nvim",
+  event = "VeryLazy",
   opts = {
     shell = shell,
   },

@@ -98,10 +98,11 @@ return {
     event = "BufRead",
     main = "ibl",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+      { "nvim-treesitter/nvim-treesitter", event = "BufReadPost" },
       {
         "hiphish/rainbow-delimiters.nvim",
         submodules = false,
+        event = "BufReadPost",
         config = function()
           local rainbow_delimiters = require("rainbow-delimiters")
 
