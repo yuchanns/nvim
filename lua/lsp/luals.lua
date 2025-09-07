@@ -1,5 +1,6 @@
 local fn, uv = vim.fn, vim.uv
 local system = require("utils.system")
+local autocmd = require("utils.autocmd")
 
 if not system.is_executable("lua-language-server") then return end
 local lspconfig = require("lspconfig")
@@ -44,11 +45,24 @@ lspconfig["lua_ls"].setup({
   end,
 })
 
+local auto_save = true
+
+autocmd.user_cmd("ToggleLuaAutoFormat", function()
+  auto_save = not auto_save
+  if auto_save then
+    vim.notify("Enabled Lua Auto Format on Save", vim.log.levels.INFO, { title = "Lua" })
+  else
+    vim.notify("Disabled Lua Auto Format on Save", vim.log.levels.WARN, { title = "Lua" })
+  end
+end, {})
+
 if system.is_executable("stylua") then
   local stylua = require("stylua-nvim")
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     group = vim.api.nvim_create_augroup("LuaFormat", { clear = true }),
-    callback = function() stylua.format_file() end,
+    callback = function()
+      if auto_save then stylua.format_file() end
+    end,
   })
 end
