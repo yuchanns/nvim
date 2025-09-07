@@ -13,7 +13,10 @@ autocmd.user_pattern("LazyDone", function()
   require("telescope").load_extension("file_browser")
 end)
 
-autocmd.user_pattern("AlphaReady", function() vim.defer_fn(require("persistence").load, 1000) end)
+autocmd.user_pattern(
+  system.is_windows() and "LazyDone" or "AlphaReady",
+  function() vim.defer_fn(require("persistence").load, 1000) end
+)
 
 autocmd.user_cmd("ToggleFold", function()
   local fold_closed = vim.fn.foldclosed(vim.fn.line("."))
@@ -156,6 +159,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VimEnter",
     config = function()
+      if system.is_windows() then return end
       require("alpha.term")
       local dashboard = require("alpha.themes.dashboard")
       if system.is_executable("chafa") then
