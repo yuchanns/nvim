@@ -167,7 +167,7 @@ return {
         dashboard.section.header.width = 75
         dashboard.section.header.opts = {
           position = "center",
-          redraw = false,
+          redraw = true,
           window_config = { height = 30 },
         }
       end
