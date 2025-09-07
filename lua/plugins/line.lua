@@ -11,7 +11,8 @@ local rainbow_highlight = {
 return {
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    event = "BufReadPost",
+    priority = 1000,
     opts = {
       sections = {
         lualine_x = { "encoding", "fileformat", "filetype" },

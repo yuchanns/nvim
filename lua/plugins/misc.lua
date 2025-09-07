@@ -182,7 +182,7 @@ return {
     end,
   },
   { "sphamba/smear-cursor.nvim", opts = {}, event = { "CursorMoved" } },
-  { "wakatime/vim-wakatime", event = "VeryLazy" },
+  { "wakatime/vim-wakatime", event = { "BufReadPost", "BufNewFile" } },
   {
     "rachartier/tiny-glimmer.nvim",
     event = "TextYankPost",
