@@ -1,11 +1,11 @@
 local fn, uv = vim.fn, vim.uv
 local system = require("utils.system")
 local autocmd = require("utils.autocmd")
+local lsp = require("utils.lsp")
 
 if not system.is_executable("lua-language-server") then return end
-local lspconfig = require("lspconfig")
 -- luars.json https://luals.github.io/wiki/configuration/#luarcjson-file
-lspconfig["lua_ls"].setup({
+lsp.config("lua_ls", {
   settings = { Lua = {} },
   -- capabilities = capabilities,
   on_init = function(client)
@@ -13,7 +13,9 @@ lspconfig["lua_ls"].setup({
       local path = client.workspace_folders[1].name
       if uv.fs_stat(path .. "/.luarc.json") or uv.fs_stat(path .. "/.luarc.jsonc") then return end
     end
-    client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+    local luaconfig = client.config.settings.Lua
+    if type(luaconfig) ~= "table" then luaconfig = {} end
+    client.config.settings.Lua = vim.tbl_deep_extend("force", luaconfig, {
       runtime = {
         version = "LuaJIT",
         special = { reload = "require" },
@@ -41,7 +43,7 @@ lspconfig["lua_ls"].setup({
       },
     })
 
-    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
   end,
 })
 

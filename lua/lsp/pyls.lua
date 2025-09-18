@@ -1,12 +1,11 @@
 local system = require("utils.system")
-local autocmd = require("utils.autocmd")
+local lsp = require("utils.lsp")
 
 if not system.is_executable("pyright") then return end
 
-local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig["pyright"].setup({
+lsp.config("pyright", {
   capabilities = capabilities,
 })
 

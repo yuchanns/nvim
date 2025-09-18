@@ -1,10 +1,11 @@
 local system = require("utils.system")
+local lsp = require("utils.lsp")
 
 local lspconfig = require("lspconfig")
 
 if not system.is_executable("sourcekit-lsp") then return end
 
-lspconfig["sourcekit"].setup({
+lsp.config("sourcekit", {
   capabilities = {
     workspace = {
       didChangeWatchedFiles = {

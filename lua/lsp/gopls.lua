@@ -1,12 +1,13 @@
 local system = require("utils.system")
+local lsp = require("utils.lsp")
 
 if not system.is_executable("gopls") then return end
-local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-lspconfig["gopls"].setup({
+lsp.config("gopls", {
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
+    exit_timeout = 500,
   },
   settings = {
     gopls = {

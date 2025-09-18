@@ -1,5 +1,5 @@
-local fn, uv = vim.fn, vim.uv
 local system = require("utils.system")
+local lsp = require("utils.lsp")
 
 if not system.is_executable("jinja-lsp") then return end
 vim.filetype.add({
@@ -9,5 +9,4 @@ vim.filetype.add({
     j2 = "jinja",
   },
 })
-local lspconfig = require("lspconfig")
-lspconfig["jinja_lsp"].setup({})
+lsp.config("jinja_lsp", {})

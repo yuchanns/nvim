@@ -1,5 +1,6 @@
 local system = require("utils.system")
+local lsp = require("utils.lsp")
 
 if not system.is_executable("typescript-language-server") then return end
-local lspconfig = require("lspconfig")
-lspconfig["ts_ls"].setup({})
+
+lsp.config("ts_ls", {})
