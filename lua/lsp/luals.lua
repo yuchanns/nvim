@@ -9,15 +9,17 @@ lsp.config("lua_ls", {
   settings = { Lua = {} },
   -- capabilities = capabilities,
   on_init = function(client)
+    local runtime_version = "Lua54"
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
       if uv.fs_stat(path .. "/.luarc.json") or uv.fs_stat(path .. "/.luarc.jsonc") then return end
+      if path:find("nvim") or path:find("neovim") then runtime_version = "LuaJIT" end
     end
     local luaconfig = client.config.settings.Lua
     if type(luaconfig) ~= "table" then luaconfig = {} end
     client.config.settings.Lua = vim.tbl_deep_extend("force", luaconfig, {
       runtime = {
-        version = "LuaJIT",
+        version = runtime_version,
         special = { reload = "require" },
       },
       diagnostics = {
