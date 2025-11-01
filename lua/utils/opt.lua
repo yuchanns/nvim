@@ -1,6 +1,6 @@
 local opt, uv, fn, g, cmd = vim.opt, vim.uv, vim.fn, vim.g, vim.cmd
 local cache_dir = vim.env.HOME .. "/.cache/nvim"
-local keymap = require("utils.keymap")
+local keymap = require "utils.keymap"
 local nmap = keymap.nmap
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
@@ -28,9 +28,9 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.infercase = true
 
-if vim.fn.executable("rg") == 1 then
-  opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-  opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+if vim.fn.executable "rg" == 1 then
+    opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+    opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 end
 
 opt.completeopt = "menu,menuone,noselect"
@@ -74,18 +74,18 @@ opt.spelloptions = "camel"
 opt.textwidth = 100
 
 if uv.os_uname().sysname == "Darwin" then
-  vim.g.clipboard = {
-    name = "macOS-clipboard",
-    copy = {
-      ["+"] = "pbcopy",
-      ["*"] = "pbcopy",
-    },
-    paste = {
-      ["+"] = "pbpaste",
-      ["*"] = "pbpaste",
-    },
-    cache_enabled = 0,
-  }
+    vim.g.clipboard = {
+        name = "macOS-clipboard",
+        copy = {
+            ["+"] = "pbcopy",
+            ["*"] = "pbcopy",
+        },
+        paste = {
+            ["+"] = "pbpaste",
+            ["*"] = "pbpaste",
+        },
+        cache_enabled = 0,
+    }
 end
 
 opt.laststatus = 3
@@ -117,13 +117,13 @@ opt.belloff = "all"
 opt.fileformat = "unix"
 opt.fileformats = "unix,dos"
 
-if fn.has("win32") ~= 1 then opt.shell = "bash" end
+if fn.has "win32" ~= 1 then opt.shell = "bash" end
 
 vim.wo.signcolumn = "yes:1"
-cmd("set mouse=")
-cmd("let &fcs='eob: '") -- hide tilde sign on blank lines
+cmd "set mouse="
+cmd "let &fcs='eob: '"  -- hide tilde sign on blank lines
 
-if fn.has("win32") == 1 then nmap({ "v", "<C-q>", opts(noremap, silent) }) end
+if fn.has "win32" == 1 then nmap { "v", "<C-q>", opts(noremap, silent) } end
 
 g.loaded_gzip = 1
 g.loaded_tar = 1

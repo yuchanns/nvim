@@ -1,41 +1,41 @@
-local system = require("utils.system")
-local autocmd = require("utils.autocmd")
+local system = require "utils.system"
+local autocmd = require "utils.autocmd"
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local extension_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
+local capabilities = require "cmp_nvim_lsp".default_capabilities()
+local extension_path = vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension/"
 local codelldb_path = extension_path .. "adapters/codelldb"
 local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 if system.is_windows() then
-  codelldb_path = extension_path .. "adapter\\codelldb.exe"
-  liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+    codelldb_path = extension_path .. "adapter\\codelldb.exe"
+    liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
 else
-  -- The liblldb extension is .so for Linux and .dylib for MacOS
-  liblldb_path = liblldb_path .. (system.is_linux() and ".so" or ".dylib")
+    -- The liblldb extension is .so for Linux and .dylib for MacOS
+    liblldb_path = liblldb_path .. (system.is_linux() and ".so" or ".dylib")
 end
-local cfg = require("rustaceanvim.config")
+local cfg = require "rustaceanvim.config"
 vim.g.rustaceanvim = {
-  tools = {
-    inlay_hints = {
-      auto = false,
+    tools = {
+        inlay_hints = {
+            auto = false,
+        },
     },
-  },
-  server = {
-    settings = function(project_root)
-      local ra = require("rustaceanvim.config.server")
-      return ra.load_rust_analyzer_settings(project_root .. "/.vscode", {
-        settings_file_pattern = "rust-analyzer.json",
-      })
-    end,
-    capabilities = capabilities,
-  },
-  dap = {
-    adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
-  },
+    server = {
+        settings = function(project_root)
+            local ra = require "rustaceanvim.config.server"
+            return ra.load_rust_analyzer_settings(project_root .. "/.vscode", {
+                settings_file_pattern = "rust-analyzer.json",
+            })
+        end,
+        capabilities = capabilities,
+    },
+    dap = {
+        adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+    },
 }
 
 autocmd.user_pattern("AutoSave", function()
-  if vim.bo.filetype ~= "rust" then return end
-  vim.lsp.buf.format({ async = true })
+    if vim.bo.filetype ~= "rust" then return end
+    vim.lsp.buf.format { async = true }
 end)
 
 -- vim.g.rustfmt_autosave = 1

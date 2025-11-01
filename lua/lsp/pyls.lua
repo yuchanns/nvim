@@ -1,12 +1,12 @@
-local system = require("utils.system")
-local lsp = require("utils.lsp")
+local system = require "utils.system"
+local lsp = require "utils.lsp"
 
-if not system.is_executable("pyright") then return end
+if not system.is_executable "pyright" then return end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require "cmp_nvim_lsp".default_capabilities()
 
 lsp.config("pyright", {
-  capabilities = capabilities,
+    capabilities = capabilities,
 })
 
 -- lspconfig["pylsp"].setup({

@@ -1,0 +1,18 @@
+{
+    "$schema": "https://raw.githubusercontent.com/EmmyLuaLs/emmylua-analyzer-rust/refs/heads/main/crates/emmylua_code_analysis/resources/schema.json",
+    "diagnostics": {
+        "enable": true,
+        "globals": [
+          "vim"
+        ]
+    },
+    "runtime": {
+        "version": "LuaJIT"
+    },
+    "workspace": {
+        "library": [
+          "$VIMRUNTIME/lua",
+          "$VIMRUNTIME/lua/vim/lsp"
+        ]
+    }
+}
