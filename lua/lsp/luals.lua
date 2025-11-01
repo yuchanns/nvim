@@ -33,7 +33,6 @@ lsp.config("lua_ls", {
           fn.expand("$VIMRUNTIME/lua"),
           fn.expand("$VIMRUNTIME/lua/vim/lsp"),
           fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-          fn.expand("$HOME/Coding/github/ltask_workspace/soluna/docs"),
         },
       },
       -- Do not send telemetry data containing a randomized but unique identifier
