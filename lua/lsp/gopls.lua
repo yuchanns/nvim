@@ -4,7 +4,7 @@ local lsp = require "utils.lsp"
 if not system.is_executable "gopls" then return end
 local capabilities = require "cmp_nvim_lsp".default_capabilities()
 lsp.config("gopls", {
-    cmd = {},
+    cmd = { "gopls" },
     capabilities = capabilities,
     flags = {
         debounce_text_changes = 150,
