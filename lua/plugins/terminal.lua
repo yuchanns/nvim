@@ -12,7 +12,7 @@ tmap { "<Esc>", t "<C-\\><C-n>", opts(noremap, silent) }
 
 nmap {
     "<Leader>t",
-    cmd "exe v:count1 . 'ToggleTerm size=10 direction=horizontal'",
+    cmd "exe v:count1 . 'ToggleTerm direction=horizontal'",
     opts(noremap, silent),
 }
 
@@ -24,5 +24,6 @@ return {
     event = "VeryLazy",
     opts = {
         shell = shell,
+        size = 10,
     },
 }
