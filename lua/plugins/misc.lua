@@ -99,6 +99,9 @@ return {
             { "nvim-telescope/telescope-file-browser.nvim", lazy = true },
         },
     },
+    { "stevearc/quicker.nvim", lazy = true, opts = {}, ft = "qf" },
+    { "r0nsha/qfpreview.nvim", lazy = true, opts = {}, ft = "qf" },
+
     {
         "Pocco81/auto-save.nvim",
         event = { "BufReadPost" },
