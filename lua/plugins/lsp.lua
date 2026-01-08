@@ -136,8 +136,15 @@ return {
             { "ekalinin/Dockerfile.vim",             event = "InsertEnter" },
         },
     },
-    { "crispgm/nvim-go",   ft = "go", event = "LspAttach" },
-    { "rhysd/vim-go-impl", ft = "go", event = "LspAttach" },
+    {
+        "crispgm/nvim-go",
+        ft = "go",
+        event = "LspAttach",
+        opts = {
+            test_timeout = "300s",
+        }
+    },
+    { "rhysd/vim-go-impl",     ft = "go",          event = "LspAttach" },
     {
         "edolphin-ydf/goimpl.nvim",
         dependencies = {
