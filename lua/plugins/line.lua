@@ -99,7 +99,7 @@ return {
         event = "BufRead",
         main = "ibl",
         dependencies = {
-            { "nvim-treesitter/nvim-treesitter", event = "BufReadPost" },
+            { "nvim-treesitter/nvim-treesitter", event = "BufReadPost", branch = "master" },
             {
                 "hiphish/rainbow-delimiters.nvim",
                 submodules = false,

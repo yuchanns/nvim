@@ -59,7 +59,7 @@ nmap {
 }
 
 return {
-    { "nvim-treesitter/nvim-treesitter",             build = ":TSUpdate",                  event = "BufReadPost" },
+    { "nvim-treesitter/nvim-treesitter",             build = ":TSUpdate",                  event = "BufReadPost", branch = "master" },
     { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter" }, event = "BufReadPost" },
     {
         "williamboman/mason-lspconfig.nvim",
@@ -116,7 +116,7 @@ return {
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
             --Please make sure you install markdown and markdown_inline parser
-            { "nvim-treesitter/nvim-treesitter", event = "BufReadPost" },
+            { "nvim-treesitter/nvim-treesitter", event = "BufReadPost", branch = "master" },
         },
     },
     {
@@ -151,7 +151,7 @@ return {
             { "nvim-lua/plenary.nvim",           event = "VeryLazy" },
             { "nvim-lua/popup.nvim",             event = "VeryLazy" },
             { "nvim-telescope/telescope.nvim",   event = "VeryLazy" },
-            { "nvim-treesitter/nvim-treesitter", event = "BufReadPost" },
+            { "nvim-treesitter/nvim-treesitter", event = "BufReadPost", branch = "master" },
         },
         event = "LspAttach",
         ft = { "go" },
