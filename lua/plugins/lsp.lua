@@ -65,7 +65,27 @@ return {
             ensure_installed = { "lua", "vim", "python", "rust", "go", "typescript" },
             auto_install = true,
             sync_install = false,
-        }
+            textobjects = {
+                select = {
+                    enable = true,
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["ac"] = "@class.outer",
+                        ["ic"] = "@class.inner",
+                    },
+                },
+                incremental_selection = {
+                    enable = true,
+                    keymaps = {
+                        init_selection = "gnn",
+                        node_incremental = ".",
+                        scope_incremental = "grc",
+                        node_decremental = "grm",
+                    },
+                },
+            },
+        },
     },
     -- { "nvim-treesitter/nvim-treesitter",             build = ":TSUpdate",                  event = "BufReadPost", branch = "master" },
     -- { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter" }, event = "BufReadPost" },
@@ -156,9 +176,9 @@ return {
     {
         "edolphin-ydf/goimpl.nvim",
         dependencies = {
-            { "nvim-lua/plenary.nvim",           event = "VeryLazy" },
-            { "nvim-lua/popup.nvim",             event = "VeryLazy" },
-            { "nvim-telescope/telescope.nvim",   event = "VeryLazy" },
+            { "nvim-lua/plenary.nvim",         event = "VeryLazy" },
+            { "nvim-lua/popup.nvim",           event = "VeryLazy" },
+            { "nvim-telescope/telescope.nvim", event = "VeryLazy" },
             -- { "nvim-treesitter/nvim-treesitter", event = "BufReadPost", branch = "master" },
         },
         event = "LspAttach",
