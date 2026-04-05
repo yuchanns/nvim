@@ -11,7 +11,7 @@ Compatible for Linux, MacOS and Windows.
 To ensure proper functionality of NeoVIM, additional dependencies are required.
 
 - Zig
-  - For parsers installation of `nvim-treesitter`
+  - For parsers installation of `ishiku.nvim`
 - Python3
   - For `nvim-cmp` and `ultisnips`
   - pyenv is recommendation
@@ -35,4 +35,3 @@ To ensure proper functionality of NeoVIM, additional dependencies are required.
   - `go install github.com/josharian/impl@latest` for generating method stubs for implementing an interface.
 - chafa (optional)
   - For dashboard
-

@@ -34,7 +34,6 @@ cmp.setup {
         { name = "buffer" },
         { name = "path" },
         { name = "dictionary" },
-        { name = "orgmode" },
         {
             name = "spell",
             option = {
