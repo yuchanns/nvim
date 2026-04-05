@@ -19,6 +19,12 @@ nmap {
 local shell = "/bin/bash"
 if system.is_windows() then shell = "powershell" end
 
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function(args)
+        vim.lsp.semantic_tokens.enable(false, { bufnr = args.buf })
+    end,
+})
+
 return {
     "akinsho/toggleterm.nvim",
     event = "VeryLazy",

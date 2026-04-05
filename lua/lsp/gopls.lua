@@ -6,10 +6,15 @@ local capabilities = require "cmp_nvim_lsp".default_capabilities()
 lsp.config("gopls", {
     cmd = { "gopls" },
     capabilities = capabilities,
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
     flags = {
         debounce_text_changes = 150,
         exit_timeout = 500,
     },
+    root_dir = function(bufnr, on_dir)
+        local fname = vim.api.nvim_buf_get_name(bufnr)
+        on_dir(vim.fs.root(fname, { "go.work", "go.mod", ".git" }))
+    end,
     settings = {
         gopls = {
             analyses = { composites = false },
