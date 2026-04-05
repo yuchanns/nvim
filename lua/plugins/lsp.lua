@@ -62,9 +62,35 @@ return {
     {
         "yuchanns/ishiku.nvim",
         opts = {
-            ensure_installed = { "lua", "vim", "python", "rust", "go", "typescript" },
+            ensure_installed = { "lua", "vim", "python", "rust", "go", "typescript", "markdown", "c", "cpp" },
             auto_install = true,
             sync_install = false,
+            disable = function(lang, bufnr)
+                local max_lines = {
+                    javascript = 1000,
+                    typescript = 1200,
+                    tsx = 1200,
+                    json = 800,
+                    jsonc = 800,
+                }
+
+                local limit = max_lines[lang]
+                if limit and vim.api.nvim_buf_line_count(bufnr) > limit then
+                    return true
+                end
+
+                local name = vim.api.nvim_buf_get_name(bufnr)
+                if name:match("%.min%.[^/]+$") then
+                    return true
+                end
+
+                local stat = vim.uv.fs_stat(name)
+                if stat and stat.size > 512 * 1024 then
+                    return true
+                end
+
+                return false
+            end,
             textobjects = {
                 select = {
                     enable = true,
