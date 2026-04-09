@@ -131,6 +131,7 @@ return {
                 "jdtls",
                 "glsl_analyzer",
                 "jinja_lsp",
+                "zls",
             },
         },
         dependencies = {
