@@ -6,7 +6,11 @@ local opts = keymap.new_opts
 local autocmd = require "utils.autocmd"
 local loader = require "utils.loader"
 
-autocmd.lsp_attach(function(client, bufnr) require "illuminate".on_attach(client, bufnr) end)
+autocmd.lsp_attach(function(client, bufnr)
+    if client and client:supports_method("textDocument/inlayHint", bufnr) then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+end)
 
 autocmd.user_pattern("VeryLazy", loader.callback_load_mods { "lsp", "lsp.setup" })
 autocmd.user_cmd("LspRestartHint", function()
@@ -209,12 +213,6 @@ return {
         },
         event = "LspAttach",
         ft = { "go" },
-    },
-    {
-        "MysticalDevil/inlay-hints.nvim",
-        event = "LspAttach",
-        opts = {},
-        dependencies = { "neovim/nvim-lspconfig" },
     },
     {
         "mrcjkb/rustaceanvim",
