@@ -6,10 +6,106 @@ local opts = keymap.new_opts
 local autocmd = require "utils.autocmd"
 local loader = require "utils.loader"
 
+local lsp_document_highlight_group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
+local lsp_document_highlight_delay = 100
+local lsp_document_highlight_states = {}
+
+local function cancel_document_highlight(bufnr)
+    local state = lsp_document_highlight_states[bufnr]
+    if not state then return end
+
+    state.generation = state.generation + 1
+
+    if state.timer then
+        state.timer:stop()
+        if not state.timer:is_closing() then state.timer:close() end
+        state.timer = nil
+    end
+
+    if state.cancel_request then
+        state.cancel_request()
+        state.cancel_request = nil
+    end
+end
+
+local function cursor_unchanged(bufnr, winid, cursor)
+    if not vim.api.nvim_buf_is_valid(bufnr) or not vim.api.nvim_win_is_valid(winid) then return false end
+    if vim.api.nvim_win_get_buf(winid) ~= bufnr then return false end
+
+    local current = vim.api.nvim_win_get_cursor(winid)
+    return current[1] == cursor[1] and current[2] == cursor[2]
+end
+
+local function clear_document_highlight(bufnr)
+    cancel_document_highlight(bufnr)
+    if vim.api.nvim_buf_is_valid(bufnr) then vim.lsp.util.buf_clear_references(bufnr) end
+end
+
+local function schedule_document_highlight(bufnr)
+    clear_document_highlight(bufnr)
+
+    local winid = vim.api.nvim_get_current_win()
+    if vim.api.nvim_win_get_buf(winid) ~= bufnr then return end
+
+    local state = lsp_document_highlight_states[bufnr] or { generation = 0 }
+    lsp_document_highlight_states[bufnr] = state
+
+    local generation = state.generation
+    local cursor = vim.api.nvim_win_get_cursor(winid)
+    state.timer = vim.defer_fn(function()
+        local current = lsp_document_highlight_states[bufnr]
+        if not current or current.generation ~= generation then return end
+
+        current.timer = nil
+        if not cursor_unchanged(bufnr, winid, cursor) then return end
+
+        current.cancel_request = vim.lsp.buf_request_all(
+            bufnr,
+            "textDocument/documentHighlight",
+            function(client) return vim.lsp.util.make_position_params(winid, client.offset_encoding) end,
+            function(results)
+                local latest = lsp_document_highlight_states[bufnr]
+                if not latest or latest.generation ~= generation then return end
+
+                latest.cancel_request = nil
+                if not cursor_unchanged(bufnr, winid, cursor) then return end
+
+                for client_id, response in pairs(results) do
+                    local client = vim.lsp.get_client_by_id(client_id)
+                    if client and not response.error and response.result then
+                        vim.lsp.util.buf_highlight_references(bufnr, response.result, client.offset_encoding)
+                    end
+                end
+            end
+        )
+    end, lsp_document_highlight_delay)
+end
+
 autocmd.lsp_attach(function(client, bufnr)
-    if client and client:supports_method("textDocument/inlayHint", bufnr) then
+    if not client then return end
+
+    if client:supports_method("textDocument/inlayHint", bufnr) then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
+
+    if not client:supports_method("textDocument/documentHighlight", bufnr) then return end
+
+    vim.api.nvim_clear_autocmds({ group = lsp_document_highlight_group, buffer = bufnr })
+    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        group = lsp_document_highlight_group,
+        buffer = bufnr,
+        callback = function(args) schedule_document_highlight(args.buf) end,
+    })
+    vim.api.nvim_create_autocmd("BufWipeout", {
+        group = lsp_document_highlight_group,
+        buffer = bufnr,
+        callback = function(args)
+            cancel_document_highlight(args.buf)
+            lsp_document_highlight_states[args.buf] = nil
+        end,
+    })
+
+    schedule_document_highlight(bufnr)
 end)
 
 autocmd.user_pattern("VeryLazy", loader.callback_load_mods { "lsp", "lsp.setup" })
@@ -222,5 +318,4 @@ return {
         lazy = false,
         dependencies = { "rust-lang/rust.vim" },
     },
-    { "RRethy/vim-illuminate", event = "LspAttach" },
 }
